@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Lock, Sparkles } from "lucide-react";
+import { IconArrowUpRight, IconLock, IconPro } from "@/components/icons";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
@@ -77,9 +77,9 @@ export function ScenarioGrid({ scenarios }: ScenarioGridProps) {
                   ) : (
                     <>
                       {locked ? (
-                        <Lock size={10} strokeWidth={2.5} aria-hidden="true" />
+                        <IconLock size={10} strokeWidth={2.5} aria-hidden="true" />
                       ) : (
-                        <Sparkles size={10} strokeWidth={2.5} aria-hidden="true" />
+                        <IconPro size={10} strokeWidth={2.5} aria-hidden="true" />
                       )}
                       Pro
                     </>
@@ -90,7 +90,7 @@ export function ScenarioGrid({ scenarios }: ScenarioGridProps) {
               <span className={styles.titleRow}>
                 <span className={styles.title}>{s.title}</span>
                 <span className={styles.go} aria-hidden="true">
-                  {locked ? <Lock size={13} strokeWidth={2} /> : <ArrowUpRight size={14} strokeWidth={2} />}
+                  {locked ? <IconLock size={13} strokeWidth={2} /> : <IconArrowUpRight size={14} strokeWidth={2} />}
                 </span>
               </span>
               <span className={styles.brief}>{s.brief}</span>

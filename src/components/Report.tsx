@@ -1,6 +1,17 @@
 "use client";
 
-import { ArrowDown, ArrowRight, Eye, Lock, LockOpen, Minus, RotateCcw, TrendingDown, TrendingUp, Trophy } from "lucide-react";
+import {
+  IconArrowDown,
+  IconArrowRight,
+  IconBest,
+  IconEye,
+  IconLock,
+  IconMinus,
+  IconRetry,
+  IconTrendDown,
+  IconTrendUp,
+  IconUnlock,
+} from "@/components/icons";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -117,11 +128,11 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
                 className={`${styles.status} ${delta > 0 ? styles.good : delta < 0 ? styles.bad : styles.neutral} ${styles.pop}`}
               >
                 {delta > 0 ? (
-                  <TrendingUp size={12} strokeWidth={2.5} aria-hidden="true" />
+                  <IconTrendUp size={12} strokeWidth={2.5} aria-hidden="true" />
                 ) : delta < 0 ? (
-                  <TrendingDown size={12} strokeWidth={2.5} aria-hidden="true" />
+                  <IconTrendDown size={12} strokeWidth={2.5} aria-hidden="true" />
                 ) : (
-                  <Minus size={12} strokeWidth={2.5} aria-hidden="true" />
+                  <IconMinus size={12} strokeWidth={2.5} aria-hidden="true" />
                 )}
                 {delta > 0 ? "+" : delta < 0 ? "−" : ""}
                 {Math.abs(delta)} vs last time
@@ -129,7 +140,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
             )}
             {prev && personalBest && (
               <span className={`${styles.status} ${styles.good} ${styles.pop}`}>
-                <Trophy size={12} strokeWidth={2.5} aria-hidden="true" /> Personal best
+                <IconBest size={12} strokeWidth={2.5} aria-hidden="true" /> Personal best
               </span>
             )}
           </div>
@@ -165,7 +176,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
         <motion.div className={`${styles.truth} ${revealed ? styles.truthOpen : ""}`} {...enter(2)}>
           <div className={styles.truthHead}>
             <span className={styles.truthIcon} aria-hidden="true">
-              {revealed ? <LockOpen size={14} strokeWidth={2} /> : <Lock size={14} strokeWidth={2} />}
+              {revealed ? <IconUnlock size={14} strokeWidth={2} /> : <IconLock size={14} strokeWidth={2} />}
             </span>
             <h3 className={styles.truthTitle}>The hidden truth</h3>
           </div>
@@ -178,7 +189,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
             </p>
             {!revealed && (
               <button type="button" className={`btn ${styles.revealBtn}`} onClick={() => setRevealed(true)}>
-                <Eye size={15} strokeWidth={2} aria-hidden="true" />
+                <IconEye size={15} strokeWidth={2} aria-hidden="true" />
                 Reveal what they were hiding
               </button>
             )}
@@ -226,7 +237,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
               </p>
             </div>
             <div className={styles.arrow} aria-hidden="true">
-              <ArrowDown size={14} strokeWidth={2} />
+              <IconArrowDown size={14} strokeWidth={2} />
             </div>
             <div className={styles.after}>
               <span className={styles.label}>Try instead</span>
@@ -242,7 +253,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
           <div className={styles.proOverlay}>
             <div className={styles.proCta}>
               <span className={styles.proCtaIcon} aria-hidden="true">
-                <Lock size={16} strokeWidth={2} />
+                <IconLock size={16} strokeWidth={2} />
               </span>
               <p className={styles.proCtaTitle}>Unlock tactical rewrites</p>
               <p className={styles.proCtaText}>
@@ -250,7 +261,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
               </p>
               <button type="button" className="btn btn-primary" onClick={() => openPaywall("pro-report")}>
                 Unlock with Scenar Pro
-                <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+                <IconArrowRight size={14} strokeWidth={2} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -259,7 +270,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
 
       <div className={styles.actions}>
         <button type="button" className="btn btn-primary" onClick={onRetry}>
-          <RotateCcw size={14} strokeWidth={2} aria-hidden="true" />
+          <IconRetry size={14} strokeWidth={2} aria-hidden="true" />
           Try again
         </button>
         <Link href="/app" className="btn btn-ghost">

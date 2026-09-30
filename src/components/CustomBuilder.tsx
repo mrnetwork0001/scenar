@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, Lock, ShieldCheck, Sparkles, Trash2 } from "lucide-react";
+import { IconArrowRight, IconCheck, IconLock, IconShield, IconSpark, IconTrash } from "@/components/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -364,7 +364,7 @@ export function CustomBuilder() {
 
           <div className={styles.actions}>
             <p className={styles.privacy}>
-              <ShieldCheck size={14} strokeWidth={2} aria-hidden="true" /> Their secret is encrypted on our server - you only see it in the final report.
+              <IconShield size={14} strokeWidth={2} aria-hidden="true" /> Their secret is encrypted on our server - you only see it in the final report.
             </p>
             <button
               type="submit"
@@ -375,12 +375,12 @@ export function CustomBuilder() {
                 "Checking access…"
               ) : locked ? (
                 <>
-                  <Lock size={14} strokeWidth={2} aria-hidden="true" /> Unlock Pro to build
+                  <IconLock size={14} strokeWidth={2} aria-hidden="true" /> Unlock Pro to build
                 </>
               ) : (
                 <>
-                  <Sparkles size={14} strokeWidth={2} aria-hidden="true" /> Build my scenario
-                  <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+                  <IconSpark size={14} strokeWidth={2} aria-hidden="true" /> Build my scenario
+                  <IconArrowRight size={14} strokeWidth={2} aria-hidden="true" />
                 </>
               )}
             </button>
@@ -391,7 +391,7 @@ export function CustomBuilder() {
           <div className={styles.building} role="status" aria-live="polite">
             <div className={`${styles.orb} ${done ? styles.orbDone : ""}`} aria-hidden="true">
               <span className={styles.orbRing} />
-              <span className={styles.orbCore}>{done ? <Check size={20} strokeWidth={2.5} /> : "?"}</span>
+              <span className={styles.orbCore}>{done ? <IconCheck size={20} strokeWidth={2.5} /> : "?"}</span>
             </div>
             <ol className={styles.steps}>
               {STEPS.map((s, i) => {
@@ -399,7 +399,7 @@ export function CustomBuilder() {
                 return (
                   <li key={s} className={`${styles.step} ${styles[`step_${state}`]}`}>
                     <span className={styles.stepIcon} aria-hidden="true">
-                      {state === "done" ? <Check size={12} strokeWidth={3} /> : <span className={styles.stepSpinner} />}
+                      {state === "done" ? <IconCheck size={12} strokeWidth={3} /> : <span className={styles.stepSpinner} />}
                     </span>
                     {s}
                   </li>
@@ -451,14 +451,14 @@ function SavedList({ items }: { items: readonly CustomScenarioItem[] }) {
       {items.length === 0 ? (
         <div className={styles.empty}>
           <span className={styles.emptyIcon} aria-hidden="true">
-            <Sparkles size={16} strokeWidth={2} />
+            <IconSpark size={16} strokeWidth={2} />
           </span>
           <p>
             Nothing here yet. Build your first scenario above - it&apos;ll be saved here so you can rehearse it again
             and again.
           </p>
           <Link href="/app" className={styles.emptyLink}>
-            Or try a ready-made scenario <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
+            Or try a ready-made scenario <IconArrowRight size={13} strokeWidth={2} aria-hidden="true" />
           </Link>
         </div>
       ) : (
@@ -488,12 +488,12 @@ function SavedList({ items }: { items: readonly CustomScenarioItem[] }) {
                     aria-label={`Delete ${s.title}`}
                     title="Delete"
                   >
-                    <Trash2 size={14} strokeWidth={2} />
+                    <IconTrash size={14} strokeWidth={2} />
                   </button>
                 </span>
                 <span className={styles.title}>
                   {s.title}
-                  <ArrowRight className={styles.arrow} size={16} strokeWidth={2} aria-hidden="true" />
+                  <IconArrowRight className={styles.arrow} size={16} strokeWidth={2} aria-hidden="true" />
                 </span>
                 <span className={styles.brief}>{s.brief}</span>
                 <span className={styles.foot}>

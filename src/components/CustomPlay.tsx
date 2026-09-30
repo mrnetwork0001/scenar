@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ArrowRight, SearchX } from "lucide-react";
+import { IconArrowRight, IconSearchMissing } from "@/components/icons";
 import { useCustomScenario } from "@/lib/customStore";
 import { PlayClient } from "./PlayClient";
 import styles from "./CustomPlay.module.css";
@@ -26,7 +26,7 @@ export function CustomPlay() {
       <div className={styles.wrap}>
         <div className={styles.card}>
           <span className={styles.icon} aria-hidden="true">
-            <SearchX size={18} strokeWidth={2} />
+            <IconSearchMissing size={18} strokeWidth={2} />
           </span>
           <h1 className={styles.title}>Scenario not found</h1>
           <p className={styles.text}>
@@ -34,7 +34,7 @@ export function CustomPlay() {
             device.
           </p>
           <Link href="/custom" className="btn btn-primary">
-            Build a scenario <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            Build a scenario <IconArrowRight size={14} strokeWidth={2} aria-hidden="true" />
           </Link>
         </div>
       </div>

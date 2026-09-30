@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Target, TrendingUp } from "lucide-react";
+import { IconStreak, IconTarget, IconTrendUp } from "@/components/icons";
 import { useId } from "react";
 import { stats, useHistory } from "@/lib/history";
 import { METRIC_LABELS, type MetricKey } from "@/lib/types";
@@ -48,7 +48,7 @@ export function ProgressPanel() {
         </div>
         {s.streakDays > 0 && (
           <span className={styles.streak} title={`${s.streakDays}-day practice streak`}>
-            <Flame size={12} strokeWidth={2.5} aria-hidden="true" />
+            <IconStreak size={12} strokeWidth={2.5} aria-hidden="true" />
             <strong>{s.streakDays}</strong> day{s.streakDays === 1 ? "" : "s"} streak
           </span>
         )}
@@ -123,14 +123,14 @@ export function ProgressPanel() {
           <div className={styles.skill}>
             <span className={styles.skillTag}>Strongest skill</span>
             <span className={styles.skillName}>
-              <TrendingUp size={14} strokeWidth={2} aria-hidden="true" />
+              <IconTrendUp size={14} strokeWidth={2} aria-hidden="true" />
               {METRIC_LABELS[s.strongest]}
             </span>
           </div>
           <div className={`${styles.skill} ${styles.focus}`}>
             <span className={styles.skillTag}>Focus next</span>
             <span className={styles.skillName}>
-              <Target size={14} strokeWidth={2} aria-hidden="true" />
+              <IconTarget size={14} strokeWidth={2} aria-hidden="true" />
               {METRIC_LABELS[s.weakest]}
             </span>
             <p className={styles.tip}>{TIPS[s.weakest]}</p>

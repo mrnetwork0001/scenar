@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { IconArrowRight, IconPro } from "@/components/icons";
 import { Reveal } from "./Reveal";
 import styles from "./BuildYourOwnCard.module.css";
 
@@ -20,7 +20,7 @@ export function BuildYourOwnCard() {
         <span className={styles.copy}>
           <span className={styles.top}>
             <span className={styles.pro}>
-              <Sparkles size={10} strokeWidth={2.5} aria-hidden="true" />
+              <IconPro size={10} strokeWidth={2.5} aria-hidden="true" />
               Pro
             </span>
             <span className={styles.newTag}>New</span>
@@ -42,7 +42,7 @@ export function BuildYourOwnCard() {
         <span className={styles.cta}>
           Start building
           <span className={styles.ctaIcon} aria-hidden="true">
-            <ArrowRight size={12} strokeWidth={3} />
+            <IconArrowRight size={12} strokeWidth={3} />
           </span>
         </span>
       </Link>

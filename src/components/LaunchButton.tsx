@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@/components/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./LaunchButton.module.css";
@@ -14,7 +14,7 @@ export function LaunchButton() {
     <Link href="/app" className={styles.launch}>
       <span className={styles.label}>Launch app</span>
       <span className={styles.icon} aria-hidden="true">
-        <ArrowUpRight size={14} strokeWidth={2.5} />
+        <IconArrowUpRight size={14} strokeWidth={2.5} />
       </span>
     </Link>
   );

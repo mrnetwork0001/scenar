@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Crown, RotateCcw } from "lucide-react";
+import { IconPro, IconRetry } from "@/components/icons";
 import { daysUntil } from "@/lib/revenuecat";
 import { useEntitlementInternals } from "./EntitlementProvider";
 import styles from "./ProBadge.module.css";
@@ -39,7 +39,7 @@ export function ProBadge({ className }: { className?: string }) {
           title="Reset demo purchase"
           aria-label="Reset demo purchase"
         >
-          <RotateCcw size={12} strokeWidth={2.5} aria-hidden="true" />
+          <IconRetry size={12} strokeWidth={2.5} aria-hidden="true" />
         </button>
       ) : null}
       <button
@@ -50,7 +50,7 @@ export function ProBadge({ className }: { className?: string }) {
         aria-label={statusText}
       >
         <span className={styles.icon} aria-hidden="true">
-          {isPro ? <Crown size={13} strokeWidth={2.25} /> : <GridGlyph />}
+          {isPro ? <IconPro size={13} strokeWidth={2.25} /> : <GridGlyph />}
         </span>
         <span className={styles.label} aria-hidden="true">
           {isPro ? (

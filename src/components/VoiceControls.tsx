@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Lock, Mic } from "lucide-react";
+import { IconLock, IconMic } from "@/components/icons";
 import { useEntitlements } from "@/components/EntitlementProvider";
 import { useDictation } from "./useVoice";
 import styles from "./VoiceControls.module.css";
@@ -107,11 +107,11 @@ export function MicButton({ value, onChange, disabled, maxLength, onStart, onLis
             <span />
           </span>
         ) : (
-          <Mic size={17} strokeWidth={2} aria-hidden="true" />
+          <IconMic size={17} strokeWidth={2} aria-hidden="true" />
         )}
         {locked && (
           <span className={styles.lockBadge} aria-hidden="true">
-            <Lock size={8} strokeWidth={3} aria-hidden="true" />
+            <IconLock size={8} strokeWidth={3} aria-hidden="true" />
           </span>
         )}
       </button>
@@ -170,7 +170,7 @@ export function SpeakerToggle({ on, onChange, supported, speaking }: SpeakerTogg
       <span className={styles.speakerText}>{on ? "Voice on" : "Voice off"}</span>
       {locked && (
         <span className={styles.lockBadge} aria-hidden="true">
-          <Lock size={8} strokeWidth={3} aria-hidden="true" />
+          <IconLock size={8} strokeWidth={3} aria-hidden="true" />
         </span>
       )}
     </button>

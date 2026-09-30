@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { IconArrowUpRight, IconPlus } from "@/components/icons";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { useHistory } from "@/lib/history";
@@ -69,7 +69,7 @@ export function NavMenu() {
         onClick={() => setOpen((o) => !o)}
       >
         <span className={`${styles.icon} ${open ? styles.iconOpen : ""}`} aria-hidden="true">
-          <Plus size={12} strokeWidth={3} />
+          <IconPlus size={12} strokeWidth={3} />
         </span>
         <span className={styles.label}>Menu</span>
       </button>
@@ -104,7 +104,7 @@ export function NavMenu() {
                       <span className={styles.linkHint}>{l.hint}</span>
                     </span>
                     <span className={styles.linkIcon} aria-hidden="true">
-                      <ArrowUpRight size={14} strokeWidth={2} />
+                      <IconArrowUpRight size={14} strokeWidth={2} />
                     </span>
                   </ScrollLink>
                 </motion.li>

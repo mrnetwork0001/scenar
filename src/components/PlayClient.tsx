@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowLeft, ArrowRight, ArrowUp, ChevronDown, Lock, RotateCcw } from "lucide-react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowUp,
+  IconChevronDown,
+  IconLock,
+  IconRetry,
+} from "@/components/icons";
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
 import type { PublicScenario } from "@/lib/scenarios";
@@ -242,7 +249,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
       >
         <motion.div variants={rise}>
           <Link href={custom ? "/custom" : "/app"} className={styles.back}>
-            <ArrowLeft size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowLeft size={14} strokeWidth={2} aria-hidden="true" />
             {custom ? "Your scenarios" : "All scenarios"}
           </Link>
         </motion.div>
@@ -254,7 +261,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
               {scenario.category}
             </span>
             <span className={styles.tierPill}>
-              {scenario.tier === "pro" && <Lock size={10} strokeWidth={2.5} aria-hidden="true" />}
+              {scenario.tier === "pro" && <IconLock size={10} strokeWidth={2.5} aria-hidden="true" />}
               {scenario.tier === "pro" ? "PRO" : "FREE"}
             </span>
             <span className={styles.metaText}>
@@ -296,7 +303,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
           {locked ? (
             <div className={styles.lockedBox}>
               <span className={styles.lockCircle} aria-hidden="true">
-                <Lock size={16} strokeWidth={2} />
+                <IconLock size={16} strokeWidth={2} />
               </span>
               <p>
                 <strong>This is a Pro scenario.</strong> Unlock every scenario plus tactical coaching reports.
@@ -309,7 +316,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
             <div className={styles.briefActions}>
               <button type="button" className={`btn btn-primary ${styles.startBtn}`} onClick={start} disabled={checking}>
                 {checking ? "Checking access…" : "Start conversation"}
-                {!checking && <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />}
+                {!checking && <IconArrowRight size={16} strokeWidth={2} aria-hidden="true" />}
               </button>
               <span className={styles.hint}>Up to {MAX_USER_TURNS} messages · end any time</span>
             </div>
@@ -367,7 +374,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
               onClick={() => setDetailsOpen((o) => !o)}
             >
               {detailsOpen ? "Hide coach" : "Coach & scores"}
-              <ChevronDown
+              <IconChevronDown
                 size={12}
                 strokeWidth={2.5}
                 className={`${styles.chev} ${detailsOpen ? styles.chevUp : ""}`}
@@ -466,7 +473,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
             <div className={styles.errorRow} role="alert">
               <span>Message didn&apos;t go through - {turnError}</span>
               <button type="button" className={styles.retryBtn} onClick={() => void runTurn(messages)}>
-                <RotateCcw size={12} strokeWidth={2.5} aria-hidden="true" />
+                <IconRetry size={12} strokeWidth={2.5} aria-hidden="true" />
                 Retry
               </button>
             </div>
@@ -535,7 +542,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
             disabled={composerDisabled || !draft.trim()}
             aria-label="Send message"
           >
-            <ArrowUp size={18} strokeWidth={2} aria-hidden="true" />
+            <IconArrowUp size={18} strokeWidth={2} aria-hidden="true" />
           </button>
         </form>
         {listening ? (

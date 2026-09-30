@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  ArrowRight,
-  ChartNoAxesColumn,
-  CircleAlert,
-  LayoutGrid,
-  Lock,
-  Mic,
-  PenLine,
-  X,
-  type LucideIcon,
-} from "lucide-react";
+  IconAlert,
+  IconArrowRight,
+  IconBars,
+  IconClose,
+  IconGrid,
+  IconLock,
+  IconMic,
+  IconPen,
+  type ScenarIcon,
+} from "@/components/icons";
 import {
   useCallback,
   useEffect,
@@ -76,30 +76,30 @@ const COPY: Record<PaywallReason, { title: ReactNode; sub: string }> = {
 
 type BenefitKey = "scenarios" | "rewrites" | "report" | "voice";
 
-const BENEFITS: { key: BenefitKey; title: string; body: string; icon: LucideIcon }[] = [
+const BENEFITS: { key: BenefitKey; title: string; body: string; icon: ScenarIcon }[] = [
   {
     key: "scenarios",
     title: "All 5 scenarios",
     body: "Including the new-manager and academic high-stakes talks.",
-    icon: LayoutGrid,
+    icon: IconGrid,
   },
   {
     key: "rewrites",
     title: "Tactical line-by-line rewrites",
     body: "See the exact words that would have landed better.",
-    icon: PenLine,
+    icon: IconPen,
   },
   {
     key: "report",
     title: "Full coaching report",
     body: "What worked, what to fix, scored across four core skills.",
-    icon: ChartNoAxesColumn,
+    icon: IconBars,
   },
   {
     key: "voice",
     title: "Voice mode & your own scenarios",
     body: "Speak your replies out loud, or build a rehearsal from your real situation.",
-    icon: Mic,
+    icon: IconMic,
   },
 ];
 
@@ -309,7 +309,7 @@ export function Paywall() {
                 aria-label="Close"
                 disabled={phase === "loading"}
               >
-                <X size={16} strokeWidth={2} aria-hidden="true" />
+                <IconClose size={16} strokeWidth={2} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -458,7 +458,7 @@ export function Paywall() {
               <div className={styles.errorSlot} aria-live="assertive">
                 {error ? (
                   <p className={styles.error} role="alert">
-                    <CircleAlert size={16} strokeWidth={2} aria-hidden="true" />
+                    <IconAlert size={16} strokeWidth={2} aria-hidden="true" />
                     {error}
                   </p>
                 ) : null}
@@ -475,7 +475,7 @@ export function Paywall() {
                 {phase === "loading" ? <span className={styles.spinner} aria-hidden="true" /> : null}
                 <span>{ctaLabel}</span>
                 {phase === "idle" ? (
-                  <ArrowRight className={styles.ctaArrow} size={16} strokeWidth={2} aria-hidden="true" />
+                  <IconArrowRight className={styles.ctaArrow} size={16} strokeWidth={2} aria-hidden="true" />
                 ) : null}
               </button>
 
@@ -491,7 +491,7 @@ export function Paywall() {
           )}
 
           <p className={styles.fine}>
-            <Lock size={11} strokeWidth={2} aria-hidden="true" />
+            <IconLock size={11} strokeWidth={2} aria-hidden="true" />
             Payments processed securely by RevenueCat Web Billing
           </p>
         </div>
