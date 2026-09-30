@@ -23,11 +23,14 @@ You pick a scenario and talk it through with an AI counterpart. Each counterpart
 - An offline heuristic fallback keeps the demo working with no network.
 
 ## RevenueCat
-- `@revenuecat/purchases-js` Web Billing with anonymous app user IDs.
-- The `scenar_pro` entitlement gates 3 of the 5 scenarios and the tactical rewrites. The report is already generated, so it unblurs the moment the purchase completes.
-- The custom paywall is driven by the offering. It computes "Save X%" and reads the trial length from the product.
-- Pricing matches how people prepare: Monthly with a 7-day free trial for one big conversation, Annual for managers who practise continuously, and a one-time Lifetime plan.
-- A live entitlement badge shows the trial days left.
+- **Real payments, live:** `@revenuecat/purchases-js` with two environments side by side. **Sandbox** uses the RevenueCat Test Store (no card) and **Live** uses RevenueCat Web Billing with Stripe (real charges). Users switch at runtime; each environment keeps its own anonymous app user ID, and Live is always marked with a green badge dot and a "Live payments" strip. A real 7-day-trial subscription was purchased and cancelled on the deployed site through RevenueCat's customer portal.
+- **Server-side entitlement enforcement:** Pro API routes verify `scenar_pro` with RevenueCat's REST API. The report's Pro coaching is **AES-256-GCM sealed** for free users and unlocked by `/api/report/unlock` only after RevenueCat confirms the purchase, so it can't be read from the network.
+- **Webhooks:** an authenticated `/api/revenuecat/webhook` clears the cached entitlement check and records events in Upstash Redis (deduplicated by event ID), and the in-app inspector shows each user their own event feed.
+- **Placements:** every paywall moment (locked scenario, report upsell, voice, builder, manual) requests its own RevenueCat placement, with a fallback to the current offering. Each purchase is tagged with `paywall_reason`, `placement_id`, `offering_id` and `billing_env`.
+- **Offering-driven custom paywall:** plans, "Save X%", "Best value" (only when annual actually saves) and the trial timeline all come from the offering at runtime.
+- **RevenueCat inspector** (Shift+I): live SDK state (environment, key type, app user ID, entitlement, product, renewal, trial countdown, offering and placement, last purchase), server verification and webhook events.
+- **Account & billing page:** plan, trial end or renewal date, "Manage or cancel" via RevenueCat's management URL, and restore-on-another-device via `changeUser`.
+- Pricing matches how people prepare: Monthly with a 7-day free trial, Annual (Save 33%) and a one-time Lifetime plan.
 
 ## Challenges
 Getting the model to stay in character, keep its secret, and score the user honestly, all in one structured response per turn.
@@ -47,10 +50,11 @@ Accounts that sync across devices, team plans for manager training cohorts, and 
 | 0:30–0:55 | Type a weak, apologetic reply. Tension rises, coach tip appears. | "If I hedge, the tension meter spikes and the coach tells me why." |
 | 0:55–1:15 | Type a strong anchored ask with market data. Tension drops, progress climbs, status Won. | "When I anchor with data and stay calm, she moves." |
 | 1:15–1:30 | Report: radar draw-in, click "Reveal what they were hiding" | "Then the reveal: her ceiling was $84k. Now I know exactly what I left on the table." |
-| 1:30–1:45 | Blurred Pro rewrites → paywall slides up → select Monthly (7-day trial timeline) → Start free trial → RevenueCat Test Store "Test valid purchase" → success → unblur | "Pro unlocks tactical rewrites, voice mode and your own scenarios. Payments run through RevenueCat, with a 7-day free trial." |
-| 1:45–1:55 | Pro badge in header, back to landing | "Scenar. Rehearse the conversations that matter." |
+| 1:30–1:42 | Locked Pro coaching → paywall slides up → select Monthly (7-day trial timeline) → Start free trial → RevenueCat Test Store "Test valid purchase" → success → coaching unlocks | "Pro coaching is sealed on the server and unlocks only when RevenueCat verifies the purchase." |
+| 1:42–1:52 | Flip the header switch to **Live** (green strip) → RevenueCat checkout "Total due today $0" → press Shift+I: inspector shows entitlement, placement and "Server agrees: Pro" | "Sandbox for testing, Live for real Stripe payments: the same RevenueCat offering, verified end to end." |
+| 1:52–1:58 | /account → "Manage or cancel", then back to landing | "Scenar. Rehearse the conversations that matter." |
 
-Recording tips: use a 1440×900 browser window at 100% zoom and record with the real LLM key set. Clear localStorage first so the trial state is fresh.
+Recording tips: record on https://tryscenar.vercel.app in a fresh private window (a new anonymous user) at 1440×900 and 100% zoom. Test Store trials last about 5 minutes, so record the purchase and the Pro features in one take. For the Live segment, show the checkout but don't submit a card, or use the clip of your real trial purchase and cancellation.
 
 ## Design notes (for judges)
 Look for these: the spring-physics needle on the tension meter and its colour-shifting glow, the staggered card entrances with per-scenario accent glows, the paywall's animated gradient border and the success burst, the blur-to-clear "hidden truth" reveal, and the radar chart drawing in.
