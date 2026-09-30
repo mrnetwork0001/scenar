@@ -41,3 +41,10 @@ yarn-error.log*
 next-env.d.ts
 
 !.env.example
+
+# demo video (Remotion)
+/video/node_modules
+/video/out
+/video/.env*
+/video/.cache
+/video/public/stock/*.mp4
