@@ -133,6 +133,16 @@
 @media (min-width: 640px) {
   .bottom { flex-direction: row; justify-content: space-between; align-items: center; }
 }
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+.legal .link { font-size: 13px; }
+@media (min-width: 640px) {
+  .legal { margin-right: auto; margin-left: 28px; }
+}
+
 .made {
   display: inline-flex;
   align-items: center;

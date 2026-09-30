@@ -21,6 +21,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
       { label: "Build your own", href: "/custom" },
       { label: "Pricing", href: "/#pricing", hash: true },
       { label: "FAQ", href: "/#faq", hash: true },
+      { label: "Account & billing", href: "/account" },
     ],
   },
   {
@@ -40,6 +41,12 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
       { label: "Built for RevenueCat Shipaton 2026", href: "https://www.revenuecat.com", external: true },
     ],
   },
+];
+
+const LEGAL = [
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Refunds", href: "/refunds" },
 ];
 
 const WORDMARK = "Scenar";
@@ -126,6 +133,13 @@ function FooterBottom() {
   return (
     <div className={styles.bottom}>
       <p>© 2026 Scenar · MIT License</p>
+      <nav className={styles.legal} aria-label="Legal">
+        {LEGAL.map((l) => (
+          <Link key={l.href} href={l.href} className={styles.link}>
+            {l.label}
+          </Link>
+        ))}
+      </nav>
       <p className={styles.made}>
         <span className={styles.madeDot} aria-hidden="true" />
         Made with RevenueCat

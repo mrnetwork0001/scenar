@@ -5,6 +5,7 @@ import { motion, useInView } from "motion/react";
 import Link from "next/link";
 import { useRef, type CSSProperties } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
+import { EnvironmentSwitch } from "@/components/EnvironmentSwitch";
 import { parsePrice } from "@/lib/revenuecat";
 import type { PaywallPackage } from "@/lib/types";
 import { SectionHeader, sectionStyles } from "./SectionHeader";
@@ -285,15 +286,30 @@ export function PricingSection() {
           </motion.article>
         </div>
 
-        <p className={styles.live}>
-          <span className={styles.liveDot} aria-hidden="true" />
-          Plans and prices are served live by RevenueCat
-          {demoMode ? (
-            <span className={`${styles.pill} ${styles.pillDemo}`}>Demo billing</span>
-          ) : isSandbox ? (
-            <span className={`${styles.pill} ${styles.pillSandbox}`}>Sandbox</span>
-          ) : null}
-        </p>
+        <motion.div
+          className={styles.envBar}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -5% 0px" }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
+        >
+          <div className={styles.envText}>
+            <p className={styles.live}>
+              <span className={styles.liveDot} aria-hidden="true" />
+              Plans and prices are served live by RevenueCat
+              {demoMode ? (
+                <span className={`${styles.pill} ${styles.pillDemo}`}>Demo billing</span>
+              ) : isSandbox ? (
+                <span className={`${styles.pill} ${styles.pillSandbox}`}>Sandbox</span>
+              ) : null}
+            </p>
+            <p className={styles.envCaption}>
+              Judges: try everything in Sandbox with test purchases, or switch to Live for real
+              payments.
+            </p>
+          </div>
+          <EnvironmentSwitch size="md" className={styles.envSwitch} />
+        </motion.div>
       </div>
     </section>
   );
