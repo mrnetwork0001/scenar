@@ -1,0 +1,126 @@
+/* Fixed, floating nav: the bar itself ignores the pointer, its pills don't. */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  pointer-events: none;
+  animation: navIn 0.8s var(--ease-out) both;
+}
+.nav > * { pointer-events: auto; }
+
+/* Soft white veil so the floating pills stay legible over scrolled content. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -12px;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.7) 55%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .nav { padding: 20px 32px; }
+}
+
+@keyframes navIn {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+@media (min-width: 768px) {
+  .navLeft { gap: 12px; }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding-right: 4px;
+  border-radius: var(--pill);
+  color: var(--fg);
+}
+.brand svg { transition: transform 0.6s var(--ease-out); }
+.brand:hover svg { transform: rotate(-12deg); }
+.brand:focus-visible { outline-offset: 4px; }
+
+.wordmark {
+  display: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.tags {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--pill);
+  background: var(--surface-muted);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.tagDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--fg-dim);
+}
+
+@media (min-width: 768px) {
+  .brand { height: 40px; }
+  .wordmark { display: inline; }
+  .tags { display: inline-flex; }
+}
+
+/* Pages start below the floating nav; the landing hero pulls itself back up under it. */
+.main {
+  --nav-h: 68px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--nav-h);
+}
+@media (min-width: 768px) {
+  .main { --nav-h: 80px; }
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 8px 14px;
+  border-radius: var(--pill);
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+  font-size: 13px;
+  font-weight: 500;
+  transition: top 0.2s;
+}
+.skip:focus { top: 12px; }
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.navRight > * { pointer-events: auto; }
