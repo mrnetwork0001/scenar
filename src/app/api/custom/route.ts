@@ -8,6 +8,8 @@ import { sealScenario } from "@/lib/seal";
 import type { Scenario } from "@/lib/types";
 
 export const runtime = "nodejs";
+// LLM calls take 5-20s (report LLM timeout is 50s); raise the serverless limit on Vercel.
+export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {

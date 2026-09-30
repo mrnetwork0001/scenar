@@ -5,6 +5,8 @@ import { unsealProSection } from "@/lib/seal";
 import type { ProReportSection } from "@/lib/types";
 
 export const runtime = "nodejs";
+// LLM calls take 5-20s (report LLM timeout is 50s); raise the serverless limit on Vercel.
+export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 // POST { proSealed } -> ProReportSection, only for callers RevenueCat confirms have scenar_pro.

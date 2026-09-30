@@ -8,6 +8,8 @@ import { sealProSection } from "@/lib/seal";
 import type { ReportResponse } from "@/lib/types";
 
 export const runtime = "nodejs";
+// LLM calls take 5-20s (report LLM timeout is 50s); raise the serverless limit on Vercel.
+export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 /**
@@ -70,7 +72,7 @@ export async function POST(req: Request) {
     const raw = await chatJSON<Partial<ReportResponse>>(
       buildReportSystemPrompt(scenario, outcome),
       buildReportMessages(scenario, messages),
-      { report: true, temperature: 0.4, maxTokens: 1800, timeoutMs: 75_000 },
+      { report: true, temperature: 0.4, maxTokens: 1800, timeoutMs: 50_000 },
     );
     const rw = (raw.rewrite && typeof raw.rewrite === "object" ? raw.rewrite : {}) as Partial<ReportResponse["rewrite"]>;
     const res: ReportResponse = {
