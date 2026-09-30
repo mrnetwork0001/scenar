@@ -8,7 +8,7 @@ import styles from "./ProBadge.module.css";
 
 /** Live entitlement status for the header: grey pill, black icon circle, label (hidden on mobile). */
 export function ProBadge({ className }: { className?: string }) {
-  const { ready, isPro, isTrial, demoMode, expiresAt, openPaywall, resetDemo } =
+  const { ready, isPro, isTrial, demoMode, expiresAt, env, openPaywall, resetDemo } =
     useEntitlementInternals();
   const [now, setNow] = useState(() => Date.now());
 
@@ -41,6 +41,8 @@ export function ProBadge({ className }: { className?: string }) {
       ? `Scenar Pro trial${left ? `, ${left.long} left` : ""}`
       : "Scenar Pro active"
     : "Free plan. Upgrade to Scenar Pro";
+  const envText = env === "live" ? "Live environment" : "Sandbox environment";
+  const label = `${statusText}. ${envText}`;
 
   return (
     <span className={`${styles.wrap} ${className ?? ""}`}>
@@ -59,11 +61,15 @@ export function ProBadge({ className }: { className?: string }) {
         type="button"
         className={`${styles.badge} ${isPro ? styles.pro : ""}`}
         onClick={() => openPaywall("manual")}
-        title={statusText}
-        aria-label={statusText}
+        title={label}
+        aria-label={label}
       >
-        <span className={styles.icon} aria-hidden="true">
-          {isPro ? <IconPro size={13} strokeWidth={2.25} /> : <GridGlyph />}
+        <span className={styles.iconWrap} aria-hidden="true">
+          <span className={styles.icon}>
+            {isPro ? <IconPro size={13} strokeWidth={2.25} /> : <GridGlyph />}
+          </span>
+          {/* Billing environment: neutral for Sandbox, green for Live. */}
+          <span className={styles.envDot} data-env={env} />
         </span>
         <span className={styles.label} aria-hidden="true">
           {isPro ? (

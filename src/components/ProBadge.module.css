@@ -5,6 +5,7 @@
 }
 
 .badge {
+  --ring: var(--surface-muted);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -16,7 +17,7 @@
   white-space: nowrap;
   transition: background 0.2s, transform 0.4s var(--ease-out);
 }
-.badge:hover { background: #eaeaed; }
+.badge:hover { background: #eaeaed; --ring: #eaeaed; }
 .badge:active { transform: scale(0.97); }
 
 .icon {
@@ -31,6 +32,26 @@
   transition: transform 0.5s var(--ease-out);
 }
 .badge:hover .icon { transform: rotate(90deg); }
+
+.iconWrap {
+  position: relative;
+  display: grid;
+  flex: none;
+}
+
+/* Environment dot on the icon circle's top-right corner, ringed in the pill colour. */
+.envDot {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(var(--line-bold), var(--line-bold)), var(--surface);
+  box-shadow: 0 0 0 2px var(--ring);
+  transition: background 0.35s var(--ease-out), box-shadow 0.2s;
+}
+.envDot[data-env="live"] { background: var(--good); }
 .pro:hover .icon { transform: scale(1.08); }
 
 .label {
