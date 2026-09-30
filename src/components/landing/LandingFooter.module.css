@@ -1,0 +1,146 @@
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 768px) {
+  .footer { padding-top: 96px; }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+/* Matches sectionStyles.inner: half-width side margins on desktop */
+@media (min-width: 768px) {
+  .inner { max-width: calc((100vw + 1200px) / 2); padding: 0 16px; }
+}
+
+.top {
+  display: grid;
+  gap: 48px;
+}
+@media (min-width: 900px) {
+  .top {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+    gap: 64px;
+  }
+}
+
+/* --- Brand --- */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.tagline {
+  max-width: 300px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.brandCta { margin-top: 4px; }
+
+/* --- Columns --- */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 24px;
+}
+@media (min-width: 640px) {
+  .columns { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 1fr); }
+}
+.column:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
+@media (min-width: 640px) {
+  .column:nth-child(2) { grid-column: auto; grid-row: auto; }
+}
+
+.colTitle {
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.links {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+.link {
+  display: inline;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: color 0.2s, background-size 0.4s var(--ease-out);
+}
+.link:hover {
+  color: var(--fg);
+  background-size: 100% 1px;
+}
+.ext { margin-left: 4px; vertical-align: -1px; opacity: 0.6; }
+
+/* --- Wordmark --- */
+.wordmark {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+  font-size: clamp(6rem, 27vw, 24rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.78;
+  color: rgba(10, 10, 10, 0.045);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+@media (min-width: 768px) {
+  .wordmark { margin-top: 96px; }
+}
+.wordmark span { display: inline-block; }
+
+/* --- Bottom bar --- */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 0 28px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+@media (min-width: 640px) {
+  .bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+.made {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.madeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg);
+}
