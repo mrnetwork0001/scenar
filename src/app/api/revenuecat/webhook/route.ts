@@ -26,8 +26,11 @@ const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) ? v : n
 export async function POST(req: Request) {
   const expected = process.env.REVENUECAT_WEBHOOK_AUTH?.trim();
   if (!expected) return NextResponse.json({ error: "Webhook not configured" }, { status: 503 });
-  const auth = req.headers.get("authorization") ?? "";
-  if (!auth || !safeEqual(auth.trim(), expected)) {
+  const auth = (req.headers.get("authorization") ?? "").trim();
+  // Accept the secret verbatim or as "Bearer <secret>" (RevenueCat's dashboard suggests the latter).
+  const bare = auth.replace(/^Bearer\s+/i, "");
+  const expectedBare = expected.replace(/^Bearer\s+/i, "");
+  if (!auth || !safeEqual(bare, expectedBare)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
