@@ -26,7 +26,7 @@ You pick a scenario and talk it through with an AI counterpart. Each counterpart
 - `@revenuecat/purchases-js` Web Billing with anonymous app user IDs.
 - The `scenar_pro` entitlement gates 3 of the 5 scenarios and the tactical rewrites. The report is already generated, so it unblurs the moment the purchase completes.
 - The custom paywall is driven by the offering. It computes "Save X%" and reads the trial length from the product.
-- Pricing matches how people prepare: a weekly Prep Pass for a one-off negotiation, and monthly/annual plans with a 7-day trial for managers.
+- Pricing matches how people prepare: Monthly with a 7-day free trial for one big conversation, Annual for managers who practise continuously, and a one-time Lifetime plan.
 - A live entitlement badge shows the trial days left.
 
 ## Challenges
@@ -47,7 +47,7 @@ Accounts that sync across devices, team plans for manager training cohorts, and 
 | 0:30–0:55 | Type a weak, apologetic reply. Tension rises, coach tip appears. | "If I hedge, the tension meter spikes and the coach tells me why." |
 | 0:55–1:15 | Type a strong anchored ask with market data. Tension drops, progress climbs, status Won. | "When I anchor with data and stay calm, she moves." |
 | 1:15–1:30 | Report: radar draw-in, click "Reveal what they were hiding" | "Then the reveal: her ceiling was $84k. Now I know exactly what I left on the table." |
-| 1:30–1:45 | Blurred Pro rewrites → paywall slides up → toggle annual → Start free trial → success → unblur | "Pro unlocks tactical rewrites and the manager scenarios, powered by RevenueCat Web Billing, from a weekly prep pass to annual." |
+| 1:30–1:45 | Blurred Pro rewrites → paywall slides up → select Monthly (7-day trial timeline) → Start free trial → RevenueCat Test Store "Test valid purchase" → success → unblur | "Pro unlocks tactical rewrites, voice mode and your own scenarios. Payments run through RevenueCat, with a 7-day free trial." |
 | 1:45–1:55 | Pro badge in header, back to landing | "Scenar. Rehearse the conversations that matter." |
 
 Recording tips: use a 1440×900 browser window at 100% zoom and record with the real LLM key set. Clear localStorage first so the trial state is fresh.

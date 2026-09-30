@@ -37,7 +37,7 @@ Scenar uses **RevenueCat Web Billing** via [`@revenuecat/purchases-js`](https://
 - **Entitlement `scenar_pro`** gates four value moments: 3 of the 5 scenarios, the tactical-rewrite section of the report, voice mode and the custom scenario builder. The report is generated in full either way, so it unblurs the instant the purchase completes.
 - **Every purchase is tagged with the moment that caused it** (`metadata.paywall_reason`: locked scenario, report, voice, builder or header), and `trackCustomPaywallImpression` runs on every paywall open.
 - **Offerings are dashboard-driven**: the custom paywall renders whatever packages are in the current offering. It computes "Save X%" for annual versus monthly and reads free-trial length from the product's trial phase. Nothing is hard-coded.
-- **Pricing matched to how people actually prepare**: a weekly *Prep Pass* for someone with one negotiation on Friday, and monthly/annual plans with a 7-day trial for managers who practise continuously.
+- **Pricing matched to how people actually prepare**: Monthly with a 7-day free trial for someone preparing for one big conversation, Annual for managers who practise continuously, and a one-time Lifetime plan. The trial length, prices and "Best value" / "Save X%" badges are all derived from the offering at runtime.
 - **Anonymous app user IDs**: nobody has to sign up before they can practise.
 - **Live entitlement badge** (Free / Pro · Trial with days left / Pro), refreshed on window focus.
 - **Context-aware paywall copy**: the headline depends on where the paywall was opened (locked scenario versus report upsell).
