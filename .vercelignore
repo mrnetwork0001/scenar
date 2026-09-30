@@ -1,0 +1,2 @@
+# The Remotion demo film is a separate project (own deps/tsconfig); the website never uses it.
+video/
