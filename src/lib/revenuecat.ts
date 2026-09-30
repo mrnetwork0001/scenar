@@ -322,8 +322,25 @@ export function parsePrice(formatted: string | undefined): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
-export function daysUntil(date: Date | null, now: number): number | null {
+/**
+ * Remaining time until `date`, for the trial badge: "7d", "3h" or "5m" (short) and
+ * "7 days" / "3 hours" / "5 minutes" (long). Sandbox and Test Store trials are
+ * time-compressed (a 1-week trial lasts minutes), so sub-day values matter.
+ */
+export function timeLeft(date: Date | null, now: number): { short: string; long: string } | null {
   if (!date) return null;
-  // 1h grace so a trial started after `now` was captured still reads "7d", not "8d".
-  return Math.max(0, Math.ceil((date.getTime() - now - 60 * 60 * 1000) / DAY_MS));
+  const ms = date.getTime() - now;
+  if (ms <= 0) return null;
+  const HOUR_MS = 60 * 60 * 1000;
+  const plural = (n: number, unit: string) => `${n} ${unit}${n === 1 ? "" : "s"}`;
+  if (ms >= DAY_MS) {
+    const d = Math.round(ms / DAY_MS);
+    return { short: `${d}d`, long: plural(d, "day") };
+  }
+  if (ms >= HOUR_MS) {
+    const h = Math.round(ms / HOUR_MS);
+    return { short: `${h}h`, long: plural(h, "hour") };
+  }
+  const m = Math.max(1, Math.round(ms / 60_000));
+  return { short: `${m}m`, long: plural(m, "minute") };
 }
