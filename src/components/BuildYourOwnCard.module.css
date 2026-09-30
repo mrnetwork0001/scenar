@@ -1,0 +1,130 @@
+.wrap { margin-top: 16px; }
+
+.card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px;
+    min-height: 280px;
+  }
+}
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.card:active { transform: translateY(0) scale(0.997); }
+.card:focus-visible { outline-offset: 4px; }
+
+/* Faint gauge line art, bottom-right */
+.art {
+  position: absolute;
+  right: -40px;
+  bottom: -6px;
+  z-index: -1;
+  width: 320px;
+  height: auto;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+  transition: transform 0.9s var(--ease-out);
+  transform-origin: 50% 95%;
+}
+@media (min-width: 768px) {
+  .art { right: 180px; width: 460px; bottom: -8px; }
+}
+.art path,
+.art line { vector-effect: non-scaling-stroke; }
+.artNeedle { stroke: rgba(255, 255, 255, 0.4); stroke-linecap: round; }
+.card:hover .art { transform: scale(1.04); }
+
+.copy { display: flex; flex-direction: column; gap: 10px; min-width: 0; max-width: 560px; }
+
+.top { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+
+.pro {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: var(--pill);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: var(--surface);
+}
+
+.newTag {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.title {
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.examples { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.example {
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  align-self: flex-start;
+  height: 40px;
+  padding: 4px 4px 4px 18px;
+  border-radius: var(--pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  background: var(--surface);
+}
+@media (min-width: 768px) {
+  .cta { align-self: flex-end; }
+}
+
+.ctaIcon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--fg-inverse);
+  background: var(--surface-inverse);
+  transition: transform 0.5s var(--ease-out);
+}
+.card:hover .ctaIcon { transform: translateX(3px); }
