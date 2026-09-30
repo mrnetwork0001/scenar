@@ -51,6 +51,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
   },
+  // iOS "Add to Home Screen": full-screen app with its own name (apple-icon.png supplies the icon).
+  appleWebApp: {
+    capable: true,
+    title: "Scenar",
+    statusBarStyle: "default",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Scenar - Rehearse the conversations that matter",
