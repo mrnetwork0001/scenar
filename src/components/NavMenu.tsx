@@ -3,9 +3,11 @@
 import { AnimatePresence, motion } from "motion/react";
 import { IconArrowUpRight, IconInspect, IconPlus } from "@/components/icons";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { useHistory } from "@/lib/history";
 import { openInspector } from "@/lib/inspector";
+import { MobileSheet } from "./MobileSheet";
 import { ScrollLink } from "./ScrollLink";
 import styles from "./NavMenu.module.css";
 import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
@@ -22,7 +24,27 @@ const LINKS = [
   { href: "/account", label: "Account & billing", hint: "Plan, restore, environment" },
 ];
 
-/** The black "Menu" pill with its dropdown card. */
+const MOBILE_QUERY = "(max-width: 767px)";
+
+function subscribeMobile(cb: () => void) {
+  const mq = window.matchMedia(MOBILE_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+
+/** Below 768px (hydration-safe: false on the server; the menu is closed then anyway). */
+function useIsMobile(): boolean {
+  return useSyncExternalStore(
+    subscribeMobile,
+    () => window.matchMedia(MOBILE_QUERY).matches,
+    () => false,
+  );
+}
+
+/**
+ * The black "Menu" pill. Desktop: a small dropdown card. Mobile: a full-screen control-centre
+ * sheet (plan, billing environment, navigation).
+ */
 export function NavMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -32,6 +54,8 @@ export function NavMenu() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
+  const mobile = useIsMobile();
+  const sheetOpen = open && mobile;
 
   // Close on route change (adjusting state during render instead of in an effect).
   if (pathname !== lastPath) {
@@ -39,8 +63,9 @@ export function NavMenu() {
     setOpen(false);
   }
 
+  // Desktop dropdown: close on outside pointer and Esc.
   useEffect(() => {
-    if (!open) return;
+    if (!open || mobile) return;
     function onPointer(e: PointerEvent) {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
     }
@@ -56,7 +81,27 @@ export function NavMenu() {
       document.removeEventListener("pointerdown", onPointer);
       document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, mobile]);
+
+  // Mobile sheet: Esc closes (the Live confirm dialog swallows its own Esc first) and the page
+  // behind stops scrolling. The lock sits on <html> so it never fights the Paywall's body lock.
+  useEffect(() => {
+    if (!sheetOpen) return;
+    const root = document.documentElement;
+    const prev = root.style.overflow;
+    root.style.overflow = "hidden";
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", onKey);
+    return () => {
+      root.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [sheetOpen]);
 
   const links = LINKS.filter((l) => !l.needsHistory || history.length > 0);
 
@@ -68,6 +113,7 @@ export function NavMenu() {
         className={styles.pill}
         aria-expanded={open}
         aria-controls={menuId}
+        aria-haspopup={mobile ? "dialog" : undefined}
         onClick={() => setOpen((o) => !o)}
       >
         <span className={`${styles.icon} ${open ? styles.iconOpen : ""}`} aria-hidden="true">
@@ -76,8 +122,29 @@ export function NavMenu() {
         <span className={styles.label}>Menu</span>
       </button>
 
+      {/* Portaled so the fixed sheet escapes the nav's stacking context and entrance transform. */}
+      {mobile
+        ? createPortal(
+            <AnimatePresence>
+              {sheetOpen ? (
+                <MobileSheet
+                  key="sheet"
+                  id={menuId}
+                  reduce={reduce}
+                  onClose={() => {
+                    setOpen(false);
+                    buttonRef.current?.focus({ preventScroll: true });
+                  }}
+                  onNavigate={() => setOpen(false)}
+                />
+              ) : null}
+            </AnimatePresence>,
+            document.body,
+          )
+        : null}
+
       <AnimatePresence>
-        {open && (
+        {open && !mobile && (
           <motion.nav
             id={menuId}
             aria-label="Site"
