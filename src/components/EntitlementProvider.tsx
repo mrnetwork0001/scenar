@@ -435,9 +435,10 @@ export function EntitlementProvider({ children }: { children: ReactNode }) {
               offering_id: shownOfferingRef.current?.identifier ?? null,
               billing_env: target,
             },
+            // Match Scenar's monochrome design system in RevenueCat's checkout.
             brandingAppearanceOverride: {
-              color_buttons_primary: "#7c5cff",
-              color_accent: "#ff5c8a",
+              color_buttons_primary: "#0a0a0a",
+              color_accent: "#0a0a0a",
               shapes: "pill",
             },
           });
