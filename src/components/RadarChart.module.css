@@ -1,0 +1,86 @@
+.wrap {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-sans);
+}
+
+.ring,
+.ringOuter {
+  fill: none;
+  stroke: rgba(10, 10, 10, 0.08);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.ringOuter { stroke: rgba(10, 10, 10, 0.18); }
+
+.axis {
+  stroke: rgba(10, 10, 10, 0.08);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.compare {
+  fill: none;
+  stroke: var(--fg-dim);
+  stroke-width: 1.25;
+  stroke-dasharray: 4 4;
+  stroke-linejoin: round;
+}
+
+.draw {
+  transform-box: view-box;
+  transform-origin: 180px 150px;
+  animation: grow 1.2s var(--ease-out) 0.35s both;
+}
+
+.shape {
+  fill: rgba(10, 10, 10, 0.06);
+  stroke: none;
+}
+
+.outline {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trace 1.4s var(--ease-out) 0.55s forwards;
+}
+
+.dot {
+  fill: var(--fg);
+  stroke: var(--bg);
+  stroke-width: 1.5;
+}
+
+.label {
+  fill: var(--fg-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.value {
+  fill: var(--fg);
+  font-size: 15px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+@keyframes grow {
+  from { transform: scale(0.2); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes trace {
+  to { stroke-dashoffset: 0; }
+}
