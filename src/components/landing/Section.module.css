@@ -1,0 +1,70 @@
+/* Shared rhythm for landing + app-home sections. */
+.section {
+  position: relative;
+  padding: 88px 0;
+  scroll-margin-top: 72px;
+  overflow: hidden; /* contain decorative backgrounds */
+}
+@media (min-width: 768px) {
+  .section { padding: 140px 0; scroll-margin-top: 80px; }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 768px) {
+  .inner { padding: 0 32px; }
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+}
+
+.title {
+  margin-top: 14px;
+  max-width: 18ch;
+  font-size: clamp(2.125rem, 4.4vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.sub {
+  max-width: 400px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+@media (min-width: 768px) {
+  .sub { text-align: right; }
+}
+
+/* Inverse (black) section variant */
+.inverse {
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+}
+.inverse .sub { color: rgba(255, 255, 255, 0.6); }
+.inverse :global(.eyebrow) { color: rgba(255, 255, 255, 0.6); }
+.inverse :global(.eyebrow)::before { background: #fff; }
+
+/* Muted (grey) section variant */
+.muted { background: var(--bg-2); }
