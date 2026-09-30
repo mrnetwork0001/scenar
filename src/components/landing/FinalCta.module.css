@@ -1,0 +1,143 @@
+.section {
+  isolation: isolate;
+  display: flex;
+  min-height: 640px;
+}
+@media (min-width: 768px) {
+  .section { min-height: 860px; }
+}
+
+/* --- Background gauge --- */
+.gauge {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+@media (min-width: 768px) {
+  .gauge { width: min(1040px, 92%); }
+}
+@media (min-width: 1100px) {
+  /* Headline left, gauge anchored bottom-right */
+  .gauge { left: auto; right: 1%; width: min(60%, 900px); transform: none; }
+}
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.svg circle,
+.svg path,
+.svg line { vector-effect: non-scaling-stroke; }
+
+.ring {
+  transform-box: view-box;
+  transform-origin: 680px 640px;
+  animation: spin 90s linear infinite;
+  animation-play-state: paused;
+}
+.gauge[data-anim] .ring { animation-play-state: running; }
+.spinA { animation-duration: 120s; }
+.spinB { animation-duration: 80s; animation-direction: reverse; }
+.spinC { animation-duration: 60s; }
+.sweep {
+  animation-name: sweep;
+  animation-duration: 9s;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sweep {
+  0% { transform: rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(155deg); opacity: 0; }
+}
+
+.dashLong { stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; stroke-dasharray: 80 22; }
+.dashDot { stroke: rgba(255, 255, 255, 0.2); stroke-width: 1; stroke-dasharray: 1 9; }
+.dashMid { stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; stroke-dasharray: 26 14; }
+.guide { stroke: rgba(255, 255, 255, 0.07); stroke-width: 1; }
+.sweepArc { stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.25; stroke-linecap: round; }
+
+.tick { stroke: rgba(255, 255, 255, 0.16); stroke-width: 1; }
+.tickMajor { stroke: rgba(255, 255, 255, 0.45); stroke-width: 1; }
+.track { stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
+.fill { stroke-width: 3; stroke-linecap: round; }
+
+.label {
+  fill: #fff;
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .label { font-size: 18px; }
+}
+
+.needle { stroke-width: 1.5; stroke-linecap: round; }
+.tip { fill: #fff; }
+.hub { fill: #fff; }
+.hubRing { stroke: rgba(255, 255, 255, 0.25); stroke-width: 1; }
+
+/* Keeps copy legible where it meets the arcs */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 55% at 30% 20%, rgba(10, 10, 10, 0.85), transparent 70%);
+}
+
+/* --- Content --- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  margin-top: 20px;
+  max-width: 15ch;
+  font-size: clamp(2.75rem, 7.2vw, 6.5rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.titleDim { color: rgba(255, 255, 255, 0.5); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
+}
+@media (min-width: 768px) {
+  .actions { margin-top: 44px; }
+}
+
+.btnWhite {
+  color: var(--fg);
+  background: var(--fg-inverse);
+}
+.btnWhite:hover { background: #e8e8e8; transform: translateY(-1px); }
+.btnGhostWhite {
+  color: var(--fg-inverse);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.btnGhostWhite:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+.btnWhite:focus-visible,
+.btnGhostWhite:focus-visible { outline-color: #fff; }
+
+.note {
+  margin-top: 18px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
