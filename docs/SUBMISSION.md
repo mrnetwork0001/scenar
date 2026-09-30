@@ -1,4 +1,4 @@
-# Devpost submission kit — Next Gen Award
+# Devpost submission kit - Next Gen Award
 
 ## Checklist
 - [ ] Devpost registration done with the **student email** (verified via JetBrains/swot)
@@ -8,7 +8,7 @@
 - [ ] Submitted before **Sep 30, 2026 11:45pm PDT**
 
 ## Tagline
-Rehearse the conversations that matter — against AI counterparts with hidden agendas.
+Rehearse the conversations that matter - against AI counterparts with hidden agendas.
 
 ## Inspiration
 Students and first-time managers walk into their hardest conversations cold: a first salary offer, a "no" to their boss, a deadline appeal, feedback to a friend they now manage. We only get one real attempt at each. Scenar gives you as many practice attempts as you want.

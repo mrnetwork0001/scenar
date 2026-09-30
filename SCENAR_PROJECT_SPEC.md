@@ -3,13 +3,13 @@
 ## Executive Overview
 **Scenar** is an interactive AI high-stakes conversation simulator and negotiation copilot built for the **RevenueCat Shipaton 2026** ($740,000+ Prize Pool).
 
-Scenar helps students, new managers, and professionals master difficult human conversations before the stakes are real—from negotiating job offers and salary raises to appealing university grades and setting tough workplace boundaries.
+Scenar helps students, new managers, and professionals master difficult human conversations before the stakes are real - from negotiating job offers and salary raises to appealing university grades and setting tough workplace boundaries.
 
 ---
 
 ## Targeted Hackathon Categories ($60,000+ Total Potential Sweep)
 1. **Next Gen Award (Student Exclusive - $20,000 1st Prize):** Tailored for active students (submitted via UNICAM student credentials). Judged on open-source code & 2-minute demo video without requiring paid Apple/Google developer accounts.
-2. **Influencer Award — Career Coaching by Leadership Heather ($20,000 1st Prize):** Specifically targets difficult workplace conversations, active practice, confidence building, boundaries, and saying no.
+2. **Influencer Award - Career Coaching by Leadership Heather ($20,000 1st Prize):** Specifically targets difficult workplace conversations, active practice, confidence building, boundaries, and saying no.
 3. **RevenueCat Design Award ($20,000 1st Prize):** Built with state-of-the-art glassmorphism, custom micro-interactions, responsive tension/confidence meters, and smooth paywall UI animations.
 
 ---

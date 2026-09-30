@@ -1,4 +1,4 @@
-# Scenar design system — "Quiet confidence"
+# Scenar design system - "Quiet confidence"
 
 Scenar is about composure under pressure, so the interface is calm: black ink on white, light display type, pill-shaped controls, plenty of space. **Colour appears only when it means something.** The tension meter's green → amber → red and good/warn/bad states are the only colours. When the meter turns red, it is the loudest thing on screen.
 
