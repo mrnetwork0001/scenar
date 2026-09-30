@@ -4,6 +4,7 @@ import {
   IconAlert,
   IconArrowRight,
   IconBars,
+  IconCard,
   IconClose,
   IconGrid,
   IconLock,
@@ -141,6 +142,7 @@ export function Paywall() {
     isTrial,
     isSandbox,
     demoMode,
+    env,
     packages,
     paywallReason,
     closePaywall,
@@ -269,6 +271,7 @@ export function Paywall() {
   const highlight = HIGHLIGHT[reason];
   const trialDays = selected?.trialDays;
   const handoff = phase === "loading" && !demoMode;
+  const live = !demoMode && env === "live";
 
   let ctaLabel = trialDays ? "Start free trial" : "Continue";
   if (phase === "loading") ctaLabel = demoMode ? "Activating…" : "Opening secure checkout…";
@@ -297,7 +300,11 @@ export function Paywall() {
                 <span className={`${styles.pill} ${styles.pillDemo}`} title="Set NEXT_PUBLIC_REVENUECAT_API_KEY to use real RevenueCat Web Billing">
                   Demo billing - add RevenueCat key
                 </span>
-              ) : isSandbox ? (
+              ) : env === "live" ? (
+                <span className={`${styles.pill} ${styles.pillLive}`} title="RevenueCat production key - real charges via Stripe">
+                  Live · real payment
+                </span>
+              ) : isSandbox || env === "sandbox" ? (
                 <span className={`${styles.pill} ${styles.pillSandbox}`} title="RevenueCat sandbox key - no real charges">
                   Sandbox
                 </span>
@@ -463,6 +470,16 @@ export function Paywall() {
                   </p>
                 ) : null}
               </div>
+
+              {live && selected ? (
+                <p className={styles.liveNotice} key={`live-${selected.id}`}>
+                  <IconCard size={14} strokeWidth={2} aria-hidden="true" />
+                  <span>
+                    You&apos;ll be charged {selected.price} {trialDays ? "after the trial" : "today"} via
+                    Stripe. Cancel anytime.
+                  </span>
+                </p>
+              ) : null}
 
               <button
                 ref={ctaRef}
