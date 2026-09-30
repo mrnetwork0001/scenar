@@ -1,12 +1,34 @@
 import { NextResponse } from "next/server";
 import { chatJSON, hasLLM } from "@/lib/llm";
+import { proRequired, verifyPro, type ProVerification } from "@/lib/entitlementServer";
 import { rateLimit } from "@/lib/rateLimit";
 import { buildReportMessages, buildReportSystemPrompt } from "@/lib/prompts";
 import { mockReport, parseMessages, resolveScenario, sanitizeMetrics, toList, toScore, toStatus, toText } from "@/lib/mock";
+import { sealProSection } from "@/lib/seal";
 import type { ReportResponse } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+/**
+ * Verified Pro callers get the whole report. Everyone else gets the scores + reveal with the Pro
+ * coaching section removed and carried only as an AES-256-GCM sealed token (24h), redeemable via
+ * POST /api/report/unlock once RevenueCat confirms scenar_pro.
+ */
+function gate(report: ReportResponse, v: ProVerification): Response {
+  const headers = { "Cache-Control": "no-store" };
+  if (v.pro) return NextResponse.json({ ...report, locked: false } satisfies ReportResponse, { headers });
+  const { whatWorked, toImprove, rewrite, ...rest } = report;
+  const locked: ReportResponse = {
+    ...rest,
+    whatWorked: [],
+    toImprove: [],
+    rewrite: { original: "", better: "", why: "" },
+    locked: true,
+    proSealed: sealProSection({ whatWorked, toImprove, rewrite }),
+  };
+  return NextResponse.json(locked, { headers });
+}
 
 export async function POST(req: Request) {
   const limited = rateLimit(req, "report");
@@ -29,12 +51,20 @@ export async function POST(req: Request) {
   if ("error" in resolved) return NextResponse.json({ error: resolved.error }, { status: 400 });
   const { scenario } = resolved;
 
+  // Pro scenarios need Pro for the whole report; free scenarios only gate the coaching section.
+  // Start the RevenueCat check now so it overlaps the LLM call.
+  const verification = verifyPro(req);
+  if (scenario.tier === "pro") {
+    const v = await verification;
+    if (!v.pro) return proRequired(v);
+  }
+
   const messages = parseMessages(rawMessages);
   if (!messages) return NextResponse.json({ error: "messages must be a non-empty array of {role, content}" }, { status: 400 });
   const outcome = toStatus(rawOutcome, "ongoing");
 
   const fallback = mockReport(scenario, messages, outcome);
-  if (!hasLLM() || !messages.some((m) => m.role === "user")) return NextResponse.json(fallback);
+  if (!hasLLM() || !messages.some((m) => m.role === "user")) return gate(fallback, await verification);
 
   try {
     const raw = await chatJSON<Partial<ReportResponse>>(
@@ -56,9 +86,9 @@ export async function POST(req: Request) {
         why: toText(rw.why, fallback.rewrite.why, 300),
       },
     };
-    return NextResponse.json(res);
+    return gate(res, await verification);
   } catch (err) {
     console.error("[api/report] LLM failed, using mock:", err);
-    return NextResponse.json(fallback);
+    return gate(fallback, await verification);
   }
 }
