@@ -12,6 +12,7 @@ import {
 } from "@/components/icons";
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
+import { identityHeaders } from "@/lib/identity";
 import type { PublicScenario } from "@/lib/scenarios";
 import {
   METRIC_LABELS,
@@ -55,24 +56,32 @@ function firstNameOf(name: string): string {
   return parts.find((p) => !HONORIFIC.test(p)) ?? parts[0] ?? name;
 }
 
+/** Thrown when the server's RevenueCat check says this needs Scenar Pro (403 pro_required). */
+class ProRequiredError extends Error {}
+
 async function postJSON<T>(url: string, body: unknown): Promise<T> {
   const res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...identityHeaders() },
     body: JSON.stringify(body),
   });
   if (!res.ok) {
     let msg = `Request failed (${res.status})`;
+    let code: string | undefined;
     try {
-      const j = (await res.json()) as { error?: string };
+      const j = (await res.json()) as { error?: string; code?: string };
       if (j?.error) msg = j.error;
+      code = j?.code;
     } catch {
       /* ignore */
     }
+    if (res.status === 403 && code === "pro_required") throw new ProRequiredError(msg);
     throw new Error(msg);
   }
   return (await res.json()) as T;
 }
+
+const UNVERIFIED_MSG = "Couldn't verify your Scenar Pro purchase with RevenueCat yet - try again in a moment.";
 
 export function PlayClient({ scenario, sealed }: PlayClientProps) {
   const { isPro, ready, openPaywall } = useEntitlements();
@@ -177,6 +186,13 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
       setPhase("report");
     } catch (e) {
       if (id !== runId.current) return;
+      if (e instanceof ProRequiredError) {
+        // Server says this scenario needs Pro: show the paywall (or, if the client already thinks
+        // we're Pro, a verification hint) instead of a raw error.
+        setReportError(isPro ? UNVERIFIED_MSG : "This scenario's report needs Scenar Pro.");
+        if (!isPro) openPaywall("locked-scenario");
+        return;
+      }
       setReportError(e instanceof Error ? e.message : "Could not generate the report.");
     }
   }
@@ -215,6 +231,15 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
     } catch (e) {
       if (id !== runId.current) return;
       setPending(false);
+      if (e instanceof ProRequiredError) {
+        // Give the unsent line back so it can be resent after upgrading.
+        const last = history[history.length - 1];
+        setMessages(history.slice(0, -1));
+        if (last?.role === "user") setDraft(last.content);
+        if (isPro) setTurnError(UNVERIFIED_MSG);
+        else openPaywall("locked-scenario");
+        return;
+      }
       setTurnError(e instanceof Error ? e.message : "Something went wrong.");
     }
   }

@@ -13,6 +13,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
+import { identityHeaders } from "@/lib/identity";
 import { customStore, useCustomScenarios, type CustomBuildResponse, type CustomScenarioItem } from "@/lib/customStore";
 import styles from "./CustomBuilder.module.css";
 
@@ -150,10 +151,21 @@ export function CustomBuilder() {
     try {
       const res = await fetch("/api/custom", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...identityHeaders() },
         body: JSON.stringify({ ...trimmed, difficulty }),
       });
-      const data = (await res.json().catch(() => ({}))) as Partial<CustomBuildResponse> & { error?: string };
+      const data = (await res.json().catch(() => ({}))) as Partial<CustomBuildResponse> & { error?: string; code?: string };
+      if (res.status === 403 && data.code === "pro_required") {
+        if (id !== buildId.current) return;
+        setBuilding(false);
+        if (isPro) {
+          setError("Couldn't verify your Scenar Pro purchase with RevenueCat yet - try again in a moment.");
+        } else {
+          pendingAfterPurchase.current = true; // resume the build right after purchase
+          openPaywall("custom-builder");
+        }
+        return;
+      }
       if (!res.ok || !data.scenario || !data.sealed) throw new Error(data.error || `Build failed (${res.status})`);
       // Let the building animation land before the hand-off.
       const minMs = STEP_MS * (STEPS.length - 1) + 400;
