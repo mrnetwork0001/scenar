@@ -1,0 +1,289 @@
+.section {
+  isolation: isolate;
+}
+
+/* --- Background: fine vertical ruling drifting sideways, faded at the edges --- */
+.lanes {
+  position: absolute;
+  z-index: 0;
+  inset: 0 -64px;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.05) 1px, transparent 1px);
+  background-size: 64px 100%;
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 62%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 62%, #000 0%, transparent 100%);
+  animation: drift 12s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+.section[data-live="true"] .lanes { animation-play-state: running; }
+
+@keyframes drift {
+  to { transform: translateX(64px); }
+}
+
+/* --- Marquee --- */
+.marquee {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+@media (min-width: 768px) {
+  .marquee { gap: 18px; }
+}
+
+.row {
+  --gap: 14px;
+  --dur: 60s;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0 14px; /* room for hover lift + shadow */
+}
+.rowSecondary { --dur: 72s; }
+@media (min-width: 768px) {
+  .row { --gap: 18px; }
+}
+
+/* Hairline "rail" running behind each row */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--line);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: var(--gap);
+  animation: marquee var(--dur) linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+.row[data-dir="right"] .track { animation-direction: reverse; }
+.section[data-live="true"] .track { animation-play-state: running; }
+.section[data-live="true"] .row:hover .track,
+.section[data-live="true"] .row:focus-within .track { animation-play-state: paused; }
+
+/* Each copy is followed by one gap, so -50% lands exactly on the second copy. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - var(--gap) / 2)); }
+}
+
+.group {
+  list-style: none;
+  display: flex;
+  gap: var(--gap);
+  flex: none;
+}
+
+.item {
+  flex: none;
+  width: 272px;
+}
+@media (min-width: 768px) {
+  .item { width: 320px; }
+}
+
+/* --- Card --- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 176px;
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transition: transform 0.5s var(--ease-out), border-color 0.3s, box-shadow 0.5s var(--ease-out);
+}
+@media (min-width: 768px) {
+  .card { min-height: 190px; padding: 20px; }
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-bold);
+  box-shadow: var(--shadow-lg);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.accent {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: var(--pill);
+  background: var(--surface-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+}
+.pillPro {
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+}
+
+.cardTitle {
+  margin: 18px 0 20px;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+@media (min-width: 768px) {
+  .cardTitle { font-size: 20px; }
+}
+
+.cardFoot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.avatarGhost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px dashed var(--line-bold);
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.role {
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--fg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex: none;
+}
+.dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.14);
+}
+.dots .dotOn { background: var(--fg); }
+.min {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* "Your scenario" card */
+.custom {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed var(--line-bold);
+  box-shadow: none;
+}
+.custom:hover { border-color: var(--fg); }
+.customTag {
+  background: var(--surface-muted);
+  border-color: transparent;
+}
+
+/* --- CTA row --- */
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+@media (min-width: 768px) {
+  .ctaRow { margin-top: 56px; }
+}
+
+/* --- Reduced motion: a calm static wrap --- */
+@media (prefers-reduced-motion: reduce) {
+  .lanes { animation: none; }
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .rowSecondary,
+  .group[data-dup="true"],
+  .row::before { display: none; }
+  .row { overflow: visible; }
+  .track {
+    animation: none;
+    width: auto;
+  }
+  .group {
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+  }
+  .item { width: min(100%, 340px); }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
+  /* Matches sectionStyles.inner */
+  .marquee { max-width: calc((100vw + 1200px) / 2); }
+}
