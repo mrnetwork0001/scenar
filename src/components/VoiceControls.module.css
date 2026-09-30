@@ -1,0 +1,201 @@
+/* ——————————— Mic button ——————————— */
+.micWrap {
+  position: relative;
+  flex: none;
+  display: flex;
+}
+
+/* Sits inside the grey composer well, so its grey is one step darker */
+.mic {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--fg);
+  background: rgba(10, 10, 10, 0.06);
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out), color 0.2s, background 0.25s;
+}
+.mic:hover:not(:disabled) { background: rgba(10, 10, 10, 0.1); }
+.mic:active:not(:disabled) { transform: scale(0.94); }
+.mic:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Listening: black core + two soft concentric rings */
+.micOn,
+.micOn:hover:not(:disabled) {
+  color: var(--fg-inverse);
+  background: var(--surface-inverse);
+}
+.micOn::before,
+.micOn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(10, 10, 10, 0.35);
+  pointer-events: none;
+  animation: ring 2s var(--ease-out) infinite;
+}
+.micOn::after { animation-delay: 1s; }
+
+@keyframes ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* 5-bar level indicator */
+.bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+.bars span {
+  width: 2px;
+  height: 100%;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: center;
+  animation: level 0.9s ease-in-out infinite;
+}
+.bars span:nth-child(1) { animation-delay: -0.45s; animation-duration: 0.8s; }
+.bars span:nth-child(2) { animation-delay: -0.2s; animation-duration: 1.05s; }
+.bars span:nth-child(3) { animation-delay: -0.6s; animation-duration: 0.7s; }
+.bars span:nth-child(4) { animation-delay: -0.1s; animation-duration: 0.95s; }
+.bars span:nth-child(5) { animation-delay: -0.35s; animation-duration: 0.85s; }
+
+@keyframes level {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* Tiny lock badge for free users */
+.lockBadge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: var(--fg-inverse);
+  background: var(--surface-inverse);
+  box-shadow: 0 0 0 2px var(--surface-muted);
+}
+
+/* Error bubble — fades away on its own */
+.micError {
+  position: absolute;
+  right: -44px;
+  bottom: calc(100% + 14px);
+  width: max-content;
+  max-width: min(260px, 72vw);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--fg-inverse);
+  background: var(--surface-inverse);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  z-index: 5;
+  animation: toast 5s var(--ease-out) forwards;
+}
+@keyframes toast {
+  0% { opacity: 0; transform: translateY(6px); }
+  6%, 85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); visibility: hidden; }
+}
+
+/* ——————————— Listening hint ——————————— */
+.listeningHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px 12px;
+  font-size: 11px;
+  color: var(--fg-muted);
+  text-align: center;
+  animation: hintIn 0.5s var(--ease-out) both;
+}
+.liveDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg);
+  animation: live 1.6s ease-out infinite;
+}
+@keyframes live {
+  0% { box-shadow: 0 0 0 0 rgba(10, 10, 10, 0.35); }
+  100% { box-shadow: 0 0 0 7px rgba(10, 10, 10, 0); }
+}
+@keyframes hintIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ——————————— Speaker toggle ——————————— */
+.speaker {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 9px;
+  border-radius: var(--pill);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  background: var(--surface-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.25s, transform 0.4s var(--ease-out);
+}
+.speaker:hover:not(:disabled) { color: var(--fg); background: #ebebee; }
+.speaker:active:not(:disabled) { transform: scale(0.96); }
+.speaker:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.speakerOn,
+.speakerOn:hover:not(:disabled) {
+  color: var(--fg-inverse);
+  background: var(--surface-inverse);
+}
+
+.speakerText {
+  display: none;
+  white-space: nowrap;
+}
+@media (min-width: 560px) {
+  .speaker { padding: 0 12px 0 10px; }
+  .speakerText { display: inline; }
+}
+
+.speaking .wave1,
+.speaking .wave2 {
+  animation: wave 1.1s ease-in-out infinite;
+}
+.speaking .wave2 { animation-delay: 0.18s; }
+@keyframes wave {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .micOn::before,
+  .micOn::after,
+  .bars span,
+  .liveDot,
+  .micError {
+    animation: none;
+  }
+  .bars span { transform: scaleY(0.6); }
+}
+
+.speaker .lockBadge { box-shadow: 0 0 0 2px var(--surface); }
