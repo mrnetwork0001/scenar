@@ -69,12 +69,12 @@ export function scoreMessage(text: string): Heuristic {
 const avg = (m: Metrics) => (m.assertiveness + m.regulation + m.clarity + m.boundaries) / 4;
 
 function coachFor(h: Heuristic): string {
-  if (h.flags.hostile) return "Lower the heat — state your ask calmly and drop the ultimatum.";
-  if (h.flags.hedges >= 2) return "Cut the hedges like \"just\" and \"sorry\" — say what you want plainly.";
-  if (!h.flags.numbers && h.metrics.clarity < 55) return "Be specific — name a concrete number, date, or request.";
+  if (h.flags.hostile) return "Lower the heat - state your ask calmly and drop the ultimatum.";
+  if (h.flags.hedges >= 2) return "Cut the hedges like \"just\" and \"sorry\" - say what you want plainly.";
+  if (!h.flags.numbers && h.metrics.clarity < 55) return "Be specific - name a concrete number, date, or request.";
   if (!h.flags.question) return "Ask an open question to uncover what they can actually offer.";
-  if (!h.flags.boundary) return "Hold your line — propose a trade-off instead of conceding.";
-  return "Strong move — keep it calm, specific, and keep asking what's possible.";
+  if (!h.flags.boundary) return "Hold your line - propose a trade-off instead of conceding.";
+  return "Strong move - keep it calm, specific, and keep asking what's possible.";
 }
 
 export function mockTurn(scenario: Scenario, messages: ChatMessage[]): TurnResponse {
@@ -111,7 +111,7 @@ export function mockTurn(scenario: Scenario, messages: ChatMessage[]): TurnRespo
     tension: status === "won" ? Math.min(tension, 20) : tension,
     progress: clamp(progress),
     metrics: last.metrics,
-    coachNote: lastAvg >= 70 && status === "won" ? "You earned it — calm, specific, and firm. Lock in the details." : coachFor(last),
+    coachNote: lastAvg >= 70 && status === "won" ? "You earned it - calm, specific, and firm. Lock in the details." : coachFor(last),
     status,
     mock: true,
   };
@@ -137,11 +137,11 @@ export function mockReport(scenario: Scenario, messages: ChatMessage[], outcome:
   const verdict =
     outcome === "won"
       ? overall >= 75
-        ? "Calm, specific, and firm — you got what you came for."
-        : "You got the win — now make it look effortless."
+        ? "Calm, specific, and firm - you got what you came for."
+        : "You got the win - now make it look effortless."
       : outcome === "lost"
-        ? "The conversation slipped away — but every miss here is a rehearsal for the real one."
-        : "Solid start — you left value on the table.";
+        ? "The conversation slipped away - but every miss here is a rehearsal for the real one."
+        : "Solid start - you left value on the table.";
 
   const quote = (s: string) => `"${s.length > 90 ? s.slice(0, 87) + "..." : s}"`;
   const best = [...scored].sort((a, b) => avg(b.h.metrics) - avg(a.h.metrics));
@@ -159,9 +159,9 @@ export function mockReport(scenario: Scenario, messages: ChatMessage[], outcome:
   if (whatWorked.length < 2) whatWorked.push("You showed up and engaged with a hard conversation.");
 
   const toImprove: string[] = [];
-  if (metrics.assertiveness < 65) toImprove.push("Drop hedges like \"just\", \"maybe\" and \"sorry\" — state your ask plainly.");
+  if (metrics.assertiveness < 65) toImprove.push("Drop hedges like \"just\", \"maybe\" and \"sorry\" - state your ask plainly.");
   if (metrics.clarity < 65) toImprove.push("Anchor with concrete numbers, dates, or evidence instead of general asks.");
-  if (metrics.regulation < 65) toImprove.push("Keep the temperature down — ultimatums and caps make the other side dig in.");
+  if (metrics.regulation < 65) toImprove.push("Keep the temperature down - ultimatums and caps make the other side dig in.");
   if (metrics.boundaries < 65) toImprove.push("Propose a trade-off instead of conceding; say what you can't do and why.");
   toImprove.push("Ask an open question early to find out what they can actually offer.");
 
@@ -172,15 +172,15 @@ export function mockReport(scenario: Scenario, messages: ChatMessage[], outcome:
     metrics,
     reveal: `The hidden truth: ${scenario.secret} ${
       outcome === "won"
-        ? "You unlocked a good share of it — there may have been even more room."
-        : "You didn't reach it this time — specific, calm asks would have gotten you closer."
+        ? "You unlocked a good share of it - there may have been even more room."
+        : "You didn't reach it this time - specific, calm asks would have gotten you closer."
     }`,
     whatWorked: whatWorked.slice(0, 3),
     toImprove: toImprove.slice(0, 3),
     rewrite: {
       original,
       better: rewriteLine(scenario),
-      why: "It's calm, specific, and ties your ask to evidence — which gives them a reason to say yes.",
+      why: "It's calm, specific, and ties your ask to evidence - which gives them a reason to say yes.",
     },
     mock: true,
   };
@@ -189,17 +189,17 @@ export function mockReport(scenario: Scenario, messages: ChatMessage[], outcome:
 function rewriteLine(s: Scenario): string {
   switch (s.id) {
     case "salary-offer":
-      return "I'm excited about this role. Based on market data for similar positions, I'm looking for $84,000 base — can we get there?";
+      return "I'm excited about this role. Based on market data for similar positions, I'm looking for $84,000 base - can we get there?";
     case "say-no-manager":
-      return "I want Acme to go well, but I'm at capacity on two deliverables. If I take this, which one slips — or could Priya own it?";
+      return "I want Acme to go well, but I'm at capacity on two deliverables. If I take this, which one slips - or could Priya own it?";
     case "professor-extension":
       return "I had a documented family emergency last week. I've finished the core implementation; could I have until Friday to complete testing?";
     case "hard-feedback":
-      return "I've noticed three missed deadlines and the standup moment with Sam. That's not like you — what's been going on?";
+      return "I've noticed three missed deadlines and the standup moment with Sam. That's not like you - what's been going on?";
     case "unfair-review":
       return "I want to understand the rating. What specifically drove it? I delivered every project on time and had no concerns raised all year.";
     default:
-      return "Here's specifically what I need, and here's why it's reasonable — can we make that work?";
+      return "Here's specifically what I need, and here's why it's reasonable - can we make that work?";
   }
 }
 
@@ -239,12 +239,17 @@ export function toStatus(v: unknown, fallback: TurnStatus): TurnStatus {
   return v === "ongoing" || v === "won" || v === "lost" ? v : fallback;
 }
 
+/** House style: no em dashes anywhere in the UI, including model output. */
+export function noEmDash(s: string): string {
+  return s.replace(/\s*\u2014\s*/g, " - ");
+}
+
 export function toText(v: unknown, fallback: string, max = 600): string {
-  return typeof v === "string" && v.trim() ? v.trim().slice(0, max) : fallback;
+  return typeof v === "string" && v.trim() ? noEmDash(v.trim()).slice(0, max) : fallback;
 }
 
 export function toList(v: unknown, fallback: string[]): string[] {
-  const list = Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && !!x.trim()).map((x) => x.trim().slice(0, 300)) : [];
+  const list = Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && !!x.trim()).map((x) => noEmDash(x.trim()).slice(0, 300)) : [];
   return list.length ? list.slice(0, 3) : fallback;
 }
 
