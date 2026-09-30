@@ -447,6 +447,17 @@
 }
 .fine svg { flex: none; }
 
+.legal {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--fg-dim);
+}
+.legal a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line-strong); }
+.legal a:hover { color: var(--fg); text-decoration-color: currentColor; }
+
 /* ---------- success ---------- */
 
 .success {

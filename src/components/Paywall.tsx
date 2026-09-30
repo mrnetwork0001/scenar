@@ -511,6 +511,14 @@ export function Paywall() {
             <IconLock size={11} strokeWidth={2} aria-hidden="true" />
             Payments processed securely by RevenueCat Web Billing
           </p>
+          {/* New tab so the paywall (and a half-finished session) stays put. */}
+          <p className={styles.legal}>
+            <a href="/terms" target="_blank" rel="noopener">Terms</a>
+            <span aria-hidden="true">·</span>
+            <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
+            <span aria-hidden="true">·</span>
+            <a href="/refunds" target="_blank" rel="noopener">Refunds &amp; cancellation</a>
+          </p>
         </div>
 
         {phase === "success" ? (
