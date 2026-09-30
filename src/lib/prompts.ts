@@ -66,6 +66,7 @@ Final outcome: ${outcome}
 ${RUBRIC}
 
 Evaluate the user's performance across the WHOLE conversation (session-level metrics). Be honest, specific and encouraging; quote the user's own words where possible.
+VOICE: The report is read by the user, so address them directly in the second person ("you", "your") in every field. Never write "the user" or "the candidate"; refer to the counterpart by first name.
 
 STYLE: Never use the em dash character (U+2014) in any text; use a comma, a period or a plain hyphen instead.
 
@@ -74,7 +75,7 @@ Return ONLY a single JSON object, no markdown, no prose, exactly this shape:
   "overall": integer 0-100,
   "verdict": "one punchy headline sentence",
   "metrics": {"assertiveness": integer, "regulation": integer, "clarity": integer, "boundaries": integer},
-  "reveal": "2-3 sentences stating the secret plainly and how close the user got, e.g. 'Dana could go to $84k - you stopped at $78k.'",
+  "reveal": "2-3 sentences in second person stating the secret plainly and how close you got, e.g. 'Dana could go to $84k - you stopped at $78k.'",
   "whatWorked": ["2-3 short bullets, quoting the user where possible"],
   "toImprove": ["2-3 short, actionable bullets"],
   "rewrite": {"original": "an EXACT line the user said", "better": "a stronger rewritten version", "why": "one sentence on why it works better"}
