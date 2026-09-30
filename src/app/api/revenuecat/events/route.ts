@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { readIdentity, validAppUserId } from "@/lib/entitlementServer";
 import { rateLimit } from "@/lib/rateLimit";
-import { eventsFor } from "@/lib/webhookEvents";
+import { eventStoreKind, eventsFor } from "@/lib/webhookEvents";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,5 +19,5 @@ export async function GET(req: Request) {
   if (header && header !== user) {
     return NextResponse.json({ error: "user does not match identity" }, { status: 403, headers: noStore });
   }
-  return NextResponse.json({ user, events: eventsFor(user) }, { headers: noStore });
+  return NextResponse.json({ user, store: eventStoreKind(), events: await eventsFor(user) }, { headers: noStore });
 }

@@ -64,7 +64,7 @@ export async function POST(req: Request) {
       : str(ev.entitlement_id)
         ? [str(ev.entitlement_id) as string]
         : [];
-    recordEvent({
+    await recordEvent({
       id: str(ev.id),
       type,
       appUserId: appUserId ?? userIds[0],
