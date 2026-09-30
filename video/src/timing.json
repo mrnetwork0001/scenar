@@ -1,0 +1,1474 @@
+{
+ "fps": 30,
+ "totalFrames": 3510,
+ "bpm": 100,
+ "beats": [
+  2,
+  20,
+  38,
+  56,
+  74,
+  92,
+  110,
+  128,
+  146,
+  163,
+  181,
+  199,
+  217,
+  235,
+  253,
+  271,
+  289,
+  307,
+  325,
+  343,
+  361,
+  379,
+  397,
+  415,
+  433,
+  451,
+  469,
+  487,
+  505,
+  523,
+  541,
+  560,
+  578,
+  596,
+  614,
+  632,
+  650,
+  668,
+  686,
+  704,
+  722,
+  740,
+  758,
+  776,
+  794,
+  812,
+  830,
+  848,
+  866,
+  884,
+  902,
+  920,
+  938,
+  956,
+  974,
+  992,
+  1010,
+  1028,
+  1046,
+  1064,
+  1082,
+  1100,
+  1118,
+  1136,
+  1154,
+  1172,
+  1190,
+  1208,
+  1226,
+  1244,
+  1262,
+  1280,
+  1298,
+  1316,
+  1334,
+  1352,
+  1370,
+  1388,
+  1406,
+  1424,
+  1442,
+  1460,
+  1478,
+  1496,
+  1514,
+  1532,
+  1550,
+  1568,
+  1586,
+  1604,
+  1622,
+  1640,
+  1658,
+  1676,
+  1694,
+  1712,
+  1730,
+  1748,
+  1766,
+  1784,
+  1802,
+  1820,
+  1838,
+  1856,
+  1874,
+  1892,
+  1910,
+  1928,
+  1946,
+  1964,
+  1982,
+  2000,
+  2018,
+  2036,
+  2054,
+  2072,
+  2090,
+  2108,
+  2126,
+  2144,
+  2162,
+  2180,
+  2198,
+  2216,
+  2234,
+  2252,
+  2269,
+  2287,
+  2305,
+  2323,
+  2341,
+  2359,
+  2377,
+  2395,
+  2413,
+  2431,
+  2449,
+  2467,
+  2485,
+  2503,
+  2521,
+  2539,
+  2557,
+  2575,
+  2593,
+  2611,
+  2629,
+  2647,
+  2665,
+  2683,
+  2701,
+  2719,
+  2737,
+  2755,
+  2773,
+  2791,
+  2809,
+  2827,
+  2845,
+  2863,
+  2881,
+  2899,
+  2917,
+  2935,
+  2953,
+  2971,
+  2989,
+  3007,
+  3025,
+  3043,
+  3061,
+  3079,
+  3097,
+  3115,
+  3133,
+  3151,
+  3169,
+  3187,
+  3205,
+  3223,
+  3241,
+  3259,
+  3277,
+  3295,
+  3313,
+  3331,
+  3349,
+  3367,
+  3385,
+  3403,
+  3421,
+  3439,
+  3457,
+  3475,
+  3493
+ ],
+ "music": {
+  "file": "audio/music.mp3",
+  "source": "elevenlabs-music"
+ },
+ "scenes": [
+  {
+   "id": "problem",
+   "from": 0,
+   "durationInFrames": 578,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "This is Maya. Twenty-three. Her first job offer just landed.",
+     "file": "audio/vo/problem_0.mp3",
+     "startFrame": 8,
+     "durationFrames": 127,
+     "words": [
+      {
+       "word": "This",
+       "start": 8,
+       "end": 14
+      },
+      {
+       "word": "is",
+       "start": 15,
+       "end": 17
+      },
+      {
+       "word": "Maya.",
+       "start": 19,
+       "end": 34
+      },
+      {
+       "word": "Twenty-three.",
+       "start": 39,
+       "end": 63
+      },
+      {
+       "word": "Her",
+       "start": 69,
+       "end": 73
+      },
+      {
+       "word": "first",
+       "start": 75,
+       "end": 83
+      },
+      {
+       "word": "job",
+       "start": 84,
+       "end": 92
+      },
+      {
+       "word": "offer",
+       "start": 94,
+       "end": 102
+      },
+      {
+       "word": "just",
+       "start": 104,
+       "end": 111
+      },
+      {
+       "word": "landed.",
+       "start": 113,
+       "end": 135
+      }
+     ]
+    },
+    {
+     "voice": "dana",
+     "text": "We'd love to offer you seventy-two thousand. Can I tell them you're on board?",
+     "file": "audio/vo/problem_1.mp3",
+     "startFrame": 143,
+     "durationFrames": 137,
+     "words": [
+      {
+       "word": "We'd",
+       "start": 143,
+       "end": 150
+      },
+      {
+       "word": "love",
+       "start": 152,
+       "end": 158
+      },
+      {
+       "word": "to",
+       "start": 159,
+       "end": 160
+      },
+      {
+       "word": "offer",
+       "start": 163,
+       "end": 170
+      },
+      {
+       "word": "you",
+       "start": 172,
+       "end": 175
+      },
+      {
+       "word": "seventy-two",
+       "start": 177,
+       "end": 195
+      },
+      {
+       "word": "thousand.",
+       "start": 197,
+       "end": 215
+      },
+      {
+       "word": "Can",
+       "start": 230,
+       "end": 235
+      },
+      {
+       "word": "I",
+       "start": 236,
+       "end": 237
+      },
+      {
+       "word": "tell",
+       "start": 239,
+       "end": 244
+      },
+      {
+       "word": "them",
+       "start": 245,
+       "end": 249
+      },
+      {
+       "word": "you're",
+       "start": 249,
+       "end": 254
+      },
+      {
+       "word": "on",
+       "start": 255,
+       "end": 257
+      },
+      {
+       "word": "board?",
+       "start": 259,
+       "end": 280
+      }
+     ]
+    },
+    {
+     "voice": "maya",
+     "text": "Oh... um, sorry. I was kind of hoping for a bit more? But if not, that's totally fine.",
+     "file": "audio/vo/problem_2.mp3",
+     "startFrame": 286,
+     "durationFrames": 207,
+     "words": [
+      {
+       "word": "Oh...",
+       "start": 286,
+       "end": 303
+      },
+      {
+       "word": "um,",
+       "start": 324,
+       "end": 335
+      },
+      {
+       "word": "sorry.",
+       "start": 346,
+       "end": 361
+      },
+      {
+       "word": "I",
+       "start": 361,
+       "end": 363
+      },
+      {
+       "word": "was",
+       "start": 366,
+       "end": 371
+      },
+      {
+       "word": "kind",
+       "start": 374,
+       "end": 380
+      },
+      {
+       "word": "of",
+       "start": 382,
+       "end": 384
+      },
+      {
+       "word": "hoping",
+       "start": 386,
+       "end": 395
+      },
+      {
+       "word": "for",
+       "start": 398,
+       "end": 402
+      },
+      {
+       "word": "a",
+       "start": 403,
+       "end": 403
+      },
+      {
+       "word": "bit",
+       "start": 405,
+       "end": 409
+      },
+      {
+       "word": "more?",
+       "start": 411,
+       "end": 423
+      },
+      {
+       "word": "But",
+       "start": 427,
+       "end": 435
+      },
+      {
+       "word": "if",
+       "start": 437,
+       "end": 441
+      },
+      {
+       "word": "not,",
+       "start": 443,
+       "end": 452
+      },
+      {
+       "word": "that's",
+       "start": 453,
+       "end": 460
+      },
+      {
+       "word": "totally",
+       "start": 462,
+       "end": 473
+      },
+      {
+       "word": "fine.",
+       "start": 474,
+       "end": 492
+      }
+     ]
+    },
+    {
+     "voice": "dana",
+     "text": "Seventy-two is already very competitive.",
+     "file": "audio/vo/problem_3.mp3",
+     "startFrame": 498,
+     "durationFrames": 73,
+     "words": [
+      {
+       "word": "Seventy-two",
+       "start": 498,
+       "end": 518
+      },
+      {
+       "word": "is",
+       "start": 520,
+       "end": 522
+      },
+      {
+       "word": "already",
+       "start": 524,
+       "end": 532
+      },
+      {
+       "word": "very",
+       "start": 534,
+       "end": 540
+      },
+      {
+       "word": "competitive.",
+       "start": 542,
+       "end": 570
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rewind",
+   "from": 578,
+   "durationInFrames": 210,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "The conversations that shape your career get one take. What if Maya could rehearse it first?",
+     "file": "audio/vo/rewind_0.mp3",
+     "startFrame": 586,
+     "durationFrames": 164,
+     "words": [
+      {
+       "word": "The",
+       "start": 586,
+       "end": 590
+      },
+      {
+       "word": "conversations",
+       "start": 592,
+       "end": 615
+      },
+      {
+       "word": "that",
+       "start": 616,
+       "end": 620
+      },
+      {
+       "word": "shape",
+       "start": 622,
+       "end": 629
+      },
+      {
+       "word": "your",
+       "start": 630,
+       "end": 633
+      },
+      {
+       "word": "career",
+       "start": 635,
+       "end": 647
+      },
+      {
+       "word": "get",
+       "start": 649,
+       "end": 655
+      },
+      {
+       "word": "one",
+       "start": 657,
+       "end": 663
+      },
+      {
+       "word": "take.",
+       "start": 665,
+       "end": 678
+      },
+      {
+       "word": "What",
+       "start": 689,
+       "end": 695
+      },
+      {
+       "word": "if",
+       "start": 696,
+       "end": 698
+      },
+      {
+       "word": "Maya",
+       "start": 700,
+       "end": 708
+      },
+      {
+       "word": "could",
+       "start": 710,
+       "end": 714
+      },
+      {
+       "word": "rehearse",
+       "start": 715,
+       "end": 725
+      },
+      {
+       "word": "it",
+       "start": 726,
+       "end": 728
+      },
+      {
+       "word": "first?",
+       "start": 729,
+       "end": 749
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "idea",
+   "from": 788,
+   "durationInFrames": 381,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "This is Scenar. A rehearsal room for hard conversations, where every AI counterpart hides something: a budget ceiling, a reason they won't say out loud.",
+     "file": "audio/vo/idea_0.mp3",
+     "startFrame": 796,
+     "durationFrames": 301,
+     "words": [
+      {
+       "word": "This",
+       "start": 796,
+       "end": 803
+      },
+      {
+       "word": "is",
+       "start": 805,
+       "end": 809
+      },
+      {
+       "word": "Scenar.",
+       "start": 811,
+       "end": 830
+      },
+      {
+       "word": "A",
+       "start": 837,
+       "end": 840
+      },
+      {
+       "word": "rehearsal",
+       "start": 843,
+       "end": 855
+      },
+      {
+       "word": "room",
+       "start": 857,
+       "end": 862
+      },
+      {
+       "word": "for",
+       "start": 864,
+       "end": 867
+      },
+      {
+       "word": "hard",
+       "start": 869,
+       "end": 875
+      },
+      {
+       "word": "conversations,",
+       "start": 877,
+       "end": 905
+      },
+      {
+       "word": "where",
+       "start": 910,
+       "end": 917
+      },
+      {
+       "word": "every",
+       "start": 919,
+       "end": 929
+      },
+      {
+       "word": "AI",
+       "start": 932,
+       "end": 942
+      },
+      {
+       "word": "counterpart",
+       "start": 944,
+       "end": 962
+      },
+      {
+       "word": "hides",
+       "start": 964,
+       "end": 973
+      },
+      {
+       "word": "something:",
+       "start": 974,
+       "end": 992
+      },
+      {
+       "word": "a",
+       "start": 1000,
+       "end": 1002
+      },
+      {
+       "word": "budget",
+       "start": 1004,
+       "end": 1014
+      },
+      {
+       "word": "ceiling,",
+       "start": 1016,
+       "end": 1031
+      },
+      {
+       "word": "a",
+       "start": 1037,
+       "end": 1039
+      },
+      {
+       "word": "reason",
+       "start": 1042,
+       "end": 1052
+      },
+      {
+       "word": "they",
+       "start": 1053,
+       "end": 1056
+      },
+      {
+       "word": "won't",
+       "start": 1057,
+       "end": 1063
+      },
+      {
+       "word": "say",
+       "start": 1064,
+       "end": 1069
+      },
+      {
+       "word": "out",
+       "start": 1070,
+       "end": 1074
+      },
+      {
+       "word": "loud.",
+       "start": 1076,
+       "end": 1097
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "take2",
+   "from": 1169,
+   "durationInFrames": 720,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "So Maya practises. She anchors with real market data, and stays calm.",
+     "file": "audio/vo/take2_0.mp3",
+     "startFrame": 1177,
+     "durationFrames": 161,
+     "words": [
+      {
+       "word": "So",
+       "start": 1177,
+       "end": 1186
+      },
+      {
+       "word": "Maya",
+       "start": 1191,
+       "end": 1201
+      },
+      {
+       "word": "practises.",
+       "start": 1202,
+       "end": 1227
+      },
+      {
+       "word": "She",
+       "start": 1237,
+       "end": 1241
+      },
+      {
+       "word": "anchors",
+       "start": 1244,
+       "end": 1257
+      },
+      {
+       "word": "with",
+       "start": 1259,
+       "end": 1263
+      },
+      {
+       "word": "real",
+       "start": 1265,
+       "end": 1273
+      },
+      {
+       "word": "market",
+       "start": 1276,
+       "end": 1286
+      },
+      {
+       "word": "data,",
+       "start": 1287,
+       "end": 1299
+      },
+      {
+       "word": "and",
+       "start": 1299,
+       "end": 1303
+      },
+      {
+       "word": "stays",
+       "start": 1304,
+       "end": 1313
+      },
+      {
+       "word": "calm.",
+       "start": 1315,
+       "end": 1337
+      }
+     ]
+    },
+    {
+     "voice": "narrator",
+     "text": "Every message is scored live on assertiveness, composure, clarity and boundaries, and the tension meter shows exactly how it landed.",
+     "file": "audio/vo/take2_1.mp3",
+     "startFrame": 1345,
+     "durationFrames": 271,
+     "words": [
+      {
+       "word": "Every",
+       "start": 1345,
+       "end": 1356
+      },
+      {
+       "word": "message",
+       "start": 1358,
+       "end": 1371
+      },
+      {
+       "word": "is",
+       "start": 1372,
+       "end": 1374
+      },
+      {
+       "word": "scored",
+       "start": 1376,
+       "end": 1386
+      },
+      {
+       "word": "live",
+       "start": 1388,
+       "end": 1400
+      },
+      {
+       "word": "on",
+       "start": 1402,
+       "end": 1407
+      },
+      {
+       "word": "assertiveness,",
+       "start": 1409,
+       "end": 1434
+      },
+      {
+       "word": "composure,",
+       "start": 1436,
+       "end": 1460
+      },
+      {
+       "word": "clarity",
+       "start": 1467,
+       "end": 1484
+      },
+      {
+       "word": "and",
+       "start": 1487,
+       "end": 1493
+      },
+      {
+       "word": "boundaries,",
+       "start": 1495,
+       "end": 1518
+      },
+      {
+       "word": "and",
+       "start": 1526,
+       "end": 1530
+      },
+      {
+       "word": "the",
+       "start": 1531,
+       "end": 1533
+      },
+      {
+       "word": "tension",
+       "start": 1534,
+       "end": 1544
+      },
+      {
+       "word": "meter",
+       "start": 1546,
+       "end": 1553
+      },
+      {
+       "word": "shows",
+       "start": 1555,
+       "end": 1563
+      },
+      {
+       "word": "exactly",
+       "start": 1565,
+       "end": 1584
+      },
+      {
+       "word": "how",
+       "start": 1585,
+       "end": 1589
+      },
+      {
+       "word": "it",
+       "start": 1591,
+       "end": 1593
+      },
+      {
+       "word": "landed.",
+       "start": 1594,
+       "end": 1615
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reveal",
+   "from": 1889,
+   "durationInFrames": 330,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "Then the truth comes out. Dana could go to eighty-four thousand. Now Maya knows exactly what to ask for.",
+     "file": "audio/vo/reveal_0.mp3",
+     "startFrame": 1897,
+     "durationFrames": 190,
+     "words": [
+      {
+       "word": "Then",
+       "start": 1897,
+       "end": 1906
+      },
+      {
+       "word": "the",
+       "start": 1908,
+       "end": 1911
+      },
+      {
+       "word": "truth",
+       "start": 1913,
+       "end": 1920
+      },
+      {
+       "word": "comes",
+       "start": 1922,
+       "end": 1928
+      },
+      {
+       "word": "out.",
+       "start": 1930,
+       "end": 1941
+      },
+      {
+       "word": "Dana",
+       "start": 1950,
+       "end": 1958
+      },
+      {
+       "word": "could",
+       "start": 1959,
+       "end": 1963
+      },
+      {
+       "word": "go",
+       "start": 1964,
+       "end": 1967
+      },
+      {
+       "word": "to",
+       "start": 1968,
+       "end": 1970
+      },
+      {
+       "word": "eighty-four",
+       "start": 1973,
+       "end": 1987
+      },
+      {
+       "word": "thousand.",
+       "start": 1989,
+       "end": 2006
+      },
+      {
+       "word": "Now",
+       "start": 2013,
+       "end": 2018
+      },
+      {
+       "word": "Maya",
+       "start": 2020,
+       "end": 2027
+      },
+      {
+       "word": "knows",
+       "start": 2028,
+       "end": 2033
+      },
+      {
+       "word": "exactly",
+       "start": 2035,
+       "end": 2050
+      },
+      {
+       "word": "what",
+       "start": 2052,
+       "end": 2056
+      },
+      {
+       "word": "to",
+       "start": 2058,
+       "end": 2059
+      },
+      {
+       "word": "ask",
+       "start": 2062,
+       "end": 2068
+      },
+      {
+       "word": "for.",
+       "start": 2070,
+       "end": 2086
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenuecat",
+   "from": 2219,
+   "durationInFrames": 750,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "Pro runs on RevenueCat. Every paywall moment has its own placement, with a seven-day free trial.",
+     "file": "audio/vo/revenuecat_0.mp3",
+     "startFrame": 2227,
+     "durationFrames": 193,
+     "words": [
+      {
+       "word": "Pro",
+       "start": 2227,
+       "end": 2235
+      },
+      {
+       "word": "runs",
+       "start": 2237,
+       "end": 2246
+      },
+      {
+       "word": "on",
+       "start": 2248,
+       "end": 2252
+      },
+      {
+       "word": "RevenueCat.",
+       "start": 2255,
+       "end": 2282
+      },
+      {
+       "word": "Every",
+       "start": 2292,
+       "end": 2302
+      },
+      {
+       "word": "paywall",
+       "start": 2304,
+       "end": 2319
+      },
+      {
+       "word": "moment",
+       "start": 2320,
+       "end": 2331
+      },
+      {
+       "word": "has",
+       "start": 2333,
+       "end": 2337
+      },
+      {
+       "word": "its",
+       "start": 2339,
+       "end": 2342
+      },
+      {
+       "word": "own",
+       "start": 2343,
+       "end": 2347
+      },
+      {
+       "word": "placement,",
+       "start": 2349,
+       "end": 2365
+      },
+      {
+       "word": "with",
+       "start": 2366,
+       "end": 2371
+      },
+      {
+       "word": "a",
+       "start": 2372,
+       "end": 2373
+      },
+      {
+       "word": "seven-day",
+       "start": 2374,
+       "end": 2389
+      },
+      {
+       "word": "free",
+       "start": 2391,
+       "end": 2397
+      },
+      {
+       "word": "trial.",
+       "start": 2398,
+       "end": 2419
+      }
+     ]
+    },
+    {
+     "voice": "narrator",
+     "text": "Sandbox for testing, live Stripe payments for real. And the server verifies every purchase with RevenueCat before the sealed coaching unlocks.",
+     "file": "audio/vo/revenuecat_1.mp3",
+     "startFrame": 2427,
+     "durationFrames": 264,
+     "words": [
+      {
+       "word": "Sandbox",
+       "start": 2427,
+       "end": 2449
+      },
+      {
+       "word": "for",
+       "start": 2450,
+       "end": 2453
+      },
+      {
+       "word": "testing,",
+       "start": 2455,
+       "end": 2474
+      },
+      {
+       "word": "live",
+       "start": 2482,
+       "end": 2490
+      },
+      {
+       "word": "Stripe",
+       "start": 2491,
+       "end": 2500
+      },
+      {
+       "word": "payments",
+       "start": 2501,
+       "end": 2512
+      },
+      {
+       "word": "for",
+       "start": 2513,
+       "end": 2516
+      },
+      {
+       "word": "real.",
+       "start": 2518,
+       "end": 2530
+      },
+      {
+       "word": "And",
+       "start": 2537,
+       "end": 2543
+      },
+      {
+       "word": "the",
+       "start": 2544,
+       "end": 2546
+      },
+      {
+       "word": "server",
+       "start": 2548,
+       "end": 2556
+      },
+      {
+       "word": "verifies",
+       "start": 2558,
+       "end": 2573
+      },
+      {
+       "word": "every",
+       "start": 2576,
+       "end": 2588
+      },
+      {
+       "word": "purchase",
+       "start": 2589,
+       "end": 2601
+      },
+      {
+       "word": "with",
+       "start": 2602,
+       "end": 2605
+      },
+      {
+       "word": "RevenueCat",
+       "start": 2607,
+       "end": 2627
+      },
+      {
+       "word": "before",
+       "start": 2629,
+       "end": 2639
+      },
+      {
+       "word": "the",
+       "start": 2640,
+       "end": 2642
+      },
+      {
+       "word": "sealed",
+       "start": 2644,
+       "end": 2652
+      },
+      {
+       "word": "coaching",
+       "start": 2654,
+       "end": 2663
+      },
+      {
+       "word": "unlocks.",
+       "start": 2666,
+       "end": 2690
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "montage",
+   "from": 2969,
+   "durationInFrames": 217,
+   "lines": [
+    {
+     "voice": "narrator",
+     "text": "Say it out loud. Build your own scenario. Track your progress, on any device.",
+     "file": "audio/vo/montage_0.mp3",
+     "startFrame": 2977,
+     "durationFrames": 165,
+     "words": [
+      {
+       "word": "Say",
+       "start": 2977,
+       "end": 2984
+      },
+      {
+       "word": "it",
+       "start": 2985,
+       "end": 2987
+      },
+      {
+       "word": "out",
+       "start": 2988,
+       "end": 2992
+      },
+      {
+       "word": "loud.",
+       "start": 2993,
+       "end": 3008
+      },
+      {
+       "word": "Build",
+       "start": 3013,
+       "end": 3022
+      },
+      {
+       "word": "your",
+       "start": 3024,
+       "end": 3028
+      },
+      {
+       "word": "own",
+       "start": 3030,
+       "end": 3035
+      },
+      {
+       "word": "scenario.",
+       "start": 3037,
+       "end": 3059
+      },
+      {
+       "word": "Track",
+       "start": 3066,
+       "end": 3075
+      },
+      {
+       "word": "your",
+       "start": 3076,
+       "end": 3079
+      },
+      {
+       "word": "progress,",
+       "start": 3081,
+       "end": 3099
+      },
+      {
+       "word": "on",
+       "start": 3101,
+       "end": 3106
+      },
+      {
+       "word": "any",
+       "start": 3109,
+       "end": 3117
+      },
+      {
+       "word": "device.",
+       "start": 3119,
+       "end": 3141
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "close",
+   "from": 3186,
+   "durationInFrames": 324,
+   "lines": [
+    {
+     "voice": "maya",
+     "text": "Based on market data for this role, I'd be comfortable at eighty-five.",
+     "file": "audio/vo/close_0.mp3",
+     "startFrame": 3194,
+     "durationFrames": 119,
+     "words": [
+      {
+       "word": "Based",
+       "start": 3194,
+       "end": 3205
+      },
+      {
+       "word": "on",
+       "start": 3207,
+       "end": 3209
+      },
+      {
+       "word": "market",
+       "start": 3211,
+       "end": 3220
+      },
+      {
+       "word": "data",
+       "start": 3222,
+       "end": 3228
+      },
+      {
+       "word": "for",
+       "start": 3230,
+       "end": 3233
+      },
+      {
+       "word": "this",
+       "start": 3234,
+       "end": 3238
+      },
+      {
+       "word": "role,",
+       "start": 3240,
+       "end": 3250
+      },
+      {
+       "word": "I'd",
+       "start": 3252,
+       "end": 3257
+      },
+      {
+       "word": "be",
+       "start": 3258,
+       "end": 3261
+      },
+      {
+       "word": "comfortable",
+       "start": 3262,
+       "end": 3277
+      },
+      {
+       "word": "at",
+       "start": 3279,
+       "end": 3281
+      },
+      {
+       "word": "eighty-five.",
+       "start": 3283,
+       "end": 3312
+      }
+     ]
+    },
+    {
+     "voice": "dana",
+     "text": "You know what? I think we can make eighty-three work.",
+     "file": "audio/vo/close_1.mp3",
+     "startFrame": 3318,
+     "durationFrames": 90,
+     "words": [
+      {
+       "word": "You",
+       "start": 3318,
+       "end": 3323
+      },
+      {
+       "word": "know",
+       "start": 3324,
+       "end": 3328
+      },
+      {
+       "word": "what?",
+       "start": 3329,
+       "end": 3341
+      },
+      {
+       "word": "I",
+       "start": 3347,
+       "end": 3349
+      },
+      {
+       "word": "think",
+       "start": 3352,
+       "end": 3357
+      },
+      {
+       "word": "we",
+       "start": 3358,
+       "end": 3360
+      },
+      {
+       "word": "can",
+       "start": 3362,
+       "end": 3365
+      },
+      {
+       "word": "make",
+       "start": 3366,
+       "end": 3371
+      },
+      {
+       "word": "eighty-three",
+       "start": 3373,
+       "end": 3387
+      },
+      {
+       "word": "work.",
+       "start": 3388,
+       "end": 3407
+      }
+     ]
+    },
+    {
+     "voice": "narrator",
+     "text": "Rehearse it first.",
+     "file": "audio/vo/close_2.mp3",
+     "startFrame": 3415,
+     "durationFrames": 35,
+     "words": [
+      {
+       "word": "Rehearse",
+       "start": 3415,
+       "end": 3425
+      },
+      {
+       "word": "it",
+       "start": 3426,
+       "end": 3428
+      },
+      {
+       "word": "first.",
+       "start": 3429,
+       "end": 3450
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
