@@ -36,4 +36,4 @@ Add these under **Settings → Environment Variables**, or during import, for **
 - **Stripe:** update the business website to `https://tryscenar.vercel.app` (Settings → Business → Public details).
 - **RevenueCat webhook:** Integrations → Webhooks → URL `https://tryscenar.vercel.app/api/revenuecat/webhook`, with the Authorization header set to your `REVENUECAT_WEBHOOK_AUTH` value. Then **Send test event**, which should return 200.
 - **Rate limits** apply in production (per IP, per 10 minutes: turn 40, report 10, custom 6).
-- **Serverless caveat:** the entitlement cache and webhook event log are in memory per instance, so they reset on cold starts. That's fine for the demo; use a KV store for production scale.
+- **Webhook event log:** connect **Upstash Redis** (Vercel → Storage → Upstash → Connect to `tryscenar`). The integration adds the Redis REST URL and token env vars, and after a redeploy events persist across instances, deduplicated by event id. Without it, events are kept in memory per instance. The entitlement cache stays in memory (60s TTL) either way.
