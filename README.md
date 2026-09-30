@@ -5,6 +5,7 @@
 Scenar is an AI conversation simulator for students and new professionals. Practise the conversations people dread (negotiating your first salary, saying no to your manager, asking a strict professor for an extension, giving hard feedback to a former peer) against an AI counterpart with a **hidden agenda**. A live tension meter reacts to every line. At the end you get a scored report and the truth they were hiding.
 
 - **Live app:** https://www.tryscenar.xyz
+- **Demo video (under 2 min):** https://www.youtube.com/watch?v=AiIgc4P5wDU
 - **Built for:** RevenueCat Shipaton 2026, Next Gen Award
 - **Stack:** Next.js 16, React 19, TypeScript, RevenueCat (Test Store + Web Billing with Stripe), 0G AI router
 - **Platforms:** iOS, iPadOS, Android and macOS (and any modern browser). Installable as an app: on iPhone use **Share → Add to Home Screen**, on Android use **Install app**. It opens full-screen straight into `/app`.

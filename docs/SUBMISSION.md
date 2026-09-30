@@ -3,7 +3,7 @@
 ## Checklist
 - [ ] Devpost registration done with the **student email** (verified via JetBrains/swot)
 - [ ] Repo is **public** on GitHub, `LICENSE` present (MIT)
-- [ ] Demo video **under 2:00**, uploaded to YouTube (public or unlisted) or Vimeo
+- [x] Demo video **under 2:00** on YouTube: https://www.youtube.com/watch?v=AiIgc4P5wDU (1:57)
 - [ ] Category selected: **Next Gen Award**
 - [ ] Submitted before **Sep 30, 2026 11:45pm PDT**
 - [ ] Devpost account email is the **unicam.it** student address (University of Camerino is on the JetBrains swot list)
