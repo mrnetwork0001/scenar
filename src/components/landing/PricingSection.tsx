@@ -88,7 +88,8 @@ function PricingBackdrop() {
 }
 
 function PlanRow({ pkg, savePct, index }: { pkg: PaywallPackage; savePct: number | null; index: number }) {
-  const best = pkg.kind === "annual";
+  // Only call annual "Best value" when it actually beats 12x the monthly price.
+  const best = pkg.kind === "annual" && savePct !== null;
   return (
     <motion.li
       className={styles.plan}

@@ -397,7 +397,7 @@ export function Paywall() {
                         onClick={() => pick(p.id)}
                         disabled={phase !== "idle"}
                       >
-                        {p.kind === "annual" ? <span className={styles.badge}>Best value</span> : null}
+                        {p.kind === "annual" && savePct ? <span className={styles.badge}>Best value</span> : null}
                         <span className={styles.optionTitle}>{p.title}</span>
                         <span className={styles.optionPrice}>
                           {p.price}
