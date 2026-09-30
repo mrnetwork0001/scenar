@@ -1,8 +1,9 @@
 "use client";
 
-import { animate, motion, useInView, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { animate, motion, useInView, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef } from "react";
 import styles from "./HeroVisual.module.css";
+import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
 
 /* Geometry, in viewBox units. The pivot sits on the baseline; the arc spans 180°. */
 const W = 1000;
@@ -54,10 +55,10 @@ const FRAGMENTS: { text: string; you?: boolean; mobile?: boolean }[] = [
 /**
  * Landing hero background: a huge thin-line tension gauge whose needle drifts between
  * calm and heated, with faint conversation fragments surfacing around it.
- * Purely decorative — no pointer events, hidden from assistive tech.
+ * Purely decorative - no pointer events, hidden from assistive tech.
  */
 export function HeroVisual() {
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const rootRef = useRef<HTMLDivElement>(null);
   const needleRef = useRef<SVGGElement>(null);
   const fillRef = useRef<SVGPathElement>(null);
@@ -92,16 +93,18 @@ export function HeroVisual() {
     return () => controls.stop();
   }, [reduce, inView, target, value]);
 
-  const initialT = reduce ? STATIC_VALUE : LOOP[0];
+  // Server and client must render the same first frame; the effect above jumps to the
+  // static value for reduced motion after hydration.
+  const initialT = LOOP[0];
 
   return (
     <motion.div
       ref={rootRef}
       className={styles.root}
       aria-hidden="true"
-      initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
+      initial={{ opacity: 0, scale: 1.05 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={reduce ? { duration: 0 } : { duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className={styles.stage}>
         <svg className={styles.gauge} viewBox={`0 0 ${W} ${H}`} fill="none">

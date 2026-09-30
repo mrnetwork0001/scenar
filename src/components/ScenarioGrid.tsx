@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowUpRight, Lock, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useEntitlements } from "@/components/EntitlementProvider";
 import { best, useHistory } from "@/lib/history";
 import type { PublicScenario } from "@/lib/scenarios";
 import styles from "./ScenarioGrid.module.css";
+import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
 
 export interface ScenarioGridProps {
   scenarios: PublicScenario[];
@@ -17,7 +18,7 @@ const DIFFICULTY = ["", "Warm-up", "Challenging", "Hard mode"];
 
 export function ScenarioGrid({ scenarios }: ScenarioGridProps) {
   const router = useRouter();
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const { isPro, openPaywall } = useEntitlements();
   const [shaking, setShaking] = useState<string | null>(null);
   const history = useHistory(); // [] on server + hydration, so the chips only appear after mount

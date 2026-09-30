@@ -1,12 +1,13 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { useHistory } from "@/lib/history";
 import { ScrollLink } from "./ScrollLink";
 import styles from "./NavMenu.module.css";
+import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -25,7 +26,7 @@ export function NavMenu() {
   const pathname = usePathname();
   const [lastPath, setLastPath] = useState(pathname);
   const history = useHistory();
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const wrapRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();

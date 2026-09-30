@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
+import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
 
 /** Fades content up into place the first time it scrolls into view. */
 export function Reveal({
@@ -15,15 +16,17 @@ export function Reveal({
   className?: string;
   as?: "div" | "li" | "header";
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const Tag = motion[as];
   return (
     <Tag
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 20 }}
+      // Same initial state on server and client (avoids hydration mismatches);
+      // reduced motion only makes the transition instant.
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={reduce ? { duration: 0 } : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
     >
       {children}
     </Tag>
