@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, useVideoConfig } from "remotion";
 import { MetaCtx, Stock } from "./media";
 import { ProblemHud } from "./scenes/Problem";
 import { display, SANS } from "./theme";
@@ -32,12 +32,20 @@ export const PosterOverlay: React.FC<{ withMark?: boolean }> = ({ withMark = tru
 );
 
 /** Key art still: Maya, the giant gauge running hot, the line. */
-export const Poster: React.FC<{ meta: Record<string, number> }> = ({ meta }) => (
-  <MetaCtx.Provider value={meta ?? {}}>
-    <AbsoluteFill style={{ background: "#000" }}>
-      <Stock name="maya_phone_anxious" window={1} freezeAt={45} startFrom={0} shade={0.42} zoom={[1.08, 1.08]} />
-      <ProblemHud value={82} pulse={0.6} />
-      <PosterOverlay withMark />
-    </AbsoluteFill>
-  </MetaCtx.Provider>
-);
+export const Poster: React.FC<{ meta: Record<string, number> }> = ({ meta }) => {
+  const { width } = useVideoConfig();
+  // The HUD is laid out on a 1920-wide canvas; on narrower stills (e.g. a 3:2 thumbnail)
+  // slide it left so the outer ring stays inside the frame.
+  const hudShift = width < 1920 ? width - 1920 - 60 : 0;
+  return (
+    <MetaCtx.Provider value={meta ?? {}}>
+      <AbsoluteFill style={{ background: "#000" }}>
+        <Stock name="maya_phone_anxious" window={1} freezeAt={45} startFrom={0} shade={0.42} zoom={[1.08, 1.08]} />
+        <AbsoluteFill style={{ transform: `translateX(${hudShift}px)` }}>
+          <ProblemHud value={82} pulse={0.6} />
+        </AbsoluteFill>
+        <PosterOverlay withMark />
+      </AbsoluteFill>
+    </MetaCtx.Provider>
+  );
+};
