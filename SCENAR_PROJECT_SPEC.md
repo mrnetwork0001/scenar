@@ -7,10 +7,8 @@ Scenar helps students, new managers, and professionals master difficult human co
 
 ---
 
-## Targeted Hackathon Categories ($60,000+ Total Potential Sweep)
-1. **Next Gen Award (Student Exclusive - $20,000 1st Prize):** Tailored for active students (submitted via UNICAM student credentials). Judged on open-source code & 2-minute demo video without requiring paid Apple/Google developer accounts.
-2. **Influencer Award - Career Coaching by Leadership Heather ($20,000 1st Prize):** Specifically targets difficult workplace conversations, active practice, confidence building, boundaries, and saying no.
-3. **RevenueCat Design Award ($20,000 1st Prize):** Built with state-of-the-art glassmorphism, custom micro-interactions, responsive tension/confidence meters, and smooth paywall UI animations.
+## Hackathon Category
+**Next Gen Award (student category):** Scenar is entered by an active student (University of Camerino, `unicam.it`). Next Gen is judged on a demo video and the public, open-source code repository, so no App Store or Google Play release is required. Scenar ships as a web app that runs on iOS, iPadOS, Android and macOS, and installs to the home screen as a PWA. RevenueCat powers its web purchases.
 
 ---
 
