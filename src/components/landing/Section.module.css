@@ -17,8 +17,9 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+/* Side margins at 50% of the old fixed-cap layout: max-width = (viewport + old cap) / 2, padding halved. */
 @media (min-width: 768px) {
-  .inner { padding: 0 32px; }
+  .inner { max-width: calc((100vw + 1200px) / 2); padding: 0 16px; }
 }
 
 .head {
