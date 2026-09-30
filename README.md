@@ -6,6 +6,7 @@ Scenar is an AI conversation simulator for students and new professionals. Pract
 
 - **Live app:** https://www.tryscenar.xyz
 - **Demo video (under 2 min):** https://www.youtube.com/watch?v=AiIgc4P5wDU
+- **Launch post on X:** https://x.com/encrypt_wizard/status/2105331373917573621
 - **Built for:** RevenueCat Shipaton 2026, Next Gen Award
 - **Stack:** Next.js 16, React 19, TypeScript, RevenueCat (Test Store + Web Billing with Stripe), 0G AI router
 - **Platforms:** iOS, iPadOS, Android and macOS (and any modern browser). Installable as an app: on iPhone use **Share → Add to Home Screen**, on Android use **Install app**. It opens full-screen straight into `/app`.
