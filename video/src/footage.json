@@ -1,0 +1,463 @@
+{
+  "take2": {
+    "file": "footage/take2.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 732,
+    "marks": {
+      "typed_start": 83,
+      "typed_end": 528,
+      "sent": 580,
+      "reply_in": 631,
+      "tension_drop": 639,
+      "coach_in": 634,
+      "progress_up": 637
+    },
+    "rects": {
+      "meter": {
+        "x": 2374,
+        "y": 234,
+        "w": 548,
+        "h": 549
+      },
+      "chat": {
+        "x": 232,
+        "y": 192,
+        "w": 2056,
+        "h": 1560
+      },
+      "coach": {
+        "x": 2374,
+        "y": 1436,
+        "w": 548,
+        "h": 266
+      },
+      "progress": {
+        "x": 2374,
+        "y": 823,
+        "w": 548,
+        "h": 63
+      },
+      "composer": {
+        "x": 266,
+        "y": 1573,
+        "w": 1988,
+        "h": 104
+      },
+      "side": {
+        "x": 2328,
+        "y": 192,
+        "w": 640,
+        "h": 1500
+      },
+      "log": {
+        "x": 234,
+        "y": 325,
+        "w": 2052,
+        "h": 1248
+      },
+      "reply": {
+        "x": 346,
+        "y": 697,
+        "w": 1346,
+        "h": 175
+      },
+      "mine": {
+        "x": 828,
+        "y": 535,
+        "w": 1414,
+        "h": 130
+      },
+      "metrics": {
+        "x": 2374,
+        "y": 1143,
+        "w": 548,
+        "h": 261
+      }
+    },
+    "notes": {
+      "tensionAfter": "35"
+    }
+  },
+  "reveal": {
+    "file": "footage/reveal.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 372,
+    "marks": {
+      "end_click": 65,
+      "report_in": 118,
+      "score_done": 166,
+      "truth_revealed": 259
+    },
+    "rects": {
+      "score": {
+        "x": 332,
+        "y": 124,
+        "w": 2536,
+        "h": 661
+      },
+      "ring": {
+        "x": 414,
+        "y": 338,
+        "w": 368,
+        "h": 368
+      },
+      "radar": {
+        "x": 332,
+        "y": 825,
+        "w": 1248,
+        "h": 855
+      },
+      "truth": {
+        "x": 1620,
+        "y": 825,
+        "w": 1248,
+        "h": 855
+      },
+      "truthText": {
+        "x": 1676,
+        "y": 1048,
+        "w": 1136,
+        "h": 376
+      }
+    },
+    "notes": {
+      "truth": "Dana's real ceiling is $84,000 base plus a possible $5,000 signing bonus and flexible start date. You anchored at $85,000, just above that ceiling but close enough that Dana is now asking what else would help close the gap, meaning you're in strong position to land near or at her max."
+    }
+  },
+  "paywall": {
+    "file": "footage/paywall.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 519,
+    "marks": {
+      "paywall_open": 67,
+      "monthly_selected": 140,
+      "cta_click": 231,
+      "teststore_open": 232,
+      "purchase_click": 302,
+      "purchase_done": 325,
+      "paywall_closed": 372,
+      "unlocked": 403,
+      "coaching_visible": 466
+    },
+    "rects": {
+      "coaching_locked": {
+        "x": 332,
+        "y": 662,
+        "w": 2536,
+        "h": 843
+      },
+      "plans": {
+        "x": 1176,
+        "y": 1009,
+        "w": 848,
+        "h": 205
+      },
+      "sheet": {
+        "x": 1120,
+        "y": 134,
+        "w": 960,
+        "h": 1533
+      },
+      "timeline": {
+        "x": 1176,
+        "y": 1249,
+        "w": 848,
+        "h": 113
+      },
+      "cta": {
+        "x": 1176,
+        "y": 1460,
+        "w": 848,
+        "h": 76
+      },
+      "teststore": {
+        "x": 1100,
+        "y": 495,
+        "w": 1000,
+        "h": 810
+      },
+      "coaching": {
+        "x": 332,
+        "y": 228,
+        "w": 2536,
+        "h": 1277
+      }
+    }
+  },
+  "inspector": {
+    "file": "footage/inspector.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 289,
+    "marks": {
+      "drawer_open": 22,
+      "entitlement_hold": 41,
+      "offering_hold": 107,
+      "server_agrees": 173,
+      "webhooks": 246
+    },
+    "rects": {
+      "drawer": {
+        "x": 2304,
+        "y": 16,
+        "w": 880,
+        "h": 1768
+      },
+      "entitlement": {
+        "x": 2338,
+        "y": 1023,
+        "w": 812,
+        "h": 591
+      },
+      "offering": {
+        "x": 2338,
+        "y": 208,
+        "w": 812,
+        "h": 536
+      },
+      "placement": {
+        "x": 2340,
+        "y": 378,
+        "w": 808,
+        "h": 70
+      },
+      "server": {
+        "x": 2338,
+        "y": 758,
+        "w": 812,
+        "h": 579
+      },
+      "webhooks": {
+        "x": 2338,
+        "y": 1336,
+        "w": 812,
+        "h": 285
+      }
+    },
+    "notes": {
+      "scrolledToWebhooks": true
+    }
+  },
+  "live": {
+    "file": "footage/live.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 477,
+    "marks": {
+      "switch_click": 51,
+      "confirm_open": 60,
+      "switched_live": 142,
+      "paywall_open": 198,
+      "monthly_selected": 250,
+      "cta_click": 310,
+      "checkout_shown": 338,
+      "checkout_closed": 442
+    },
+    "rects": {
+      "switch": {
+        "x": 2532,
+        "y": 52,
+        "w": 280,
+        "h": 56
+      },
+      "confirm": {
+        "x": 1220,
+        "y": 656,
+        "w": 760,
+        "h": 489
+      },
+      "strip": {
+        "x": 0,
+        "y": 160,
+        "w": 3200,
+        "h": 64
+      },
+      "plans": {
+        "x": 1176,
+        "y": 925,
+        "w": 848,
+        "h": 205
+      },
+      "timeline": {
+        "x": 1176,
+        "y": 1165,
+        "w": 848,
+        "h": 113
+      },
+      "liveNotice": {
+        "x": 1176,
+        "y": 1372,
+        "w": 848,
+        "h": 64
+      },
+      "checkout": {
+        "x": 512,
+        "y": 240,
+        "w": 1088,
+        "h": 1416
+      },
+      "due_today": {
+        "x": 656,
+        "y": 911,
+        "w": 800,
+        "h": 48
+      },
+      "trial": {
+        "x": 656,
+        "y": 558,
+        "w": 392,
+        "h": 62
+      }
+    }
+  },
+  "builder": {
+    "file": "footage/builder.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 382,
+    "marks": {
+      "preset_click": 65,
+      "build_click": 180,
+      "building": 180,
+      "built": 306
+    },
+    "rects": {
+      "presets": {
+        "x": 342,
+        "y": 1004,
+        "w": 2516,
+        "h": 72
+      },
+      "form": {
+        "x": 342,
+        "y": 300,
+        "w": 2516,
+        "h": 1090
+      },
+      "building": {
+        "x": 344,
+        "y": 302,
+        "w": 2512,
+        "h": 1086
+      },
+      "briefing": {
+        "x": 944,
+        "y": 319,
+        "w": 1312,
+        "h": 1241
+      },
+      "title": {
+        "x": 1026,
+        "y": 498,
+        "w": 1148,
+        "h": 96
+      }
+    },
+    "notes": {
+      "title": "Negotiate Your Raise Early"
+    }
+  },
+  "voice": {
+    "file": "footage/voice.mp4",
+    "width": 3200,
+    "height": 1800,
+    "durationFrames": 227,
+    "marks": {
+      "voice_on": 49,
+      "mic_on": 108,
+      "transcript": 211
+    },
+    "rects": {
+      "speaker": {
+        "x": 1793,
+        "y": 226,
+        "w": 175,
+        "h": 64
+      },
+      "mic": {
+        "x": 2076,
+        "y": 1587,
+        "w": 76,
+        "h": 76
+      },
+      "composer": {
+        "x": 266,
+        "y": 1573,
+        "w": 1988,
+        "h": 104
+      },
+      "chatHead": {
+        "x": 234,
+        "y": 194,
+        "w": 2052,
+        "h": 131
+      },
+      "listening": {
+        "x": 234,
+        "y": 1677,
+        "w": 2052,
+        "h": 73
+      }
+    },
+    "notes": {
+      "dictation": "headless Chrome has no Web Speech service; a stand-in recognizer streamed the interim transcript"
+    }
+  },
+  "phone": {
+    "file": "footage/phone.mp4",
+    "width": 1180,
+    "height": 2556,
+    "durationFrames": 529,
+    "marks": {
+      "open_scenario": 36,
+      "briefing": 67,
+      "started": 87,
+      "typed_start": 126,
+      "sent": 279,
+      "reply_in": 327,
+      "sheet_open": 402,
+      "sheet_closed": 502
+    },
+    "rects": {
+      "chat": {
+        "x": 48,
+        "y": 659,
+        "w": 1083,
+        "h": 1848
+      },
+      "meter": {
+        "x": 81,
+        "y": 261,
+        "w": 336,
+        "h": 332
+      },
+      "composer": {
+        "x": 87,
+        "y": 2239,
+        "w": 1005,
+        "h": 156
+      },
+      "sheet": {
+        "x": 0,
+        "y": 0,
+        "w": 1179,
+        "h": 2556
+      },
+      "switch": {
+        "x": 48,
+        "y": 837,
+        "w": 1083,
+        "h": 132
+      },
+      "plan": {
+        "x": 48,
+        "y": 216,
+        "w": 1083,
+        "h": 467
+      }
+    }
+  }
+}
