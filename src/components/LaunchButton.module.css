@@ -29,10 +29,7 @@
 .launch:hover .icon { transform: rotate(45deg); }
 
 @media (max-width: 767px) {
-  .launch { height: 36px; padding-left: 12px; font-size: 11px; }
+  .launch { height: 36px; padding: 0 4px; }
   .icon { width: 28px; height: 28px; }
-}
-@media (max-width: 380px) {
   .label { display: none; }
-  .launch { padding: 0 4px; }
 }
