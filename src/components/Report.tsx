@@ -17,8 +17,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useEntitlements } from "@/components/EntitlementProvider";
 import type { PublicScenario } from "@/lib/scenarios";
+import { identityHeaders } from "@/lib/identity";
 import { add as addHistory, previous as previousAttempt, useHistory } from "@/lib/history";
-import type { ReportResponse, TurnStatus } from "@/lib/types";
+import type { ProReportSection, ReportResponse, TurnStatus } from "@/lib/types";
 import { RadarChart } from "./RadarChart";
 import { useCountUp } from "./useCountUp";
 import styles from "./Report.module.css";
@@ -53,11 +54,65 @@ function sessionIdFor(report: ReportResponse): string {
   return id;
 }
 
-export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
+/**
+ * Trades a sealed Pro section for the real one. The server re-verifies scenar_pro with RevenueCat;
+ * a brand-new purchase can take a moment to propagate, so 403s are retried briefly.
+ */
+async function fetchProSection(proSealed: string | undefined): Promise<ProReportSection | null> {
+  if (!proSealed) return null;
+  try {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (attempt) await new Promise((r) => setTimeout(r, 1500 * attempt));
+      const res = await fetch("/api/report/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...identityHeaders() },
+        body: JSON.stringify({ proSealed }),
+      });
+      if (res.ok) return (await res.json()) as ProReportSection;
+      if (res.status !== 403) return null;
+    }
+  } catch {
+    /* network error -> failed */
+  }
+  return null;
+}
+
+type UnlockState = "idle" | "verifying" | "failed";
+
+export function Report({ report: served, scenario, outcome, onRetry }: ReportProps) {
   const { isPro, openPaywall } = useEntitlements();
+  // Server-gated Pro section: for non-verified callers /api/report returns it sealed (`locked`).
+  // Once the client is Pro (already, or right after a purchase) we trade the sealed token for the
+  // real section via /api/report/unlock, which re-checks scenar_pro with RevenueCat.
+  const [proSection, setProSection] = useState<ProReportSection | null>(null);
+  const [unlock, setUnlock] = useState<UnlockState>("idle");
+  const report = proSection ? { ...served, ...proSection, locked: false } : served;
+  const needsUnlock = isPro && !!served.locked && !proSection;
+  const proOpen = isPro && !report.locked;
+
+  const [attempt, setAttempt] = useState(0); // bumped by "Retry"
+
+  useEffect(() => {
+    if (!needsUnlock) return;
+    let cancelled = false;
+    fetchProSection(served.proSealed).then((section) => {
+      if (cancelled) return;
+      if (section) setProSection(section);
+      else setUnlock("failed");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [needsUnlock, served.proSealed, attempt]);
+
+  function retryUnlock() {
+    setUnlock("verifying");
+    setAttempt((n) => n + 1);
+  }
+
   const [revealed, setRevealed] = useState(false);
   const overall = Math.max(0, Math.min(100, Math.round(report.overall)));
-  const [sessionId] = useState(() => sessionIdFor(report));
+  const [sessionId] = useState(() => sessionIdFor(served));
   const saved = useRef(false);
   const history = useHistory();
 
@@ -198,13 +253,13 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
       </div>
 
       {/* --- Pro coaching --- */}
-      <motion.div className={`${styles.pro} ${isPro ? styles.proOpen : ""}`} {...enter(3)}>
+      <motion.div className={`${styles.pro} ${proOpen ? styles.proOpen : ""}`} {...enter(3)}>
         <div className={styles.proHead}>
           <h3 className={styles.proTitle}>Tactical coaching</h3>
           <span className={styles.proChip}>Pro</span>
         </div>
 
-        <div className={styles.proContent} inert={!isPro} aria-hidden={!isPro}>
+        <div className={styles.proContent} inert={!proOpen} aria-hidden={!proOpen}>
           <div className={styles.proCols}>
             <div className={styles.card}>
               <h4 className={styles.listTitle}>
@@ -248,6 +303,33 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
             </p>
           </div>
         </div>
+
+        {isPro && !proOpen && (
+          <div className={styles.proOverlay}>
+            <div className={styles.proCta} role="status" aria-live="polite">
+              <span className={styles.proCtaIcon} aria-hidden="true">
+                <IconLock size={16} strokeWidth={2} />
+              </span>
+              {unlock === "failed" ? (
+                <>
+                  <p className={styles.proCtaTitle}>Almost there</p>
+                  <p className={styles.proCtaText}>Couldn&apos;t verify your purchase yet.</p>
+                  <button type="button" className="btn btn-primary" onClick={retryUnlock}>
+                    <IconRetry size={14} strokeWidth={2} aria-hidden="true" />
+                    Retry
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className={styles.proCtaTitle}>Unlocking your coaching</p>
+                  <p className={styles.proCtaText}>
+                    <span className={styles.verifySpinner} aria-hidden="true" /> Verifying with RevenueCat…
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
 
         {!isPro && (
           <div className={styles.proOverlay}>
