@@ -5,6 +5,7 @@ import { BillingInspector } from "@/components/BillingInspector";
 import { EntitlementProvider } from "@/components/EntitlementProvider";
 import { EnvironmentSwitch } from "@/components/EnvironmentSwitch";
 import { LaunchButton } from "@/components/LaunchButton";
+import { LiveStrip } from "@/components/LiveStrip";
 import { LogoMark } from "@/components/LogoMark";
 import { NavMenu } from "@/components/NavMenu";
 import { ProBadge } from "@/components/ProBadge";
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <LaunchButton />
               <ProBadge />
             </div>
+            <LiveStrip />
           </header>
           <main id="main" className={styles.main}>
             {children}

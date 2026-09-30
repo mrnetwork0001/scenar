@@ -84,6 +84,11 @@
 @media (min-width: 768px) {
   .main { --nav-h: 80px; }
 }
+/* The Live strip (32px) hangs under the bar inside the fixed header: push content down with it. */
+.nav:has([data-live-strip]) ~ .main { --nav-h: 100px; }
+@media (min-width: 768px) {
+  .nav:has([data-live-strip]) ~ .main { --nav-h: 112px; }
+}
 
 .skip {
   position: absolute;
