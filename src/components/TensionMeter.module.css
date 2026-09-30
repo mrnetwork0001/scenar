@@ -1,4 +1,4 @@
-/* Monochrome gauge — the tension gradient is the only colour on the play screen. */
+/* Monochrome gauge - the tension gradient is the only colour on the play screen. */
 .meter {
   --tc: #f59e0b; /* current tension colour, set inline */
   position: relative;

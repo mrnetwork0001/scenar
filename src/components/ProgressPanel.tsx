@@ -7,10 +7,10 @@ import { METRIC_LABELS, type MetricKey } from "@/lib/types";
 import styles from "./ProgressPanel.module.css";
 
 const TIPS: Record<MetricKey, string> = {
-  assertiveness: "State what you want in the first sentence — then stop talking.",
+  assertiveness: "State what you want in the first sentence - then stop talking.",
   regulation: "Pause before replying; name the pressure instead of reacting to it.",
   clarity: "One ask per message. Swap hedges like “maybe” for specifics.",
-  boundaries: "Say no to the request, not the person — and offer what you can do.",
+  boundaries: "Say no to the request, not the person - and offer what you can do.",
 };
 
 const W = 280;

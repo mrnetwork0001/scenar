@@ -12,14 +12,14 @@ function joinSpeech(base: string, add: string): string {
   return /\s$/.test(base) ? base + add : `${base} ${add}`;
 }
 
-/* ———————————————————————————— Mic button ———————————————————————————— */
+/* ---------------------------- Mic button ---------------------------- */
 
 export interface MicButtonProps {
   /** Current composer text. */
   value: string;
   /** Receives committed text + live interim transcript while dictating. */
   onChange: (next: string) => void;
-  /** Composer disabled — any active dictation is aborted. */
+  /** Composer disabled - any active dictation is aborted. */
   disabled?: boolean;
   maxLength?: number;
   /** Fired right before the mic opens (e.g. to silence text-to-speech). */
@@ -52,7 +52,7 @@ export function MicButton({ value, onChange, disabled, maxLength, onStart, onLis
     if (value !== emittedRef.current) baseRef.current = value;
   }, [value]);
 
-  // Composer got disabled (message sent, session ending) — close the mic, discard stragglers.
+  // Composer got disabled (message sent, session ending) - close the mic, discard stragglers.
   useEffect(() => {
     if (disabled && listening) abort();
   }, [disabled, listening, abort]);
@@ -129,14 +129,14 @@ export function ListeningHint() {
   );
 }
 
-/* ———————————————————————————— Speaker toggle ———————————————————————————— */
+/* ---------------------------- Speaker toggle ---------------------------- */
 
 export interface SpeakerToggleProps {
   /** Effective state (preference && Pro). */
   on: boolean;
   onChange: (on: boolean) => void;
   supported: boolean;
-  /** Currently reading a line aloud — animates the icon. */
+  /** Currently reading a line aloud - animates the icon. */
   speaking?: boolean;
 }
 
@@ -154,7 +154,7 @@ export function SpeakerToggle({ on, onChange, supported, speaking }: SpeakerTogg
     onChange(!on);
   }
 
-  const label = locked ? "Read replies aloud (Pro)" : on ? "Voice on — tap to mute replies" : "Voice off — tap to hear replies";
+  const label = locked ? "Read replies aloud (Pro)" : on ? "Voice on - tap to mute replies" : "Voice off - tap to hear replies";
 
   return (
     <button
@@ -177,7 +177,7 @@ export function SpeakerToggle({ on, onChange, supported, speaking }: SpeakerTogg
   );
 }
 
-/* ———————————————————————————— Icons ———————————————————————————— */
+/* ---------------------------- Icons ---------------------------- */
 
 function SpeakerIcon({ on }: { on: boolean }) {
   return (

@@ -227,7 +227,7 @@ export function CustomBuilder() {
         </h1>
         <p className={styles.sub}>
           Describe the talk you&apos;re dreading. We&apos;ll cast a realistic counterpart, give them a hidden agenda and
-          a breaking point — then you practise until it feels easy.
+          a breaking point - then you practise until it feels easy.
         </p>
       </section>
 
@@ -364,7 +364,7 @@ export function CustomBuilder() {
 
           <div className={styles.actions}>
             <p className={styles.privacy}>
-              <ShieldCheck size={14} strokeWidth={2} aria-hidden="true" /> Their secret is encrypted on our server — you only see it in the final report.
+              <ShieldCheck size={14} strokeWidth={2} aria-hidden="true" /> Their secret is encrypted on our server - you only see it in the final report.
             </p>
             <button
               type="submit"
@@ -454,7 +454,7 @@ function SavedList({ items }: { items: readonly CustomScenarioItem[] }) {
             <Sparkles size={16} strokeWidth={2} />
           </span>
           <p>
-            Nothing here yet. Build your first scenario above — it&apos;ll be saved here so you can rehearse it again
+            Nothing here yet. Build your first scenario above - it&apos;ll be saved here so you can rehearse it again
             and again.
           </p>
           <Link href="/app" className={styles.emptyLink}>

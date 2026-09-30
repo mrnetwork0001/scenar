@@ -1,4 +1,4 @@
-/* ——————————— Mic button ——————————— */
+/* ----------- Mic button ----------- */
 .micWrap {
   position: relative;
   flex: none;
@@ -86,7 +86,7 @@
   box-shadow: 0 0 0 2px var(--surface-muted);
 }
 
-/* Error bubble — fades away on its own */
+/* Error bubble - fades away on its own */
 .micError {
   position: absolute;
   right: -44px;
@@ -110,7 +110,7 @@
   100% { opacity: 0; transform: translateY(-4px); visibility: hidden; }
 }
 
-/* ——————————— Listening hint ——————————— */
+/* ----------- Listening hint ----------- */
 .listeningHint {
   display: flex;
   align-items: center;
@@ -139,7 +139,7 @@
   to { opacity: 1; transform: none; }
 }
 
-/* ——————————— Speaker toggle ——————————— */
+/* ----------- Speaker toggle ----------- */
 .speaker {
   position: relative;
   flex: none;

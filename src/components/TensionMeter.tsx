@@ -12,7 +12,7 @@ export interface TensionMeterProps {
   caption?: string;
 }
 
-/** The tension gradient — the only colour in the product (matches --tension-grad). */
+/** The tension gradient - the only colour in the product (matches --tension-grad). */
 const STOPS: [number, [number, number, number]][] = [
   [0, [16, 185, 129]], // #10b981
   [55, [245, 158, 11]], // #f59e0b
@@ -53,7 +53,7 @@ function polar(t: number, r: number) {
   return { x: CX + r * Math.cos(a), y: CY - r * Math.sin(a) };
 }
 
-/* A linear gradient in x doesn't advance evenly along an arc — place each stop at
+/* A linear gradient in x doesn't advance evenly along an arc - place each stop at
    the x where the arc reaches that tension, so the fill colour matches tensionColor(). */
 const arcX = (t: number) => ((1 - Math.cos((t / 100) * Math.PI)) / 2) * 100;
 
@@ -113,7 +113,7 @@ export function TensionMeter({ value, size = "lg", caption = "Tension" }: Tensio
         </defs>
 
         <path d={ARC} className={styles.track} pathLength={100} />
-        {/* Heated: a soft red bloom under the fill — the loudest thing on screen */}
+        {/* Heated: a soft red bloom under the fill - the loudest thing on screen */}
         <motion.path
           d={ARC}
           className={styles.bloom}

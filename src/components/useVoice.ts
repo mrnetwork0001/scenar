@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
-/* ————————————————————————————————————————————————————————————————
+/* ----------------------------------------------------------------
  * Minimal local typings for the Web Speech API.
  * (lib.dom does not ship SpeechRecognition in every TS version, and
  * Safari/Chrome still expose it as `webkitSpeechRecognition`.)
- * ———————————————————————————————————————————————————————————————— */
+ * ---------------------------------------------------------------- */
 
 interface SRAlternative {
   readonly transcript: string;
@@ -57,7 +57,7 @@ function useClientFlag(detect: () => boolean): boolean {
   return useSyncExternalStore(noopSubscribe, detect, () => false);
 }
 
-/* ———————————————————————————— Dictation ———————————————————————————— */
+/* ---------------------------- Dictation ---------------------------- */
 
 export interface DictationOptions {
   /** Called with each finalised chunk of speech. */
@@ -80,9 +80,9 @@ export interface Dictation {
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
-  "not-allowed": "Microphone access is blocked — allow it in your browser's site settings.",
+  "not-allowed": "Microphone access is blocked - allow it in your browser's site settings.",
   "service-not-allowed": "Speech recognition isn't available in this browser.",
-  "no-speech": "Didn't catch anything — tap the mic and try again.",
+  "no-speech": "Didn't catch anything - tap the mic and try again.",
   "audio-capture": "No microphone found.",
   network: "Speech recognition needs a network connection.",
   "language-not-supported": "Dictation isn't available for this language.",
@@ -187,7 +187,7 @@ export function useDictation({ onFinal, onInterim, lang = "en-US", silenceMs = 2
   return { supported, listening, error, start, stop, abort };
 }
 
-/* ———————————————————————————— Speech (TTS) ———————————————————————————— */
+/* ---------------------------- Speech (TTS) ---------------------------- */
 
 export interface Speech {
   supported: boolean;
@@ -217,7 +217,7 @@ function pickVoice(voices: SpeechSynthesisVoice[], key: string): SpeechSynthesis
   return pool[hashKey(key) % pool.length];
 }
 
-/** Split into sentence-sized chunks — Chrome silently stops utterances longer than ~15s. */
+/** Split into sentence-sized chunks - Chrome silently stops utterances longer than ~15s. */
 function chunkText(text: string): string[] {
   const parts = text.replace(/\s+/g, " ").match(/[^.!?…]+[.!?…]*["')\]]*\s*/g) ?? [text];
   const out: string[] = [];
@@ -297,7 +297,7 @@ export function useSpeech(): Speech {
   return { supported, speaking, speak, cancel };
 }
 
-/* ———————————————————————— Speak-aloud preference ———————————————————————— */
+/* ------------------------ Speak-aloud preference ------------------------ */
 
 const SPEAK_KEY = "scenar.voice.speak";
 const prefListeners = new Set<() => void>();
@@ -332,7 +332,7 @@ export function useSpeakPreference(): [boolean, (on: boolean) => void] {
     try {
       window.localStorage.setItem(SPEAK_KEY, next ? "1" : "0");
     } catch {
-      /* storage blocked — preference just won't persist */
+      /* storage blocked - preference just won't persist */
     }
     prefListeners.forEach((l) => l());
   }, []);

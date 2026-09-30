@@ -1,5 +1,5 @@
 /**
- * Scenar mark: two rounded bars leaning at -35° — two voices, one conversation.
+ * Scenar mark: two rounded bars leaning at -35° - two voices, one conversation.
  * Solid ink; inherits `currentColor` so it can be inverted when needed.
  */
 export function LogoMark({ size = 28, className }: { size?: number; className?: string }) {

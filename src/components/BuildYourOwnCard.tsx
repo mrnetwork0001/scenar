@@ -27,7 +27,7 @@ export function BuildYourOwnCard() {
           </span>
           <span className={styles.title}>Build your own scenario</span>
           <span className={styles.text}>
-            Describe the conversation you&apos;re dreading. We&apos;ll build the counterpart — with their own hidden
+            Describe the conversation you&apos;re dreading. We&apos;ll build the counterpart - with their own hidden
             agenda.
           </span>
           <span className={styles.examples} aria-hidden="true">

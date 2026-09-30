@@ -86,7 +86,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
 
   return (
     <section className={styles.report} aria-labelledby="report-title">
-      {/* ——— Hero: score + verdict ——— */}
+      {/* --- Hero: score + verdict --- */}
       <motion.div className={styles.hero} {...enter(0)}>
         <div className={styles.ring} role="img" aria-label={`Overall score ${overall} out of 100`}>
           <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -143,7 +143,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
       </motion.div>
 
       <div className={styles.grid}>
-        {/* ——— Radar ——— */}
+        {/* --- Radar --- */}
         <motion.div className={styles.card} {...enter(1)}>
           <div className={styles.cardHead}>
             <p className="eyebrow">Your skill profile</p>
@@ -161,7 +161,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
           <RadarChart metrics={report.metrics} compare={prev?.metrics} />
         </motion.div>
 
-        {/* ——— Hidden truth (inverse) ——— */}
+        {/* --- Hidden truth (inverse) --- */}
         <motion.div className={`${styles.truth} ${revealed ? styles.truthOpen : ""}`} {...enter(2)}>
           <div className={styles.truthHead}>
             <span className={styles.truthIcon} aria-hidden="true">
@@ -186,7 +186,7 @@ export function Report({ report, scenario, outcome, onRetry }: ReportProps) {
         </motion.div>
       </div>
 
-      {/* ——— Pro coaching ——— */}
+      {/* --- Pro coaching --- */}
       <motion.div className={`${styles.pro} ${isPro ? styles.proOpen : ""}`} {...enter(3)}>
         <div className={styles.proHead}>
           <h3 className={styles.proTitle}>Tactical coaching</h3>

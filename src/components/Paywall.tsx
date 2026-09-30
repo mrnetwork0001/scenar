@@ -38,7 +38,7 @@ const COPY: Record<PaywallReason, { title: ReactNode; sub: string }> = {
         Unlock every <span className="grad-text">high-stakes</span> scenario
       </>
     ),
-    sub: "Rehearse the conversations that actually keep you up at night — against a counterpart who pushes back.",
+    sub: "Rehearse the conversations that actually keep you up at night - against a counterpart who pushes back.",
   },
   "pro-report": {
     title: (
@@ -54,7 +54,7 @@ const COPY: Record<PaywallReason, { title: ReactNode; sub: string }> = {
         Say it <span className="grad-text">out loud</span>
       </>
     ),
-    sub: "Voice mode lets you speak your replies and hear the counterpart answer — the closest thing to the real room.",
+    sub: "Voice mode lets you speak your replies and hear the counterpart answer - the closest thing to the real room.",
   },
   "custom-builder": {
     title: (
@@ -62,7 +62,7 @@ const COPY: Record<PaywallReason, { title: ReactNode; sub: string }> = {
         Rehearse <span className="grad-text">your</span> conversation
       </>
     ),
-    sub: "Describe the real situation you're facing and Scenar builds a counterpart — with their own hidden agenda — in seconds.",
+    sub: "Describe the real situation you're facing and Scenar builds a counterpart - with their own hidden agenda - in seconds.",
   },
   manual: {
     title: (
@@ -295,10 +295,10 @@ export function Paywall() {
             <div className={styles.topRight}>
               {demoMode ? (
                 <span className={`${styles.pill} ${styles.pillDemo}`} title="Set NEXT_PUBLIC_REVENUECAT_API_KEY to use real RevenueCat Web Billing">
-                  Demo billing — add RevenueCat key
+                  Demo billing - add RevenueCat key
                 </span>
               ) : isSandbox ? (
-                <span className={`${styles.pill} ${styles.pillSandbox}`} title="RevenueCat sandbox key — no real charges">
+                <span className={`${styles.pill} ${styles.pillSandbox}`} title="RevenueCat sandbox key - no real charges">
                   Sandbox
                 </span>
               ) : null}
@@ -326,7 +326,7 @@ export function Paywall() {
           <p id={descId} className={styles.sub}>
             {alreadyPro
               ? isTrial
-                ? "Your free trial is active — every scenario and the full coaching report are unlocked."
+                ? "Your free trial is active - every scenario and the full coaching report are unlocked."
                 : "Every scenario and the full coaching report are unlocked. Go practice."
               : copy.sub}
           </p>
@@ -439,7 +439,7 @@ export function Paywall() {
                       </ol>
                       <p className={styles.terms}>
                         Free for {trialDays} days, then {selected.price}
-                        {selected.periodLabel} — cancel anytime.
+                        {selected.periodLabel} - cancel anytime.
                         {selected.pricePerMonth ? ` That's just ${selected.pricePerMonth}/mo.` : ""}
                       </p>
                     </>
@@ -449,7 +449,7 @@ export function Paywall() {
                         ? `Prepping for one big conversation? ${selected.price}${selected.periodLabel}, cancel anytime.`
                         : `${selected.price}${selected.periodLabel}${
                             selected.pricePerMonth ? ` (${selected.pricePerMonth}/mo)` : ""
-                          } — cancel anytime.`}
+                          } - cancel anytime.`}
                     </p>
                   )}
                 </div>

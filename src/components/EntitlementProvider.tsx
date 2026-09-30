@@ -116,7 +116,7 @@ export function EntitlementProvider({ children }: { children: ReactNode }) {
           setPackages(mapped.packages);
           if (!current) {
             console.warn(
-              "[Scenar] No current offering — set an offering as Current in the RevenueCat dashboard.",
+              "[Scenar] No current offering - set an offering as Current in the RevenueCat dashboard.",
             );
           }
         } else {
