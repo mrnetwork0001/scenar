@@ -1,4 +1,4 @@
-// Server-only, in-memory sliding-window rate limiter for the LLM-backed routes.
+// Server-only, in-memory sliding-window rate limiter for the LLM-backed and entitlement routes.
 // Protects the LLM key from abuse on a public deploy. Per-instance only (fine for a
 // single Vercel/Node instance); swap for Redis/Upstash if you scale out.
 
@@ -16,6 +16,9 @@ export const RATE_LIMITS = {
   turn: { limit: 40, windowMs: 10 * 60_000 },
   report: { limit: 10, windowMs: 10 * 60_000 },
   custom: { limit: 6, windowMs: 10 * 60_000 },
+  unlock: { limit: 30, windowMs: 10 * 60_000 },
+  entitlement: { limit: 60, windowMs: 10 * 60_000 },
+  events: { limit: 60, windowMs: 10 * 60_000 },
 } satisfies Record<string, RateLimitRule>;
 
 function clientKey(req: Request): string {
