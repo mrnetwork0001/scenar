@@ -34,13 +34,23 @@ So there's a real outcome to win or lose. At the end, the **hidden truth is reve
 
 Scenar uses **RevenueCat Web Billing** via [`@revenuecat/purchases-js`](https://www.npmjs.com/package/@revenuecat/purchases-js).
 
-- **Entitlement `scenar_pro`** gates four value moments: 3 of the 5 scenarios, the tactical-rewrite section of the report, voice mode and the custom scenario builder. The report is generated in full either way, so it unblurs the instant the purchase completes.
+- **Entitlement `scenar_pro`** gates four value moments: 3 of the 5 scenarios, the tactical-rewrite section of the report, voice mode and the custom scenario builder. The coaching section is generated with every report but only delivered sealed to non-Pro callers, so it unlocks seconds after the purchase without re-running the analysis.
 - **Every purchase is tagged with the moment that caused it** (`metadata.paywall_reason`: locked scenario, report, voice, builder or header), and `trackCustomPaywallImpression` runs on every paywall open.
 - **Offerings are dashboard-driven**: the custom paywall renders whatever packages are in the current offering. It computes "Save X%" for annual versus monthly and reads free-trial length from the product's trial phase. Nothing is hard-coded.
 - **Pricing matched to how people actually prepare**: Monthly with a 7-day free trial for someone preparing for one big conversation, Annual for managers who practise continuously, and a one-time Lifetime plan. The trial length, prices and "Best value" / "Save X%" badges are all derived from the offering at runtime.
 - **Anonymous app user IDs**: nobody has to sign up before they can practise.
 - **Live entitlement badge** (Free / Pro · Trial with days left / Pro), refreshed on window focus.
 - **Context-aware paywall copy**: the headline depends on where the paywall was opened (locked scenario versus report upsell).
+
+### Server-side verification
+
+Pro is enforced on the server, not just hidden in the browser:
+
+- **`verifyPro(req)`** (`src/lib/entitlementServer.ts`) reads the RevenueCat app user id + environment the client sends (`x-scenar-user` / `x-scenar-env`) and asks RevenueCat directly (`GET /v1/subscribers/{id}`, with `REVENUECAT_SECRET_API_KEY` or that environment's public key). An entitlement counts when `expires_date` is in the future (or null for Lifetime) or it is inside a billing grace period. Results are cached per user (60 s for Pro, 10 s otherwise), lookups time out after 5 s, and errors fail closed without ever returning a 500.
+- **Gated routes**: `/api/custom` (the builder) and `/api/turn` / `/api/report` for Pro scenarios (built-in or sealed custom ones) return `403 { code: "pro_required" }`, and the client opens the matching paywall.
+- **Sealed Pro content**: for everyone else, `/api/report` strips *what worked / to improve / the rewrite* and returns them only as an AES-256-GCM `proSealed` token. It uses its own key-derivation label and expires after 24 h. After a purchase, `POST /api/report/unlock` re-verifies with RevenueCat (bypassing the cache) and returns the section, so the report unlocks in place.
+- **Webhooks**: `POST /api/revenuecat/webhook` checks the `Authorization` header against `REVENUECAT_WEBHOOK_AUTH` using a constant-time compare, clears the cached result for the user(s) in the event, and records the event. `GET /api/revenuecat/events?user=<id>` returns only that user's recent events. They are kept in a per-instance in-memory ring of 50, which is enough for the demo; use a DB/KV in production.
+- **`GET /api/entitlement`** shows what the server believes (`mode: revenuecat | demo | unverifiable`) for the inspector's "Server verification" row.
 
 Setup: see [docs/REVENUECAT_SETUP.md](docs/REVENUECAT_SETUP.md). Without a key, the app runs in a clearly labelled **demo billing** mode.
 

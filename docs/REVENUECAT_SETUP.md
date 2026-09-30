@@ -57,6 +57,15 @@ RevenueCat's **Test Store** works with `@revenuecat/purchases-js`. Under **Apps*
 - [ ] On success, Scenar's "You're Pro" animation plays and the badge switches to **Pro · Trial · 7d left**.
 - [ ] Confirm in RevenueCat under **Customers**: turn on the sandbox data toggle to see test customers. You should see an anonymous `$RCAnonymousID:…` customer with `scenar_pro` active and a `paywall_reason` purchase metadata value.
 
+## Webhooks (server-side cache busting + event log)
+- [ ] Generate a random secret, e.g. `openssl rand -hex 32`, and add it to `.env.local` (and Vercel) as `REVENUECAT_WEBHOOK_AUTH=<secret>`.
+- [ ] RevenueCat dashboard → **Project → Integrations → Webhooks → Add new configuration**.
+- [ ] **Webhook URL**: `https://<your-domain>/api/revenuecat/webhook`
+- [ ] **Authorization header value**: the exact same `<secret>`. RevenueCat sends it verbatim in the `Authorization` header, and Scenar compares it in constant time. A wrong or missing value gets a `401`, and `503` means `REVENUECAT_WEBHOOK_AUTH` isn't set on the server.
+- [ ] Choose the environment (sandbox, production or both), save, then click **Send test event**. It should return `200`.
+- [ ] What it does: every event (INITIAL_PURCHASE, RENEWAL, CANCELLATION, EXPIRATION, …) clears the server's cached entitlement check for that user, so the next Pro request asks RevenueCat again. The event is also stored so `GET /api/revenuecat/events?user=<appUserId>` can list it. That store is in memory, holds one instance's last 50 events and resets on redeploy, so use a DB/KV in production.
+- [ ] Optional: set `REVENUECAT_SECRET_API_KEY=sk_...` (server-only, never `NEXT_PUBLIC_`) to verify entitlements with a secret key. Without it, the server calls `GET /v1/subscribers/{id}` with the environment's public key.
+
 ## 9. Before going live (after the hackathon)
 - [ ] Swap to the **production** Web Billing public key (`rcb_...` without `sb_`) and activate your Stripe account.
 - [ ] Note: users are anonymous and identified per browser (the id is stored in `localStorage` as `scenar.rc.appUserId`). Clearing site data loses access until you add login and call `purchases.changeUser(realUserId)`.
@@ -68,3 +77,4 @@ RevenueCat's **Test Store** works with `@revenuecat/purchases-js`. Under **Apps*
 - `trackCustomPaywallImpression` runs on every paywall open, so paywall views are attributed to the offering.
 - `purchase({ rcPackage, metadata: { paywall_reason } })` records which moment triggered the conversion (locked scenario vs. coaching report vs. header).
 - Entitlements refresh on window focus, and cancellations (`UserCancelledError`) are handled quietly.
+- **Server-side enforcement**: API routes check `scenar_pro` with RevenueCat's REST API before serving Pro scenarios, the builder or the coaching section, which non-Pro callers only receive sealed. Webhooks clear the server cache when a subscription changes.
