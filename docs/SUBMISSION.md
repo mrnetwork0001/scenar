@@ -6,6 +6,13 @@
 - [ ] Demo video **under 2:00**, uploaded to YouTube (public or unlisted) or Vimeo
 - [ ] Category selected: **Next Gen Award**
 - [ ] Submitted before **Sep 30, 2026 11:45pm PDT**
+- [ ] Devpost account email is the **unicam.it** student address (University of Camerino is on the JetBrains swot list)
+- [ ] App icon, 1024×1024: `docs/assets/app-icon-1024.png`
+- [ ] Screenshots, 1179×2556 without device frames: `docs/assets/screenshots/` (landing, scenarios, conversation, report, hidden truth, paywall)
+- [ ] Category: **Next Gen only**
+
+## Platforms
+Scenar is a web app that runs on **iOS, iPadOS, Android and macOS**, and installs to the home screen as an app (PWA). RevenueCat powers its **web purchases** (Test Store in Sandbox, Web Billing with Stripe in Live). Next Gen doesn't require a store release.
 
 ## Tagline
 Rehearse the conversations that matter - against AI counterparts with hidden agendas.
@@ -53,6 +60,8 @@ Accounts that sync across devices, team plans for manager training cohorts, and 
 | 1:30–1:42 | Locked Pro coaching → paywall slides up → select Monthly (7-day trial timeline) → Start free trial → RevenueCat Test Store "Test valid purchase" → success → coaching unlocks | "Pro coaching is sealed on the server and unlocks only when RevenueCat verifies the purchase." |
 | 1:42–1:52 | Flip the header switch to **Live** (green strip) → RevenueCat checkout "Total due today $0" → press Shift+I: inspector shows entitlement, placement and "Server agrees: Pro" | "Sandbox for testing, Live for real Stripe payments: the same RevenueCat offering, verified end to end." |
 | 1:52–1:58 | /account → "Manage or cancel", then back to landing | "Scenar. Rehearse the conversations that matter." |
+
+Show at least one clip on a real iPhone: install via Share → Add to Home Screen, open it full-screen, and play a turn. The rules ask for footage of the app running on the device it was built for.
 
 Recording tips: record on https://www.tryscenar.xyz in a fresh private window (a new anonymous user) at 1440×900 and 100% zoom. Test Store trials last about 5 minutes, so record the purchase and the Pro features in one take. For the Live segment, show the checkout but don't submit a card, or use the clip of your real trial purchase and cancellation.
 

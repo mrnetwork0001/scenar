@@ -7,6 +7,7 @@ Scenar is an AI conversation simulator for students and new professionals. Pract
 - **Live app:** https://www.tryscenar.xyz
 - **Built for:** RevenueCat Shipaton 2026, Next Gen Award
 - **Stack:** Next.js 16, React 19, TypeScript, RevenueCat (Test Store + Web Billing with Stripe), 0G AI router
+- **Platforms:** iOS, iPadOS, Android and macOS (and any modern browser). Installable as an app: on iPhone use **Share → Add to Home Screen**, on Android use **Install app**. It opens full-screen straight into `/app`.
 
 ---
 
@@ -79,6 +80,7 @@ At the end the report reveals the secret: *"Dana's ceiling was $84,000. You land
   Each section has its own animation. The app itself lives at **`/app`**, behind **Launch app**.
 - **Monochrome design system:** black on white, Inter 300-600, pill controls, a single signature easing curve, and colour only where it carries meaning. See [docs/DESIGN.md](docs/DESIGN.md).
 - **Custom icon set:** 50+ hand-drawn icons in one stroke style, using the logo and gauge geometry (`src/components/icons`).
+- **Installable app (PWA):** a web app manifest, home-screen icons (including a maskable one) and iOS full-screen mode. See `src/app/manifest.ts`.
 - **Mobile control centre:** below 768px the Menu pill opens a full-screen sheet with the plan card, the Sandbox/Live switch and navigation.
 - **Accessible:**
   - dialogs trap focus;
