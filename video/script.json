@@ -1,0 +1,160 @@
+{
+  "title": "Scenar demo - Maya's One Take",
+  "fps": 30,
+  "size": [
+    1920,
+    1080
+  ],
+  "targetSeconds": 116,
+  "voices": {
+    "narrator": {
+      "name": "Sarah",
+      "id": "EXAVITQu4vr4xnSDxMaL",
+      "settings": {
+        "stability": 0.38,
+        "similarity_boost": 0.8,
+        "style": 0.35,
+        "use_speaker_boost": true
+      }
+    },
+    "maya": {
+      "name": "Laura",
+      "id": "FGY2WhTYpPnrIDTdsKH5",
+      "settings": {
+        "stability": 0.28,
+        "similarity_boost": 0.75,
+        "style": 0.5,
+        "use_speaker_boost": true
+      }
+    },
+    "dana": {
+      "name": "Matilda",
+      "id": "XrExE9yKIg1WjnnlVkGX",
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.8,
+        "style": 0.3,
+        "use_speaker_boost": true
+      }
+    }
+  },
+  "model": "eleven_multilingual_v2",
+  "scenes": [
+    {
+      "id": "problem",
+      "seconds": 16,
+      "stock": [
+        "maya_laptop_night",
+        "maya_phone_anxious"
+      ],
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "This is Maya. Twenty-three. Her first job offer just landed."
+        },
+        {
+          "voice": "dana",
+          "text": "We'd love to offer you seventy-two thousand. Can I tell them you're on board?"
+        },
+        {
+          "voice": "maya",
+          "text": "Oh... um, sorry. I was kind of hoping for a bit more? But if not, that's totally fine."
+        },
+        {
+          "voice": "dana",
+          "text": "Seventy-two is already very competitive."
+        }
+      ]
+    },
+    {
+      "id": "rewind",
+      "seconds": 7,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "The conversations that shape your career get one take. What if Maya could rehearse it first?"
+        }
+      ]
+    },
+    {
+      "id": "idea",
+      "seconds": 14,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "This is Scenar. A rehearsal room for hard conversations, where every AI counterpart hides something: a budget ceiling, a reason they won't say out loud."
+        }
+      ]
+    },
+    {
+      "id": "take2",
+      "seconds": 24,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "So Maya practises. She anchors with real market data, and stays calm."
+        },
+        {
+          "voice": "narrator",
+          "text": "Every message is scored live on assertiveness, composure, clarity and boundaries, and the tension meter shows exactly how it landed."
+        }
+      ]
+    },
+    {
+      "id": "reveal",
+      "seconds": 11,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "Then the truth comes out. Dana could go to eighty-four thousand. Now Maya knows exactly what to ask for."
+        }
+      ]
+    },
+    {
+      "id": "revenuecat",
+      "seconds": 25,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "Pro runs on RevenueCat. Every paywall moment has its own placement, with a seven-day free trial."
+        },
+        {
+          "voice": "narrator",
+          "text": "Sandbox for testing, live Stripe payments for real. And the server verifies every purchase with RevenueCat before the sealed coaching unlocks."
+        }
+      ]
+    },
+    {
+      "id": "montage",
+      "seconds": 9,
+      "lines": [
+        {
+          "voice": "narrator",
+          "text": "Say it out loud. Build your own scenario. Track your progress, on any device."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "seconds": 10,
+      "stock": [
+        "maya_confident_call",
+        "maya_smile"
+      ],
+      "lines": [
+        {
+          "voice": "maya",
+          "text": "Based on market data for this role, I'd be comfortable at eighty-five."
+        },
+        {
+          "voice": "dana",
+          "text": "You know what? I think we can make eighty-three work."
+        },
+        {
+          "voice": "narrator",
+          "text": "Rehearse it first."
+        }
+      ]
+    }
+  ]
+}
