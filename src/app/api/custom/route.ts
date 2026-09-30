@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { chatJSON, hasLLM } from "@/lib/llm";
+import { proRequired, verifyPro } from "@/lib/entitlementServer";
 import { rateLimit } from "@/lib/rateLimit";
 import { buildCustomMessages, buildCustomSystemPrompt, parseCustomInput, sanitizeGenerated, templateScenario } from "@/lib/customPrompt";
 import { toPublic } from "@/lib/scenarios";
@@ -12,6 +13,10 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const limited = rateLimit(req, "custom");
   if (limited) return limited;
+
+  // The builder is a Pro feature: verify scenar_pro with RevenueCat before spending LLM tokens.
+  const v = await verifyPro(req);
+  if (!v.pro) return proRequired(v);
 
   let body: unknown;
   try {

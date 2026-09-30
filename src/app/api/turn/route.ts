@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { chatJSON, hasLLM } from "@/lib/llm";
+import { proRequired, verifyPro } from "@/lib/entitlementServer";
 import { rateLimit } from "@/lib/rateLimit";
 import { buildTurnSystemPrompt, toLLMMessages } from "@/lib/prompts";
 import { mockTurn, parseMessages, resolveScenario, sanitizeMetrics, toScore, toStatus, toText } from "@/lib/mock";
@@ -27,6 +28,12 @@ export async function POST(req: Request) {
   const resolved = resolveScenario(scenarioId, sealed);
   if ("error" in resolved) return NextResponse.json({ error: resolved.error }, { status: 400 });
   const { scenario } = resolved;
+
+  // Pro scenarios (built-in Pro + sealed custom ones) are enforced here, not just in the UI.
+  if (scenario.tier === "pro") {
+    const v = await verifyPro(req);
+    if (!v.pro) return proRequired(v);
+  }
 
   const messages = parseMessages(rawMessages);
   if (!messages) return NextResponse.json({ error: "messages must be a non-empty array of {role, content}" }, { status: 400 });
