@@ -91,12 +91,12 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const runId = useRef(0);
 
-  // ——— Voice mode (Pro): read counterpart lines aloud + dictation ———
+  // --- Voice mode (Pro): read counterpart lines aloud + dictation ---
   const { supported: speechSupported, speaking, speak, cancel: cancelSpeech } = useSpeech();
   const [speakPref, setSpeakPref] = useSpeakPreference();
   const [listening, setListening] = useState(false);
   const speakOn = speakPref && isPro && speechSupported;
-  const spokenRef = useRef(0); // messages already "heard" — history is never replayed
+  const spokenRef = useRef(0); // messages already "heard" - history is never replayed
   const voiceKey = scenario.counterpart.name;
 
   useEffect(() => {
@@ -229,7 +229,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
     }
   }
 
-  /* ——————————————————— Briefing ——————————————————— */
+  /* ------------------- Briefing ------------------- */
   if (phase === "briefing") {
     const custom = scenario.id.startsWith("custom-");
     const firstName = firstNameOf(scenario.counterpart.name);
@@ -289,7 +289,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
 
           <p className={styles.tips}>
             <span className={styles.tipTag}>Tip</span>
-            Stay specific, name what you need, and watch the tension meter — {firstName} is hiding something you can
+            Stay specific, name what you need, and watch the tension meter - {firstName} is hiding something you can
             use.
           </p>
 
@@ -319,7 +319,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
     );
   }
 
-  /* ——————————————————— Report ——————————————————— */
+  /* ------------------- Report ------------------- */
   if (phase === "report" && report && outcome) {
     return (
       <div className={styles.reportWrap}>
@@ -328,14 +328,14 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
     );
   }
 
-  /* ——————————————————— Playing / ending ——————————————————— */
+  /* ------------------- Playing / ending ------------------- */
   const ending = phase === "ending";
   const composerDisabled = pending || ending || !!turnError;
   const pct = Math.round(Math.max(0, Math.min(100, progress)));
 
   return (
     <div className={styles.stage}>
-      {/* ——— Side panel / mobile bar ——— */}
+      {/* --- Side panel / mobile bar --- */}
       <aside className={styles.side} aria-label="Live conversation signals">
         <div className={styles.sideTop}>
           <div className={styles.meterDesktop}>
@@ -411,13 +411,13 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
                 {coachNote}
               </p>
             ) : (
-              <p className={styles.coachIdle}>Send your first message — I&apos;ll whisper tips as you go.</p>
+              <p className={styles.coachIdle}>Send your first message - I&apos;ll whisper tips as you go.</p>
             )}
           </div>
         </div>
       </aside>
 
-      {/* ——— Chat ——— */}
+      {/* --- Chat --- */}
       <section className={styles.chat} aria-label={`Conversation with ${scenario.counterpart.name}`}>
         <header className={styles.chatHead}>
           <Avatar initials={scenario.counterpart.initials} />
@@ -426,7 +426,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
             <span>{scenario.counterpart.role}</span>
           </div>
           {mock && (
-            <span className={styles.mockPill} title="No LLM key configured — using scripted replies">
+            <span className={styles.mockPill} title="No LLM key configured - using scripted replies">
               Offline demo AI
             </span>
           )}
@@ -464,7 +464,7 @@ export function PlayClient({ scenario, sealed }: PlayClientProps) {
 
           {turnError && (
             <div className={styles.errorRow} role="alert">
-              <span>Message didn&apos;t go through — {turnError}</span>
+              <span>Message didn&apos;t go through - {turnError}</span>
               <button type="button" className={styles.retryBtn} onClick={() => void runTurn(messages)}>
                 <RotateCcw size={12} strokeWidth={2.5} aria-hidden="true" />
                 Retry

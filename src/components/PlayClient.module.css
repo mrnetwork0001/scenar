@@ -1,6 +1,6 @@
-/* Play screen — monochrome. The tension meter is the only colour here. */
+/* Play screen - monochrome. The tension meter is the only colour here. */
 
-/* ——————————— Shared bits ——————————— */
+/* ----------- Shared bits ----------- */
 .num {
   font-variant-numeric: tabular-nums;
   color: var(--fg);
@@ -37,7 +37,7 @@
   color: var(--fg);
 }
 
-/* ——————————— Briefing ——————————— */
+/* ----------- Briefing ----------- */
 .briefWrap {
   width: 100%;
   max-width: 720px;
@@ -206,7 +206,7 @@
   .brief { padding: 40px; }
 }
 
-/* ——————————— Stage ——————————— */
+/* ----------- Stage ----------- */
 .stage {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -232,7 +232,7 @@
   to { opacity: 1; transform: none; }
 }
 
-/* ——— Side panel (mobile: compact sticky bar) ——— */
+/* --- Side panel (mobile: compact sticky bar) --- */
 .side {
   position: sticky;
   top: calc(var(--nav-h, 68px) + 8px);
@@ -372,7 +372,7 @@
 
 .coachIdle { margin-top: 10px; font-size: 13px; line-height: 1.5; color: var(--fg-muted); }
 
-/* ——— Chat ——— */
+/* --- Chat --- */
 .chat {
   display: flex;
   flex-direction: column;
@@ -597,7 +597,7 @@
   text-underline-offset: 3px;
 }
 
-/* ——— Composer ——— */
+/* --- Composer --- */
 .composer {
   position: relative;
   display: flex;
@@ -670,7 +670,7 @@
 .kbdHint { display: none; }
 @media (min-width: 768px) { .kbdHint { display: inline; } }
 
-/* ——————————— Desktop ——————————— */
+/* ----------- Desktop ----------- */
 @media (min-width: 960px) {
   .stage {
     grid-template-columns: minmax(0, 1fr) 320px;
