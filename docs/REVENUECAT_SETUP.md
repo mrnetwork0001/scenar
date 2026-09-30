@@ -66,15 +66,26 @@ RevenueCat's **Test Store** works with `@revenuecat/purchases-js`. Under **Apps*
 - [ ] What it does: every event (INITIAL_PURCHASE, RENEWAL, CANCELLATION, EXPIRATION, …) clears the server's cached entitlement check for that user, so the next Pro request asks RevenueCat again. The event is also stored so `GET /api/revenuecat/events?user=<appUserId>` can list it. That store is in memory, holds one instance's last 50 events and resets on redeploy, so use a DB/KV in production.
 - [ ] Optional: set `REVENUECAT_SECRET_API_KEY=sk_...` (server-only, never `NEXT_PUBLIC_`) to verify entitlements with a secret key. Without it, the server calls `GET /v1/subscribers/{id}` with the environment's public key.
 
-## 9. Before going live (after the hackathon)
-- [ ] Swap to the **production** Web Billing public key (`rcb_...` without `sb_`) and activate your Stripe account.
-- [ ] Note: users are anonymous and identified per browser (the id is stored in `localStorage` as `scenar.rc.appUserId`). Clearing site data loses access until you add login and call `purchases.changeUser(realUserId)`.
+## 9. Live payments (Sandbox <-> Live switch)
+Scenar runs **both environments side by side**: Sandbox for testing, Live for real Stripe charges. Users switch with the Sandbox | Live control in the header, the mobile menu, pricing, `/account` or the inspector.
+- [ ] Stripe: activate the account (Country Italy, Individual / Sole proprietorship, Software / SaaS, statement descriptor `SCENAR`, IBAN, identity verification). Choose "Pick what you need" (standard Stripe) instead of Managed Payments, for Web Billing compatibility.
+- [ ] RevenueCat → **Web → RevenueCat Billing**: connect the Stripe account and add a web config (`Scenar Web`, USD, app name `Scenar`, support email, address collection "only when required", taxes off until you register).
+- [ ] Products in **Scenar Web**: `web_monthly` (Monthly, 1-week trial, eligibility "didn't have this subscription yet", USD 9.99), `web_yearly` (Yearly, USD 79.99), `web_lifetime` (non-consumable, USD 99.99). Attach all three to `scenar_pro`.
+- [ ] **Offerings → default → Edit**: add the web product to each package next to the Test Store product (one offering, one product per app).
+- [ ] **API keys → Scenar Web → Production** (`rcb_...` without `sb_`) → `NEXT_PUBLIC_REVENUECAT_LIVE_API_KEY`. Keep the sandbox key (`test_...` or `rcb_sb_...`) in `NEXT_PUBLIC_REVENUECAT_API_KEY`. Restart or redeploy, because `NEXT_PUBLIC_` values are inlined at build time.
+- [ ] Verify: Live becomes selectable; the paywall shows the "Live · real payment" pill, the web plans and "You'll be charged ... via Stripe"; a green dot shows on the badge; the Live strip shows under the nav.
+- [ ] Real test: in Live, buy Monthly (7-day trial, so nothing is charged today), check `/account` for "Pro · Trial · 7d", then cancel through **Manage or cancel** (RevenueCat's customer portal).
+- [ ] Each environment keeps its own anonymous app user ID (`scenar.rc.appUserId.sandbox` / `.live` in localStorage), so sandbox purchases never unlock Live. Clearing site data loses access until the user restores the ID from `/account` or you add login and `changeUser`.
+
+## 10. Placements (optional, per-moment offerings)
+- [ ] **Targeting → Placements**: create `locked_scenario`, `report_upsell`, `voice_mode`, `custom_builder` and `manual_upgrade`, each pointing at `default` to begin with. Scenar asks for the placement matching each paywall moment and falls back to the current offering. Later you can lead with Annual on `report_upsell`, or A/B test with Experiments, without a deploy. The inspector shows which placement served each paywall.
 
 ## What the integration does (for judges)
 - `Purchases.configure` runs once with a persisted anonymous id, then `preload()` warms up the checkout.
 - `getCustomerInfo()` and `getOfferings()` are fetched in parallel. Pro, trial, sandbox and expiry state all come from `entitlements.active.scenar_pro`.
 - The custom paywall is built from the **current offering's** packages: prices, trial length and the per-month annual price come straight from RevenueCat, so plans are editable without a deploy.
 - `trackCustomPaywallImpression` runs on every paywall open, so paywall views are attributed to the offering.
-- `purchase({ rcPackage, metadata: { paywall_reason } })` records which moment triggered the conversion (locked scenario vs. coaching report vs. header).
+- `purchase({ rcPackage, metadata })` records `paywall_reason`, `placement_id`, `offering_id` and `billing_env`, so every conversion is attributed to the moment, placement and environment that produced it.
+- Two environments (Sandbox Test Store, Live Web Billing) with separate anonymous users, switched at runtime by closing and reconfiguring the SDK. A live RevenueCat inspector (Shift+I) and a `/account` page show the full customer state.
 - Entitlements refresh on window focus, and cancellations (`UserCancelledError`) are handled quietly.
 - **Server-side enforcement**: API routes check `scenar_pro` with RevenueCat's REST API before serving Pro scenarios, the builder or the coaching section, which non-Pro callers only receive sealed. Webhooks clear the server cache when a subscription changes.
