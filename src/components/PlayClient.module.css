@@ -223,6 +223,9 @@
   margin: 0 auto;
   padding: 16px 16px 48px;
 }
+@media (min-width: 768px) {
+  .reportWrap { max-width: calc((100vw + 1000px) / 2); } /* halved side margins */
+}
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(16px); }
@@ -672,7 +675,8 @@
   .stage {
     grid-template-columns: minmax(0, 1fr) 320px;
     gap: 20px;
-    padding: 16px 32px 24px;
+    max-width: calc((100vw + 1200px) / 2); /* halved side margins */
+    padding: 16px 16px 24px;
     align-items: start;
   }
 

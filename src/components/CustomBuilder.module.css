@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding: 0 16px 80px;
 }
-@media (min-width: 768px) { .page { padding: 0 32px 96px; } }
+@media (min-width: 768px) { .page { max-width: calc((100vw + 980px) / 2); padding: 0 16px 96px; } } /* halved side margins */
 
 .srOnly {
   position: absolute;
