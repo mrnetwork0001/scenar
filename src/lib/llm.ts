@@ -112,7 +112,7 @@ async function chatRaw(system: string, messages: LLMMessage[], opts: ChatOptions
 
     if (!res.ok) {
       const body = await res.text().catch(() => "");
-      throw new Error(`LLM request failed: HTTP ${res.status} ${res.statusText} — ${body.slice(0, 300)}`);
+      throw new Error(`LLM request failed: HTTP ${res.status} ${res.statusText} - ${body.slice(0, 300)}`);
     }
 
     const text = req.anthropic
@@ -155,7 +155,7 @@ export async function chatJSON<T>(system: string, messages: LLMMessage[], opts: 
       {
         role: "user",
         content:
-          "Your previous reply was not valid JSON. Return ONLY valid JSON matching the required schema — no prose, no markdown fences.",
+          "Your previous reply was not valid JSON. Return ONLY valid JSON matching the required schema - no prose, no markdown fences.",
       },
     ];
     const second = await chatRaw(system, retryMessages, { ...opts, temperature: 0.2 });

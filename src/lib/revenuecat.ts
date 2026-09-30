@@ -40,7 +40,7 @@ function writeStorage(key: string, value: string | null): void {
     if (value === null) window.localStorage.removeItem(key);
     else window.localStorage.setItem(key, value);
   } catch {
-    /* storage blocked (private mode, sandboxed iframe) — stay in-memory */
+    /* storage blocked (private mode, sandboxed iframe) - stay in-memory */
   }
 }
 
@@ -223,7 +223,7 @@ export function describePurchaseError(sdk: RevenueCatSdk, err: unknown): string 
   if (isPurchasesError(sdk, err)) {
     switch (err.errorCode) {
       case sdk.ErrorCode.NetworkError:
-        return "Network hiccup — check your connection and try again.";
+        return "Network hiccup - check your connection and try again.";
       case sdk.ErrorCode.ProductAlreadyPurchasedError:
         return "You already own this plan. Refreshing your access…";
       case sdk.ErrorCode.PaymentPendingError:

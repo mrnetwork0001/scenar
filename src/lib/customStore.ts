@@ -1,5 +1,5 @@
 // Client-side store for Pro custom scenarios. Only the public scenario and the opaque sealed
-// token live here — the persona / secret / win condition stay encrypted until the report.
+// token live here - the persona / secret / win condition stay encrypted until the report.
 import { useSyncExternalStore } from "react";
 import type { PublicScenario } from "./scenarios";
 
@@ -89,7 +89,7 @@ function write(items: CustomScenarioItem[]): boolean {
     window.localStorage.setItem(KEY, JSON.stringify(next));
     ok = true;
   } catch {
-    /* storage blocked or full — the in-memory mirror still works for this tab */
+    /* storage blocked or full - the in-memory mirror still works for this tab */
   }
   try {
     window.dispatchEvent(new Event(EVENT));

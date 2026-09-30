@@ -43,7 +43,7 @@ export function rateLimit(req: Request, name: keyof typeof RATE_LIMITS): Respons
   if (hits.length >= rule.limit) {
     const retryAfter = Math.ceil((rule.windowMs - (now - hits[0])) / 1000);
     return Response.json(
-      { error: "You're going a bit fast — take a breath and try again in a minute." },
+      { error: "You're going a bit fast - take a breath and try again in a minute." },
       { status: 429, headers: { "Retry-After": String(retryAfter) } },
     );
   }
