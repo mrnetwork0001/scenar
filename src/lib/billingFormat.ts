@@ -36,17 +36,17 @@ const timeFmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-d
 
 /** "30 September 2026" */
 export function formatDate(d: Date | null | undefined): string {
-  return d ? dateFmt.format(d) : "—";
+  return d ? dateFmt.format(d) : "-";
 }
 
 /** "30 Sept 2026, 14:05" */
 export function formatDateTime(d: Date | null | undefined): string {
-  return d ? dateTimeFmt.format(d) : "—";
+  return d ? dateTimeFmt.format(d) : "-";
 }
 
 /** "14:05:09" */
 export function formatTime(d: Date | null | undefined): string {
-  return d ? timeFmt.format(d) : "—";
+  return d ? timeFmt.format(d) : "-";
 }
 
 /**

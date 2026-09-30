@@ -189,7 +189,7 @@ function PlanCard() {
             <dt>Product</dt>
             <dd>
               {productTitle ? `${productTitle} · ` : ""}
-              <span className={styles.mono}>{snapshot.productId ?? "—"}</span>
+              <span className={styles.mono}>{snapshot.productId ?? "-"}</span>
             </dd>
           </div>
           <div>

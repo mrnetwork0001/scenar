@@ -435,11 +435,11 @@ function InspectorPanel({ onClose, panelRef }: { onClose: () => void; panelRef: 
                 <li key={e.id} className={styles.event}>
                   <span className={styles.eventType}>{e.type}</span>
                   <span className={styles.eventMeta}>
-                    {e.productId ?? "—"}
+                    {e.productId ?? "-"}
                     {e.environment ? ` · ${e.environment.toLowerCase()}` : ""}
                   </span>
                   <span className={styles.eventTime} title={formatDateTime(e.at)}>
-                    {e.at ? formatAgo(e.at, now) : "—"}
+                    {e.at ? formatAgo(e.at, now) : "-"}
                   </span>
                 </li>
               ))}
