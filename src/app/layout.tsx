@@ -78,11 +78,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <span className={styles.wordmark}>Scenar</span>
               </Link>
               <NavMenu />
-              <div className={styles.tags} aria-hidden="true">
-                <span>Negotiation</span>
-                <span className={styles.tagDot} />
-                <span>Hard feedback</span>
-              </div>
             </div>
             <div className={styles.navRight}>
               <LaunchButton />
