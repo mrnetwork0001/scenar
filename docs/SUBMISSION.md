@@ -54,7 +54,7 @@ Accounts that sync across devices, team plans for manager training cohorts, and 
 | 1:42–1:52 | Flip the header switch to **Live** (green strip) → RevenueCat checkout "Total due today $0" → press Shift+I: inspector shows entitlement, placement and "Server agrees: Pro" | "Sandbox for testing, Live for real Stripe payments: the same RevenueCat offering, verified end to end." |
 | 1:52–1:58 | /account → "Manage or cancel", then back to landing | "Scenar. Rehearse the conversations that matter." |
 
-Recording tips: record on https://tryscenar.vercel.app in a fresh private window (a new anonymous user) at 1440×900 and 100% zoom. Test Store trials last about 5 minutes, so record the purchase and the Pro features in one take. For the Live segment, show the checkout but don't submit a card, or use the clip of your real trial purchase and cancellation.
+Recording tips: record on https://www.tryscenar.xyz in a fresh private window (a new anonymous user) at 1440×900 and 100% zoom. Test Store trials last about 5 minutes, so record the purchase and the Pro features in one take. For the Live segment, show the checkout but don't submit a card, or use the clip of your real trial purchase and cancellation.
 
 ## Design notes (for judges)
 Look for these: the spring-physics needle on the tension meter and its colour-shifting glow, the staggered card entrances with per-scenario accent glows, the paywall's animated gradient border and the success burst, the blur-to-clear "hidden truth" reveal, and the radar chart drawing in.

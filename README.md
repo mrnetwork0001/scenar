@@ -4,7 +4,7 @@
 
 Scenar is an AI conversation simulator for students and new professionals. Practise the conversations people dread (negotiating your first salary, saying no to your manager, asking a strict professor for an extension, giving hard feedback to a former peer) against an AI counterpart with a **hidden agenda**. A live tension meter reacts to every line. At the end you get a scored report and the truth they were hiding.
 
-- **Live app:** https://tryscenar.vercel.app
+- **Live app:** https://www.tryscenar.xyz
 - **Built for:** RevenueCat Shipaton 2026, Next Gen Award
 - **Stack:** Next.js 16, React 19, TypeScript, RevenueCat (Test Store + Web Billing with Stripe), 0G AI router
 
@@ -144,7 +144,7 @@ Each paywall moment requests its own **RevenueCat placement** and falls back to 
 ### Inspector and account
 - **RevenueCat inspector:** open it with **Shift+I**, from the menu, or with the RC chip. It shows live SDK state (environment, key type, app user ID, entitlement, product, renewal, trial countdown, offering and placement, last purchase), server verification ("Server agrees: Pro") and webhook events.
 - **`/account`:** plan, trial end or renewal date, **Manage or cancel** via RevenueCat's customer portal, and **restore access on another device** via `changeUser`. No sign-up needed.
-- **Legal pages** required for live payments: [`/terms`](https://tryscenar.vercel.app/terms), [`/privacy`](https://tryscenar.vercel.app/privacy) and [`/refunds`](https://tryscenar.vercel.app/refunds), linked from the paywall, footer and account page.
+- **Legal pages** required for live payments: [`/terms`](https://www.tryscenar.xyz/terms), [`/privacy`](https://www.tryscenar.xyz/privacy) and [`/refunds`](https://www.tryscenar.xyz/refunds), linked from the paywall, footer and account page.
 
 ## Architecture
 
