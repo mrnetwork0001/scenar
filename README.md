@@ -52,7 +52,7 @@ Pro is enforced on the server, not just hidden in the browser:
 - **Webhooks**: `POST /api/revenuecat/webhook` checks the `Authorization` header against `REVENUECAT_WEBHOOK_AUTH` using a constant-time compare, clears the cached result for the user(s) in the event, and records the event. `GET /api/revenuecat/events?user=<id>` returns only that user's recent events. They are kept in a per-instance in-memory ring of 50, which is enough for the demo; use a DB/KV in production.
 - **`GET /api/entitlement`** shows what the server believes (`mode: revenuecat | demo | unverifiable`) for the inspector's "Server verification" row.
 
-Setup: see [docs/REVENUECAT_SETUP.md](docs/REVENUECAT_SETUP.md). Without a key, the app runs in a clearly labelled **demo billing** mode.
+Setup: see [docs/REVENUECAT_SETUP.md](docs/REVENUECAT_SETUP.md). Deployment: see [docs/DEPLOY.md](docs/DEPLOY.md). Without a key, the app runs in a clearly labelled **demo billing** mode.
 
 ## Tech
 
