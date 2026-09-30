@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3100"),
   title: {
-    default: "Scenar — Rehearse the conversations that matter",
+    default: "Scenar - Rehearse the conversations that matter",
     template: "%s · Scenar",
   },
   description:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     "RevenueCat Shipaton",
   ],
   openGraph: {
-    title: "Scenar — Rehearse the conversations that matter",
+    title: "Scenar - Rehearse the conversations that matter",
     description:
       "Roleplay high-stakes conversations against AI counterparts with hidden agendas. Live tension meter, scored report, tactical rewrites.",
     type: "website",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scenar — Rehearse the conversations that matter",
+    title: "Scenar - Rehearse the conversations that matter",
     description:
       "Roleplay high-stakes conversations against AI counterparts with hidden agendas. Live tension meter, scored report, tactical rewrites.",
   },
