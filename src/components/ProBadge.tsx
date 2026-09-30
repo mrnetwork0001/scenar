@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconPro, IconRetry } from "@/components/icons";
-import { daysUntil } from "@/lib/revenuecat";
+import { timeLeft } from "@/lib/revenuecat";
 import { useEntitlementInternals } from "./EntitlementProvider";
 import styles from "./ProBadge.module.css";
 
@@ -10,7 +10,20 @@ import styles from "./ProBadge.module.css";
 export function ProBadge({ className }: { className?: string }) {
   const { ready, isPro, isTrial, demoMode, expiresAt, openPaywall, resetDemo } =
     useEntitlementInternals();
-  const [now] = useState(() => Date.now());
+  const [now, setNow] = useState(() => Date.now());
+
+  // Keep the trial countdown fresh: re-read the clock when the expiry changes (e.g. right
+  // after a purchase) and every 30s (Test Store trials last minutes, real ones days).
+  useEffect(() => {
+    if (!isTrial) return;
+    const tick = () => setNow(Date.now());
+    const first = setTimeout(tick, 0);
+    const id = setInterval(tick, 30_000);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
+  }, [isTrial, expiresAt]);
 
   if (!ready) {
     return (
@@ -22,10 +35,10 @@ export function ProBadge({ className }: { className?: string }) {
     );
   }
 
-  const daysLeft = isTrial ? daysUntil(expiresAt, now) : null;
+  const left = isTrial ? timeLeft(expiresAt, now) : null;
   const statusText = isPro
     ? isTrial
-      ? `Scenar Pro trial${daysLeft !== null ? `, ${daysLeft} days left` : ""}`
+      ? `Scenar Pro trial${left ? `, ${left.long} left` : ""}`
       : "Scenar Pro active"
     : "Free plan. Upgrade to Scenar Pro";
 
@@ -59,7 +72,7 @@ export function ProBadge({ className }: { className?: string }) {
               {isTrial ? (
                 <span className={styles.muted}>
                   {" "}
-                  · Trial{daysLeft !== null ? ` · ${daysLeft}d` : ""}
+                  · Trial{left ? ` · ${left.short}` : ""}
                 </span>
               ) : null}
             </>
