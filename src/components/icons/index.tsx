@@ -427,6 +427,74 @@ export const IconRetry = createIcon(
 );
 
 /* ------------------------------------------------------------------ */
+/* Billing & inspector                                                 */
+/* ------------------------------------------------------------------ */
+
+/** Copy: two offset rounded sheets. */
+export const IconCopy = createIcon(
+  "Copy",
+  <>
+    <rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5" />
+    <path d="M15.5 8.5V6.5A2.5 2.5 0 0 0 13 4H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2" />
+  </>,
+);
+
+/** Time left: the gauge dial closed into a clock face, one hand. */
+export const IconClock = createIcon(
+  "Clock",
+  <>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 7.5V12l3 2" />
+  </>,
+);
+
+/** Inspector: a window with a right-hand drawer pulled out. */
+export const IconInspect = createIcon(
+  "Inspect",
+  <>
+    <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+    <path d="M14 4.5v15" />
+    <path d="M16.5 9h1.5" />
+    <path d="M16.5 12h1.5" />
+    <path d="M16.5 15h1.5" />
+  </>,
+);
+
+/** Webhook: three linked nodes, events travelling between systems. */
+export const IconWebhook = createIcon(
+  "Webhook",
+  <>
+    <circle cx="12" cy="6.5" r="2.5" />
+    <circle cx="6" cy="17" r="2.5" />
+    <circle cx="18" cy="17" r="2.5" />
+    <path d="M10.8 8.7 7.2 14.8" />
+    <path d="m13.2 8.7 3.6 6.1" />
+    <path d="M8.5 17h7" />
+  </>,
+);
+
+/** Billing: a card with a stripe and a short signature line. */
+export const IconCard = createIcon(
+  "Card",
+  <>
+    <rect x="3" y="5.5" width="18" height="13" rx="2.5" />
+    <path d="M3 10h18" />
+    <path d="M6.5 14.5h4" />
+  </>,
+);
+
+/** Document: a sheet with a folded corner and two text lines. */
+export const IconDoc = createIcon(
+  "Doc",
+  <>
+    <path d="M13.5 3.5H7.5A2 2 0 0 0 5.5 5.5v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8.5z" />
+    <path d="M13.5 3.5v5h5" />
+    <path d="M9 13h6" />
+    <path d="M9 16.5h4" />
+  </>,
+);
+
+/* ------------------------------------------------------------------ */
 /* Utility                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -528,6 +596,12 @@ export const ICONS = {
   Trash: IconTrash,
   Send: IconSend,
   Retry: IconRetry,
+  Copy: IconCopy,
+  Clock: IconClock,
+  Inspect: IconInspect,
+  Webhook: IconWebhook,
+  Card: IconCard,
+  Doc: IconDoc,
   ArrowRight: IconArrowRight,
   ArrowLeft: IconArrowLeft,
   ArrowUp: IconArrowUp,
