@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { chatJSON, hasLLM } from "@/lib/llm";
 import { proRequired, verifyPro } from "@/lib/entitlementServer";
 import { rateLimit } from "@/lib/rateLimit";
-import { buildTurnSystemPrompt, toLLMMessages } from "@/lib/prompts";
+import { buildTurnMessages, buildTurnSystemPrompt } from "@/lib/prompts";
 import { mockTurn, parseMessages, resolveScenario, sanitizeMetrics, toScore, toStatus, toText } from "@/lib/mock";
 import type { TurnResponse } from "@/lib/types";
 
@@ -49,11 +49,15 @@ export async function POST(req: Request) {
 
   try {
     const userTurns = messages.filter((m) => m.role === "user").length;
-    const raw = await chatJSON<Partial<TurnResponse>>(
-      buildTurnSystemPrompt(scenario, userTurns),
-      toLLMMessages(messages),
-      { temperature: 0.7, maxTokens: 600 },
-    );
+    const system = buildTurnSystemPrompt(scenario, userTurns);
+    const ask = () => chatJSON<Partial<TurnResponse>>(system, buildTurnMessages(scenario, messages), { temperature: 0.7, maxTokens: 600 });
+    let raw = await ask();
+    // Role-confusion guard: the counterpart never addresses itself by name. If the reply does
+    // ("Thanks for considering it, Dana"), the model answered as the user, so ask once more.
+    const self = scenario.counterpart.name.replace(/^(Prof\.|Dr\.)\s*/i, "").split(" ")[0];
+    if (typeof raw.reply === "string" && new RegExp(`\\b${self}\\b`, "i").test(raw.reply)) {
+      raw = await ask();
+    }
     const status = toStatus(raw.status, "ongoing");
     const reply = toText(raw.reply, "", 700);
     if (!reply) throw new Error("LLM turn response missing reply");

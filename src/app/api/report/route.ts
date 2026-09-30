@@ -75,6 +75,13 @@ export async function POST(req: Request) {
       { report: true, temperature: 0.4, maxTokens: 1800, timeoutMs: 50_000 },
     );
     const rw = (raw.rewrite && typeof raw.rewrite === "object" ? raw.rewrite : {}) as Partial<ReportResponse["rewrite"]>;
+    // The rewrite must quote something the USER said; if the model quoted the counterpart,
+    // fall back to the user's longest line so "You said" is always true.
+    const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9$ ]/g, " ").replace(/\s+/g, " ").trim();
+    const userLines = messages.filter((m) => m.role === "user").map((m) => m.content);
+    if (typeof rw.original === "string" && !userLines.some((l) => norm(l).includes(norm(rw.original as string).slice(0, 60)))) {
+      rw.original = userLines.reduce((a, b) => (b.length > a.length ? b : a), "");
+    }
     const res: ReportResponse = {
       overall: toScore(raw.overall, fallback.overall),
       verdict: toText(raw.verdict, fallback.verdict, 200),

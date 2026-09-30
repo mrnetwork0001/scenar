@@ -8,23 +8,30 @@ const RUBRIC = `METRIC RUBRIC (score the user's message 0-100; 50 = average, use
 - clarity: concise, specific, easy to act on; cites evidence; asks sharp questions. Low: vague ("more", "something better"), rambling, mixed messages.
 - boundaries: protects their interests/limits; says no when needed; proposes trade-offs or alternatives; does not accept the first offer or absorb unreasonable demands. Low: accepting against their goal, over-conceding.`;
 
-/** Maps scenario chat history to LLM roles: counterpart -> assistant, user -> user. */
-export function toLLMMessages(messages: ChatMessage[]): LLMMessage[] {
-  const out: LLMMessage[] = messages.map((m) => ({
-    role: m.role === "counterpart" ? "assistant" : "user",
-    content: m.content,
-  }));
-  // Many providers (e.g. Anthropic via compat layers) require the first non-system message to be "user".
-  if (out.length && out[0].role === "assistant") {
-    out.unshift({ role: "user", content: "(The conversation begins. You speak first.)" });
-  }
-  return out;
+/**
+ * The turn transcript as ONE labelled user message. Alternating assistant/user chat turns
+ * let some models slip into the user's side; explicit speaker labels keep the roles fixed.
+ */
+export function buildTurnMessages(s: Scenario, messages: ChatMessage[]): LLMMessage[] {
+  const who = s.counterpart.name.split(" ")[0].toUpperCase();
+  const transcript = messages
+    .map((m) => (m.role === "counterpart" ? `${who} (you): ${m.content}` : `USER: ${m.content}`))
+    .join("\n");
+  return [
+    {
+      role: "user",
+      content: `Conversation so far:\n\n${transcript}\n\nWrite ${who}'s next reply to the USER's last message, in character as ${who}, and score the USER's last message. Return the JSON object now.`,
+    },
+  ];
 }
 
 export function buildTurnSystemPrompt(s: Scenario, userTurns: number): string {
   return `You are running a high-stakes conversation simulator called Scenar. You have TWO jobs at once.
 
 JOB 1 - PLAY THE COUNTERPART, fully in character.
+You ARE ${s.counterpart.name} (${s.counterpart.role}). The USER is the other person in the conversation, the one practising.
+- Your "reply" is ONLY what ${s.counterpart.name.split(" ")[0]} says next, spoken TO the user in first person as ${s.counterpart.name.split(" ")[0]}.
+- Never write the user's lines, never argue the user's side, never address yourself by your own name.
 Name: ${s.counterpart.name} (${s.counterpart.role})
 Situation (what the user was told): ${s.brief}
 User's goal: ${s.goal}
@@ -78,7 +85,7 @@ Return ONLY a single JSON object, no markdown, no prose, exactly this shape:
   "reveal": "2-3 sentences in second person stating the secret plainly and how close you got, e.g. 'Dana could go to $84k - you stopped at $78k.'",
   "whatWorked": ["2-3 short bullets, quoting the user where possible"],
   "toImprove": ["2-3 short, actionable bullets"],
-  "rewrite": {"original": "an EXACT line the user said", "better": "a stronger rewritten version", "why": "one sentence on why it works better"}
+  "rewrite": {"original": "an EXACT sentence copied from a USER line in the transcript (never a line the counterpart said)", "better": "a stronger rewritten version the user could say", "why": "one sentence on why it works better"}
 }`;
 }
 
