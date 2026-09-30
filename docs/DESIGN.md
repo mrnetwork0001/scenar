@@ -27,7 +27,7 @@ Scenar is about composure under pressure, so the interface is calm: black ink on
 - `.tag`: white pill, `--line-strong` border, 11px.
 - `.eyebrow`: 8px black dot plus a 13px muted label.
 - Icon buttons: circles, 28px on mobile and 32px on desktop. Black with a white icon when primary; `--surface-muted` when secondary.
-- Icons come from `lucide-react`, 12–18px, with `strokeWidth` 2 (or 3 for tiny glyphs inside circles).
+- Icons come from the custom Scenar set in `src/components/icons` (24px grid, round stroke, brand motifs: the -35° logo bars for Pro and streak, the gauge arc for tension and targets). Use them at 12–18px with `strokeWidth` 2 (or 2.5–3 for tiny glyphs inside circles).
 
 **Motion:** `motion` (`import { motion } from "motion/react"`).
 - Signature easing: `[0.16, 1, 0.3, 1]` (CSS `var(--ease-out)`).
@@ -46,7 +46,7 @@ The fixed top bar has `pointer-events: none` on the bar itself and `auto` on its
 
 **Left side:**
 1. **Logo:** two rounded rectangles rotated -35°, filled black (`LogoMark`), plus the "Scenar" wordmark (15px/600, hidden below 768px).
-2. **Menu pill:** a black pill containing a white circle with a lucide `Plus` icon (size 12, strokeWidth 3), plus the "Menu" label (11px, white). It opens a small white dropdown card with links: Scenarios, Build your own, How it works, Your progress. The Plus rotates 45° while the menu is open.
+2. **Menu pill:** a black pill containing a white circle with an `IconPlus` (size 12, strokeWidth 3), plus the "Menu" label (11px, white). It opens a small white dropdown card with links: Scenarios, Build your own, How it works, Your progress. The Plus rotates 45° while the menu is open.
 3. **Tags pill** (desktop only): a `--surface-muted` rounded-full container with two labels: "Negotiation" and "Hard feedback".
 
 **Right side:** the entitlement pill (`ProBadge`). A `--surface-muted` pill containing:
