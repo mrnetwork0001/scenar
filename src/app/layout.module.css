@@ -107,3 +107,9 @@
   pointer-events: none;
 }
 .navRight > * { pointer-events: auto; }
+
+/* Sandbox | Live switch: desktop only (Menu -> Inspector / Account covers smaller screens). */
+.navEnv { display: none; }
+@media (min-width: 1024px) {
+  .navEnv { display: flex; align-items: center; margin-right: 4px; }
+}

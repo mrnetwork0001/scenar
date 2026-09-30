@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import Link from "next/link";
+import { BillingInspector } from "@/components/BillingInspector";
 import { EntitlementProvider } from "@/components/EntitlementProvider";
+import { EnvironmentSwitch } from "@/components/EnvironmentSwitch";
 import { LaunchButton } from "@/components/LaunchButton";
 import { LogoMark } from "@/components/LogoMark";
 import { NavMenu } from "@/components/NavMenu";
@@ -80,6 +82,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <NavMenu />
             </div>
             <div className={styles.navRight}>
+              <div className={styles.navEnv}>
+                <EnvironmentSwitch size="sm" />
+              </div>
               <LaunchButton />
               <ProBadge />
             </div>
@@ -87,6 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main id="main" className={styles.main}>
             {children}
           </main>
+          <BillingInspector />
         </EntitlementProvider>
       </body>
     </html>

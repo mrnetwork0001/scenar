@@ -1,10 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { IconArrowUpRight, IconPlus } from "@/components/icons";
+import { IconArrowUpRight, IconInspect, IconPlus } from "@/components/icons";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { useHistory } from "@/lib/history";
+import { openInspector } from "@/lib/inspector";
 import { ScrollLink } from "./ScrollLink";
 import styles from "./NavMenu.module.css";
 import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
@@ -18,6 +19,7 @@ const LINKS = [
   { href: "/#how", label: "How it works", hint: "See a live demo" },
   { href: "/#pricing", label: "Pricing", hint: "Free & Pro plans" },
   { href: "/#faq", label: "FAQ", hint: "Common questions" },
+  { href: "/account", label: "Account & billing", hint: "Plan, restore, environment" },
 ];
 
 /** The black "Menu" pill with its dropdown card. */
@@ -109,6 +111,29 @@ export function NavMenu() {
                   </ScrollLink>
                 </motion.li>
               ))}
+              <motion.li
+                className={styles.divided}
+                initial={reduce ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: EASE, delay: 0.04 + links.length * 0.04 }}
+              >
+                <button
+                  type="button"
+                  className={styles.link}
+                  onClick={() => {
+                    setOpen(false);
+                    openInspector("open");
+                  }}
+                >
+                  <span className={styles.linkText}>
+                    <span className={styles.linkLabel}>RevenueCat inspector</span>
+                    <span className={styles.linkHint}>Live SDK state · Shift+I</span>
+                  </span>
+                  <span className={`${styles.linkIcon} ${styles.linkIconStatic}`} aria-hidden="true">
+                    <IconInspect size={14} strokeWidth={2} />
+                  </span>
+                </button>
+              </motion.li>
             </ul>
           </motion.nav>
         )}
