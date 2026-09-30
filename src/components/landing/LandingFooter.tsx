@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@/components/icons";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { LogoMark } from "@/components/LogoMark";
@@ -49,7 +49,7 @@ function FooterLinkItem({ link }: { link: FooterLink }) {
     return (
       <a href={link.href} target="_blank" rel="noreferrer" className={styles.link}>
         {link.label}
-        <ArrowUpRight size={12} strokeWidth={2} aria-hidden="true" className={styles.ext} />
+        <IconArrowUpRight size={12} strokeWidth={2} aria-hidden="true" className={styles.ext} />
       </a>
     );
   }
@@ -77,7 +77,7 @@ function FooterBrand() {
       <p className={styles.tagline}>Rehearse the conversations that matter, before the stakes are real.</p>
       <Link href="/app" className={`btn btn-primary ${styles.brandCta}`}>
         Launch app
-        <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+        <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
       </Link>
     </div>
   );

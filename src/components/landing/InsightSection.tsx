@@ -1,6 +1,6 @@
 "use client";
 
-import { KeyRound, Lock, LockOpen } from "lucide-react";
+import { IconKey, IconLock, IconUnlock } from "@/components/icons";
 import { useInView } from "motion/react";
 import { Fragment, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -118,7 +118,7 @@ function DossierCard({ d, index, reduce }: { d: Dossier; index: number; reduce: 
         <div className={styles.secretBlock} ref={ref}>
           <p className={styles.label}>
             <span className={styles.lockIcon} aria-hidden="true">
-              {open ? <LockOpen size={12} strokeWidth={2} /> : <Lock size={12} strokeWidth={2} />}
+              {open ? <IconUnlock size={12} strokeWidth={2} /> : <IconLock size={12} strokeWidth={2} />}
             </span>
             {open ? "Hidden truth · revealed" : "Hidden truth · classified"}
           </p>
@@ -128,7 +128,7 @@ function DossierCard({ d, index, reduce }: { d: Dossier; index: number; reduce: 
         </div>
 
         <div className={styles.unlock}>
-          <KeyRound size={14} strokeWidth={2} aria-hidden="true" className={styles.unlockIcon} />
+          <IconKey size={14} strokeWidth={2} aria-hidden="true" className={styles.unlockIcon} />
           <p>
             <span className={styles.unlockLabel}>How to unlock it</span>
             {d.unlock}

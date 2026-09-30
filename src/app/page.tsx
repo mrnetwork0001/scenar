@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@/components/icons";
 import Link from "next/link";
 import { HeroVisual } from "@/components/HeroVisual";
 import { ScrollLink } from "@/components/ScrollLink";
@@ -37,7 +37,7 @@ export default function Home() {
               <div className={styles.heroActions}>
                 <Link href="/app" className="btn btn-primary">
                   Launch app
-                  <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+                  <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
                 </Link>
                 <ScrollLink href="#problem" className="btn btn-ghost">
                   Why Scenar

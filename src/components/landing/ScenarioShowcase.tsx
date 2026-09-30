@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Lock, Plus } from "lucide-react";
+import { IconArrowUpRight, IconLock, IconPlus } from "@/components/icons";
 import { useInView } from "motion/react";
 import Link from "next/link";
 import { useRef } from "react";
@@ -49,10 +49,10 @@ export function ScenarioShowcase({ scenarios }: { scenarios: PublicScenario[] })
         <Reveal delay={0.2} className={styles.ctaRow}>
           <Link href="/app" className="btn btn-primary">
             Browse scenarios
-            <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
           </Link>
           <Link href="/custom" className="btn btn-ghost">
-            <Plus size={14} strokeWidth={2} aria-hidden="true" />
+            <IconPlus size={14} strokeWidth={2} aria-hidden="true" />
             Build your own
           </Link>
         </Reveal>
@@ -114,7 +114,7 @@ function ScenarioCard({ s, focusable }: { s: PublicScenario; focusable: boolean 
           {s.category}
         </span>
         <span className={`${styles.pill} ${pro ? styles.pillPro : ""}`}>
-          {pro && <Lock size={10} strokeWidth={2.5} aria-hidden="true" />}
+          {pro && <IconLock size={10} strokeWidth={2.5} aria-hidden="true" />}
           {pro ? "PRO" : "FREE"}
         </span>
       </div>
@@ -148,7 +148,7 @@ function CustomCard({ focusable }: { focusable: boolean }) {
       <div className={styles.cardTop}>
         <span className={`tag ${styles.customTag}`}>Your scenario</span>
         <span className={`${styles.pill} ${styles.pillPro}`}>
-          <Lock size={10} strokeWidth={2.5} aria-hidden="true" />
+          <IconLock size={10} strokeWidth={2.5} aria-hidden="true" />
           PRO
         </span>
       </div>
@@ -157,7 +157,7 @@ function CustomCard({ focusable }: { focusable: boolean }) {
 
       <div className={styles.cardFoot}>
         <span className={`${styles.avatar} ${styles.avatarGhost}`} aria-hidden="true">
-          <Plus size={14} strokeWidth={2} />
+          <IconPlus size={14} strokeWidth={2} />
         </span>
         <span className={styles.who}>
           <span className={styles.name}>Anyone you’re dreading</span>

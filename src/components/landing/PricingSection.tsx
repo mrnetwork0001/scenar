@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight, Check, Crown, Zap } from "lucide-react";
+import { IconArrowRight, IconArrowUpRight, IconCheck, IconPro, IconZap } from "@/components/icons";
 import { motion, useInView } from "motion/react";
 import Link from "next/link";
 import { useRef, type CSSProperties } from "react";
@@ -176,7 +176,7 @@ export function PricingSection() {
               {FREE_FEATURES.map((f) => (
                 <li key={f}>
                   <span className={styles.check}>
-                    <Check size={10} strokeWidth={3} aria-hidden="true" />
+                    <IconCheck size={10} strokeWidth={3} aria-hidden="true" />
                   </span>
                   {f}
                 </li>
@@ -184,7 +184,7 @@ export function PricingSection() {
             </ul>
             <Link href="/app" className={`btn btn-ghost ${styles.cardCta}`}>
               Start free
-              <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+              <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
             </Link>
           </motion.article>
 
@@ -213,14 +213,14 @@ export function PricingSection() {
                   {PRO_FEATURES.map((f) => (
                     <li key={f}>
                       <span className={styles.check}>
-                        <Check size={10} strokeWidth={3} aria-hidden="true" />
+                        <IconCheck size={10} strokeWidth={3} aria-hidden="true" />
                       </span>
                       {f}
                     </li>
                   ))}
                 </ul>
                 <p className={styles.unlockNote}>
-                  <Zap size={13} strokeWidth={2} aria-hidden="true" />
+                  <IconZap size={13} strokeWidth={2} aria-hidden="true" />
                   <span>
                     Unlocks the moment checkout completes. No account needed: access is tied to an
                     anonymous RevenueCat ID.
@@ -232,7 +232,7 @@ export function PricingSection() {
                 {isPro ? (
                   <div className={styles.proState} role="status">
                     <span className={styles.crown}>
-                      <Crown size={16} strokeWidth={2} aria-hidden="true" />
+                      <IconPro size={16} strokeWidth={2} aria-hidden="true" />
                     </span>
                     <div>
                       <p className={styles.proStateTitle}>You&apos;re Pro</p>
@@ -265,7 +265,7 @@ export function PricingSection() {
                 {isPro ? (
                   <Link href="/app" className={`btn ${styles.ctaWhite}`}>
                     Keep practicing
-                    <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+                    <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
                   </Link>
                 ) : (
                   <button
@@ -275,7 +275,7 @@ export function PricingSection() {
                     disabled={!ready}
                   >
                     {ctaLabel}
-                    <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+                    <IconArrowRight size={14} strokeWidth={2} aria-hidden="true" />
                   </button>
                 )}
                 <p className={styles.fine}>Cancel anytime · Secure checkout by RevenueCat Web Billing</p>

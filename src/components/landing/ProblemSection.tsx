@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, BookOpen, Crosshair, Users, type LucideIcon } from "lucide-react";
+import { IconBook, IconPeople, IconPulse, IconTarget, type ScenarIcon } from "@/components/icons";
 import {
   motion,
   useInView,
@@ -16,21 +16,21 @@ import styles from "./ProblemSection.module.css";
 import { useSafeReducedMotion } from "@/components/useSafeReducedMotion";
 
 
-const PROBLEMS: { icon: LucideIcon; title: string; body: string }[] = [
+const PROBLEMS: { icon: ScenarIcon; title: string; body: string }[] = [
   {
-    icon: Crosshair,
+    icon: IconTarget,
     title: "You get one shot",
     body: "The salary call, the review, the hard no. There is no second take - whatever you say first is what counts." },
   {
-    icon: BookOpen,
+    icon: IconBook,
     title: "Advice doesn’t talk back",
     body: "Articles hand you a script. Real people interrupt, deflect and push back, and the script falls apart." },
   {
-    icon: Users,
+    icon: IconPeople,
     title: "Friends go easy on you",
     body: "A friend playing the recruiter breaks character, laughs, and never keeps a poker face." },
   {
-    icon: Activity,
+    icon: IconPulse,
     title: "Nerves make you fold",
     body: "Under pressure we hedge, over-apologise, take the first offer, or say yes when we mean no." },
 ];

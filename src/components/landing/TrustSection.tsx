@@ -1,48 +1,48 @@
 "use client";
 
 import {
-  CodeXml,
-  Gauge,
-  HardDrive,
-  LockKeyhole,
-  ServerCog,
-  UserRoundX,
-  type LucideIcon,
-} from "lucide-react";
+  IconAnonymous,
+  IconCode,
+  IconDevice,
+  IconEncrypted,
+  IconGauge,
+  IconServer,
+  type ScenarIcon,
+} from "@/components/icons";
 import { useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader, sectionStyles } from "./SectionHeader";
 import styles from "./TrustSection.module.css";
 
-const ITEMS: { icon: LucideIcon; title: string; body: string }[] = [
+const ITEMS: { icon: ScenarIcon; title: string; body: string }[] = [
   {
-    icon: ServerCog,
+    icon: IconServer,
     title: "Secrets stay server-side",
     body: "Personas, hidden agendas and win conditions never reach your browser. The page only receives public fields.",
   },
   {
-    icon: LockKeyhole,
+    icon: IconEncrypted,
     title: "Sealed custom scenarios",
     body: "Scenarios you build travel as AES-256-GCM encrypted tokens, so not even your own browser can peek at the secret.",
   },
   {
-    icon: UserRoundX,
+    icon: IconAnonymous,
     title: "No sign-up",
     body: "RevenueCat anonymous app user IDs let you start rehearsing straight away, with no account to create.",
   },
   {
-    icon: HardDrive,
+    icon: IconDevice,
     title: "History stays on your device",
     body: "Your practice history and progress live in your browser's local storage, not in our database.",
   },
   {
-    icon: Gauge,
+    icon: IconGauge,
     title: "Rate-limited AI",
     body: "The conversation and report endpoints are rate-limited per IP in production to keep the service responsive.",
   },
   {
-    icon: CodeXml,
+    icon: IconCode,
     title: "Open source, MIT",
     body: "Every line is public on GitHub under the MIT license. Read it, fork it, audit it.",
   },

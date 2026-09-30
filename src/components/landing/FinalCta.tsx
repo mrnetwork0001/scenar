@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@/components/icons";
 import {
   animate,
   motion,
@@ -193,7 +193,7 @@ export function FinalCta() {
         <motion.div className={styles.actions} {...rise(0.2)}>
           <Link href="/app" className={`btn ${styles.btnWhite}`}>
             Launch app
-            <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
           </Link>
           <ScrollLink href="#pricing" className={`btn ${styles.btnGhostWhite}`}>
             See pricing

@@ -1,18 +1,18 @@
 "use client";
 
 import {
-  ArrowRight,
-  AudioLines,
-  Lock,
-  LockOpen,
-  Mic,
-  PenLine,
-  Sparkles,
-  TrendingUp,
-  Trophy,
-  Volume2,
-  Wand2,
-} from "lucide-react";
+  IconArrowRight,
+  IconBest,
+  IconLock,
+  IconMic,
+  IconPen,
+  IconSpark,
+  IconSpeaker,
+  IconTrendUp,
+  IconUnlock,
+  IconWand,
+  IconWaveform,
+} from "@/components/icons";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -90,7 +90,7 @@ export function FeaturesSection() {
           <p className={styles.ctaNote}>Two scenarios, live scoring and progress tracking are free. No card needed.</p>
           <ScrollLink href="#pricing" className="btn btn-primary">
             See Pro plans
-            <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowRight size={14} strokeWidth={2} aria-hidden="true" />
           </ScrollLink>
         </Reveal>
       </div>
@@ -161,7 +161,7 @@ function RewriteTile() {
     <Tile
       tileRef={ref}
       className={styles.tileWide}
-      icon={<PenLine size={12} strokeWidth={2} />}
+      icon={<IconPen size={12} strokeWidth={2} />}
       kicker="Tactical coaching"
       badge="Pro"
       title="Your weakest line, rewritten."
@@ -183,7 +183,7 @@ function RewriteTile() {
             </p>
           </div>
           <div className={styles.rwArrow}>
-            <Wand2 size={12} strokeWidth={2} />
+            <IconWand size={12} strokeWidth={2} />
           </div>
           <div className={`${styles.rwRow} ${styles.rwBetterRow}`}>
             <span className={styles.rwLabel}>Try instead</span>
@@ -245,7 +245,7 @@ function VoiceTile() {
     <Tile
       tileRef={ref}
       inverse
-      icon={<AudioLines size={12} strokeWidth={2} />}
+      icon={<IconWaveform size={12} strokeWidth={2} />}
       kicker="Voice mode"
       badge="Pro"
       title="Say it out loud."
@@ -255,7 +255,7 @@ function VoiceTile() {
           <div className={styles.voiceHead}>
             <span className={styles.voiceWho}>
               <span className={styles.voiceIcon}>
-                {you ? <Mic size={12} strokeWidth={2} /> : <Volume2 size={12} strokeWidth={2} />}
+                {you ? <IconMic size={12} strokeWidth={2} /> : <IconSpeaker size={12} strokeWidth={2} />}
               </span>
               <motion.span
                 key={speaker.who}
@@ -334,7 +334,7 @@ function BuilderTile() {
   return (
     <Tile
       tileRef={ref}
-      icon={<Sparkles size={12} strokeWidth={2} />}
+      icon={<IconSpark size={12} strokeWidth={2} />}
       kicker="Custom builder"
       badge="Pro"
       title="The conversation you’re dreading."
@@ -379,7 +379,7 @@ function BuilderTile() {
                   <span className={styles.personaRole}>Your landlord</span>
                 </span>
                 <span className={styles.sealed}>
-                  <Lock size={9} strokeWidth={2.5} />
+                  <IconLock size={9} strokeWidth={2.5} />
                   Sealed
                 </span>
               </div>
@@ -422,7 +422,7 @@ function ProgressTile() {
   return (
     <Tile
       tileRef={ref}
-      icon={<TrendingUp size={12} strokeWidth={2} />}
+      icon={<IconTrendUp size={12} strokeWidth={2} />}
       kicker="Progress"
       badge="Free"
       title="Watch yourself get better."
@@ -446,7 +446,7 @@ function ProgressTile() {
               animate={chip ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 4 }}
               transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}
             >
-              <Trophy size={11} strokeWidth={2.5} />
+              <IconBest size={11} strokeWidth={2.5} />
               Personal best
             </motion.span>
           </div>
@@ -508,7 +508,7 @@ function RevealTile() {
     <Tile
       tileRef={ref}
       inverse
-      icon={open ? <LockOpen size={12} strokeWidth={2} /> : <Lock size={12} strokeWidth={2} />}
+      icon={open ? <IconUnlock size={12} strokeWidth={2} /> : <IconLock size={12} strokeWidth={2} />}
       kicker="The hidden truth"
       badge="Free"
       title="See what they were hiding."

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@/components/icons";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useId, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -148,7 +148,7 @@ export function FaqSection() {
             rel="noreferrer"
           >
             Read the source
-            <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
           </a>
         </Reveal>
 

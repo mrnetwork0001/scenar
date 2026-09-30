@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Lock, SendHorizontal, Sparkles } from "lucide-react";
+import { IconArrowUpRight, IconLock, IconSend, IconSpark } from "@/components/icons";
 import {
   AnimatePresence,
   motion,
@@ -194,7 +194,7 @@ export function DemoSection() {
             <div className={`${styles.cta} ${styles.ctaDesktop}`}>
               <Link href="/app" className="btn btn-primary">
                 Launch app
-                <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+                <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
               </Link>
               <span className={styles.ctaNote}>Start with a free scenario.</span>
             </div>
@@ -240,7 +240,7 @@ export function DemoSection() {
         <div className={`${styles.cta} ${styles.ctaMobile}`}>
           <Link href="/app" className="btn btn-primary">
             Launch app
-            <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+            <IconArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
           </Link>
           <span className={styles.ctaNote}>Start with a free scenario.</span>
         </div>
@@ -335,7 +335,7 @@ function ProductWindow({ stage, reduce }: { stage: number; reduce: boolean }) {
                     l.kind === "coach" ? (
                       <motion.div key={l.stage} layout="position" className={styles.coach} {...enter(reduce)}>
                         <span className={styles.coachIcon}>
-                          <Sparkles size={11} strokeWidth={2.5} />
+                          <IconSpark size={11} strokeWidth={2.5} />
                         </span>
                         <span>
                           <b>Coach</b> {l.text}
@@ -358,7 +358,7 @@ function ProductWindow({ stage, reduce }: { stage: number; reduce: boolean }) {
               <div className={styles.composer}>
                 <span>Type your reply…</span>
                 <span className={styles.send}>
-                  <SendHorizontal size={13} strokeWidth={2} />
+                  <IconSend size={13} strokeWidth={2} />
                 </span>
               </div>
             </motion.div>
@@ -394,7 +394,7 @@ function PickerRow({
       </span>
       {pro ? (
         <span className={styles.pickPro}>
-          <Lock size={9} strokeWidth={2.5} /> Pro
+          <IconLock size={9} strokeWidth={2.5} /> Pro
         </span>
       ) : (
         <span className={styles.pickFree}>Free</span>
